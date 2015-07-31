@@ -354,18 +354,44 @@ table.dataTable thead .sorting:after {
     color: #df8a13;
 }
 
+form .form-group {
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
 .bg-blue {
-  background-color: #dfe3ff;
+  background-color: #dfdfff;
 }
 
-.form-blue label{
-  color: #004499;
+.bg-peach {
+  background-color: #ffdab9;
 }
 
-/*
+.form-group label {
+  font-weight: normal;
+}
+
+.form-control {
+  border-radius: 0px;
+}
+
 .page-header {
   font-weight: bold;
   color: #0099dd;
   font-size: 2em;
+  margin-top: 20px;
 }
-*/
+
+.form-small .form-group, .btn {
+  font-size: 13px;
+}
+
+
+.form-small .form-control {
+  font-size: 0.9em;
+  height: auto;
+}
+
+.navbar {
+  border: none;
+}
