@@ -1,0 +1,110 @@
+
+body {
+    background-color: #f8f8f8;
+}
+#wrapper {
+    width: 100%;
+}
+#page-wrapper {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: #fff;
+}
+@media(min-width:768px) {
+    #page-wrapper {
+        margin: 0 0 0 250px;
+        padding: 0 30px;
+        border-left: 1px solid #e7e7e7;
+    }
+}
+
+.sidebar .sidebar-nav.navbar-collapse {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.sidebar ul li {
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.sidebar ul li a.active {
+    background-color: #eee;
+}
+
+@media(min-width:768px) {
+    .sidebar {
+        z-index: 1;
+        position: absolute;
+        width: 250px;
+        margin-top: 51px;
+    }
+}
+
+/*--------------------------------------*/
+
+hr {
+   border-color: #aaa;
+   margin: 15px 0;
+}
+
+form .form-group {
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.bg-blue {
+   background-color: #dfdfff;
+}
+
+.bg-blue-gradient {
+   background: #feffff;
+   background: -moz-linear-gradient(top, #eeeeff 0%, #dfdfff 100%);
+   background: -webkit-linear-gradient(top, #eeeeff 0%,#dfdfff 100%);
+   background: -o-linear-gradient(top, #eeeeff 0%,#dfdfff 100%);
+   background: -ms-linear-gradient(top, #eeeeff 0%,#dfdfff 100%);
+   background: linear-gradient(to bottom, #eeeeff 0%,#dfdfff 100%);
+}
+
+.bg-cyan {
+   background-color: #dfefff;
+}
+
+.bg-peach {
+  background-color: #ffdab9;
+}
+
+.form-control {
+  border-radius: 0px;
+}
+
+.page-header {
+  font-weight: bold;
+  color: #0099dd;
+  font-size: 2em;
+  margin-top: 20px;
+}
+
+.form-small .form-group, .btn {
+  font-size: 13px;
+  line-height: 0.7;
+}
+
+
+.form-small .form-control {
+  font-size: 0.9em;
+  height: auto;
+}
+
+.navbar {
+  border: none;
+}
+
+.warning-text {
+   font-weight: bold;
+   color: red;
+}
+
+.invalid-input {
+   box-shadow: 0 0 2px red;
+   border: 1px solid red;
+}
