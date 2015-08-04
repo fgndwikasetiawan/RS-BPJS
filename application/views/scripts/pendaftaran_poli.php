@@ -12,14 +12,14 @@
       for (i=year; i>=1900; i--) {
          $('#tahun_lahir').append('<option value=' + i + '>' + i + '</option>');
       }
+      //timepicker
+      $('.timepicker').timepicker({
+       showMeridian: false
+      });
    });
 
-   $('.timepicker').timepicker({
-    showMeridian: false
-   });
    function cari_desa(input) {
       id = $(input).val();
-      console.log("start ajax desa");
       $.ajax({
          url: '/ajax/daerah_by_id_desa/' + id,
          statusCode: {
@@ -30,34 +30,62 @@
                $('#kecamatan').val(data.NAMA_KECAMATAN);
             }
          }
-      }).always(function(){
-         console.log("finish ajax desa");
+      });
+   }
+   function cari_kecamatan(input) {
+      id = $(input).val();
+      $.ajax({
+         url: '/ajax/daerah_by_id_kecamatan/' + id,
+         statusCode: {
+            200: function(data) {
+               data = JSON.parse(data);
+               $('#id_desa').val('');
+               $('#kelurahan').val('');
+               $('#id_kecamatan').val(data.ID_KECAMATAN);
+               $('#kecamatan').val(data.NAMA_KECAMATAN);
+            }
+         }
       });
    }
    function cari_pasien() {
-       var tipe = $('#tipe_cari').val();
-       var nomor = $('#nomor_cari').val();
-       if (tipe == 'medrec') {
-         $('#icon_loading').show();
-         $.ajax({
-             url: '/ajax/data_pasien_by_medrec/' + nomor,
-             statusCode: {
-                200: function(data) {
-                   data = JSON.parse(data);
+      var tipe = $('#tipe_cari').val();
+      var nomor = $('#nomor_cari').val();
+      var url = "";
+      if (tipe == 'medrec') {
+       url = '/ajax/data_pasien_by_medrec/' + nomor;
+      }
+      else {
+       url = '/ajax/data_pasien_by_bpjs/' + nomor
+      }
+      $('#icon_loading').show();
+      $.ajax({
+          url: url,
+          statusCode: {
+             200: function(data) {
+                data = JSON.parse(data);
+                if (data == null) {
+                   $('form')[0].reset();
+                   $('#nama').val('TIDAK DITEMUKAN');
+                   $('#tombol_submit').attr('disabled', true);
+                   $('#usia').text(' ')
+                }
+                else {
                    $('#nama').val(data.NAMA);
                    $('#nama_kel').val(data.NAMA_KEL);
                    $('#no_cm').val(data.NO_MEDREC);
                    $('#tempat_lahir').val(data.TMPT_LAHIR);
                    $('#kwn').val(data.WNEGARA);
                    $('#gol_darah').val(data.GOLDARAH);
-                   var tanggalSplit = data.TGL_LAHIR.split("-");
-                   var tanggal = Number(tanggalSplit[0]);
-                   var bulan = Number(tanggalSplit[1]);
-                   var tahun = Number(tanggalSplit[2]);
-                   $('#tanggal_lahir').val(tanggal);
-                   $('#bulan_lahir').val(bulan);
-                   $('#tahun_lahir').val(tahun);
-                   $('#sex').val(data.SEX);
+                   if (data.TGL_LAHIR) {
+                      var tanggalSplit = data.TGL_LAHIR.split("-");
+                      var tanggal = Number(tanggalSplit[0]);
+                      var bulan = Number(tanggalSplit[1]);
+                      var tahun = Number(tanggalSplit[2]);
+                      $('#tanggal_lahir').val(tanggal);
+                      $('#bulan_lahir').val(bulan);
+                      $('#tahun_lahir').val(tahun);
+                      $('#sex').val(data.SEX);
+                   }
                    cek_tanggal();
                    $('#agama').val(data.AGAMA);
                    $('#pekerjaan').val(data.PEKERJAAN);
@@ -73,11 +101,11 @@
                    $('#tempat_kartu').val(data.TEMPAT_KARTU);
                    $('#no_bpjs').val(data.NO_ASURANSI);
                    $('#status').val(data.STATUS);
-                   $('#icon_loading').hide();
                 }
+                $('#icon_loading').hide();
              }
-         });
-      }
+          }
+      });
    }
    function hitung_usia(ms) {
       usia = {

@@ -2,17 +2,17 @@
    $navbar = array(
       array(
          'icon' => 'fa fa-home fa-fw',
-         'href' => '/',
+         'href' => base_url(),
          'text' => 'Beranda'
       ),
       array(
          'icon' => 'fa fa-pencil-square-o fa-fw',
-         'href' => '/pendaftaran',
+         'href' => base_url() . 'pendaftaran',
          'text' => 'Pendaftaran Poliklinik'
       ),
       array(
          'icon' => 'fa fa-sign-out fa-fw',
-         'href' => '/logout',
+         'href' => base_url() . 'auth/logout',
          'text' => 'Keluar'
       )
    );
@@ -58,6 +58,12 @@
                <h1 class="page-header"><?php echo $page_header; ?></h1>
             </div>
          </div>
+         <?php if (isset($alert_msg)) { ?>
+         <div class="row alert <?php echo $alert_class; ?> alert-dismissible" role="alert">
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           <?php echo $alert_msg; ?>
+         </div>
+         <?php } ?>
 
          <?php echo $content; ?>
 

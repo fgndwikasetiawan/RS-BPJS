@@ -23,7 +23,7 @@
                </div>
             </div>
          </div>
-         <form role="form" class="form-small">
+         <form role="form" class="form-small" method="post" action="<?php echo base_url(); ?>pendaftaran/daftar_poli">
             <div class="panel-body bg-blue-gradient">
                <!--Kolom kiri-->
                <div class="col-md-7" id="kolom_kiri">
@@ -144,7 +144,7 @@
                   <div class="row">
                      <div class="col-md-4 form-group">
                         <label>Kecamatan</label>
-                        <input class="form-control" name="id_kecamatan" id="id_kecamatan" placeholder="ID_KECAMATAN">
+                        <input class="form-control" name="id_kecamatan" id="id_kecamatan" placeholder="ID_KECAMATAN" onchange="cari_kecamatan(this)">
                      </div>
                      <div class="col-md-8 form-group">
                         <label>&nbsp;</label>
@@ -172,7 +172,7 @@
                      </div>
                   </div>
                   <div class="row">
-                     <div class="col-lg-4 form-group">
+                     <div class="col-lg-8 form-group">
                         <label>Tempat Kartu</label>
                         <input class="form-control" name="tempat_kartu" id="tempat_kartu">
                      </div>
