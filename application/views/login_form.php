@@ -19,17 +19,9 @@
                 </div>
                 <div style="padding-top:30px" class="panel-body" >
 
-                    <div style="<?php if(!isset($message_display)) echo "display:none"; ?>" id="login-alert" class="alert <?php if (isset($alert_class)) echo $alert_class; ?> col-sm-12">
-
-                                                                  <?php
-                                                                    if (isset($message_display)) {
-                                                                      echo "<div class='message'>";
-                                                                      echo $message_display;
-                                                                      echo "</div>";
-                                                                    }
-                                                                  ?>
-
-                    </div>
+                     <?php if (isset($message_display) && isset($alert_class)) { ?>
+                        <div class="alert <?php echo $alert_class; ?>"><?php echo $message_display; ?></div>
+                     <?php } ?>
 
                     <form id="loginform" class="form-horizontal" role="form" method="POST" action="<?php echo base_url(); ?>auth/user_login_process">
 
@@ -60,9 +52,6 @@
     </div>
 
 </div>
-
-
-<?php echo form_close(); ?>
 
 <script src="<?php echo assets_url();?>/js/bootstrap.min.js"></script>
 </body>
