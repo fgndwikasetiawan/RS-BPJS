@@ -8,7 +8,7 @@
       array(
          'icon' => 'fa fa-pencil-square-o fa-fw',
          'href' => base_url() . 'pendaftaran',
-         'text' => 'Pendaftaran Poliklinik'
+         'text' => 'Registrasi Pasien'
       ),
       array(
          'icon' => 'fa fa-sign-out fa-fw',
@@ -32,27 +32,28 @@
 <body>
    <div id="wrapper">
 
-      <nav class="navbar navbar-default sidebar" role="navigation" style="margin-top: 0">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <i class="fa fa-navicon"></i>
-          </button>
-          <a class="navbar-brand" href="index.html">SI-RS</a>
-        </div>
-        <div class="navbar-default sidebar" role="navigation">
-          <div class="sidebar-nav navbar-collapse">
-            <ul class="nav in" id="side-menu">
-               <?php $i=0; foreach($navbar as $nav) { ?>
-               <li>
-                  <a href=<?php echo '"' . $nav['href'] . '"'; if ($navbar_index == $i) echo 'class="active"'; ?> ><i class="<?php echo $nav['icon']; ?>"></i> <?php echo $nav['text']; ?></a>
-               </li>
-               <?php $i++; } ?>
-            </ul>
-          </div>
-        </div>
+      <nav id="sidebar" class="navbar navbar-default sidebar" role="navigation" style="margin-top: 0">
+         <div class="navbar-header">
+           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+             <i class="fa fa-navicon"></i>
+           </button>
+           <a class="navbar-brand" href="index.html">SI-RS</a>
+         </div>
+         <div class="navbar-default sidebar" role="navigation">
+           <div class="sidebar-nav navbar-collapse">
+             <ul class="nav in" id="side-menu">
+                <?php $i=0; foreach($navbar as $nav) { ?>
+                <li>
+                   <a href=<?php echo '"' . $nav['href'] . '"'; if ($navbar_index == $i) echo 'class="active"'; ?> ><i class="<?php echo $nav['icon']; ?>"></i> <?php echo $nav['text']; ?></a>
+                </li>
+                <?php $i++; } ?>
+             </ul>
+           </div>
+         </div>
       </nav>
 
       <div id="page-wrapper" style="min-height: 354px;">
+          <i id="menubutton" class="fa fa-chevron-circle-left fa-lg"></i>
          <div class="row">
             <div class="col-lg-12">
                <h1 class="page-header"><?php echo $page_header; ?></h1>
@@ -73,6 +74,7 @@
 
    <script src="<?php echo assets_url(); ?>/js/jquery.js"></script>
    <script src="<?php echo assets_url(); ?>/js/bootstrap.min.js"></script>
+   <script src="<?php echo assets_url(); ?>/js/main_template.js"></script>
    <?php echo $extra_scripts; ?>
 
 </body>

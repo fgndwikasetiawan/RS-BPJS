@@ -16,4 +16,11 @@
       }
    }
 
+   #button_row {
+       margin-top: 30px; 
+       margin-left: 5px;
+   }
+   #button_row .btn {
+       margin-right: 15px;
+   }
 </style>

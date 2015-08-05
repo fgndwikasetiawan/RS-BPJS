@@ -4,13 +4,13 @@
          <div class="panel-heading">
             <div class="row">
                <div class="col-md-4 col-lg-3" id="label_cari">Cari pasien berdasarkan:</div>
-               <div class="col-md-2">
+               <div class="col-md-3">
                   <select id="tipe_cari" class="form-control">
                      <option value="medrec">No. CM</option>
                      <option value="bpjs">No. BPJS</option>
                   </select>
                </div>
-               <div class="col-md-3 col-lg-4">
+               <div class="col-md-4 col-lg-4">
                   <div class="input-group">
                      <input class="form-control" id="nomor_cari" placeholder="No. CM / No. BPJS">
                      <span class="input-group-btn">
@@ -72,10 +72,14 @@
                         <label>Gol. Darah</label>
                         <select class="form-control" id="gol_darah" name="gol_darah">
                            <option value="">-</option>
-                           <option value="A">A</option>
-                           <option value="B">B</option>
-                           <option value="AB">AB</option>
-                           <option value="O">O</option>
+                           <option value="A-">A+</option>
+                           <option value="A+">A+</option>
+                           <option value="B-">B-</option>
+                           <option value="B+">B+</option>
+                           <option value="AB-">AB-</option>
+                           <option value="AB+">AB+</option>
+                           <option value="O-">O-</option>
+                           <option value="O+">O+</option>
                         </select>
                      </div>
                      <div class="col-md-4 form-group">
@@ -132,33 +136,24 @@
                      </div>
                   </div>
                   <div class="row">
-                     <div class="col-md-4 form-group">
-                        <label>Kelurahan</label>
-                        <input class="form-control" name="id_desa" id="id_desa" placeholder="ID_DESA" onchange="cari_desa(this)">
-                     </div>
                      <div class="col-md-8 form-group">
-                        <label>&nbsp;</label>
-                        <input class="form-control" name="kelurahan" id="kelurahan" placeholder="KELURAHAN" disabled>
+                        <label>Kabupaten / Kota</label>
+                         <select class="form-control" name="id_daerah" id="kabupaten" onchange="isi_kecamatan()">
+                        </select>
                      </div>
                   </div>
                   <div class="row">
-                     <div class="col-md-4 form-group">
+                     <div class="col-md-8 form-group">
                         <label>Kecamatan</label>
-                        <input class="form-control" name="id_kecamatan" id="id_kecamatan" placeholder="ID_KECAMATAN" onchange="cari_kecamatan(this)">
-                     </div>
-                     <div class="col-md-8 form-group">
-                        <label>&nbsp;</label>
-                        <input class="form-control" name="kecamatan" id="kecamatan" placeholder="KECAMATAN" disabled>
+                        <select class="form-control" name="id_kecamatan" id="kecamatan" onchange="isi_desa()">
+                        </select>
                      </div>
                   </div>
                   <div class="row">
-                     <div class="col-md-4 form-group">
-                        <label>Daerah</label>
-                        <input class="form-control" name="id_daerah" id="id_daerah" placeholder="ID_DAERAH">
-                     </div>
                      <div class="col-md-8 form-group">
-                        <label>&nbsp;</label>
-                        <input class="form-control" name="kotakab" id="kotakab" placeholder="KOTAKAB" disabled>
+                        <label>Desa / Kelurahan</label>
+                        <select class="form-control" name="id_desa" id="desa">
+                        </select>
                      </div>
                   </div>
                </div>
@@ -168,7 +163,7 @@
                   <div class="row">
                      <div class="col-lg-8 form-group">
                         <label>No. CM</label>
-                        <input class="form-control" name="no_cm" id="no_cm">
+                        <input class="form-control" name="no_cm" id="no_cm" value="<?php echo $no_cm; ?>" readonly>
                      </div>
                   </div>
                   <div class="row">
@@ -183,16 +178,25 @@
                         <input class="form-control" name="no_bpjs" id="no_bpjs">
                      </div>
                   </div>
-                  <div class="row" style="text-align: center; margin-top: 30px;">
-                     <button class="btn btn-success btn-lg" id="tombol_submit" disabled>Daftar</a>
+                  <div id="button_row" class="row">
+                     <input type="submit" class="btn btn-success btn-lg" id="tombol_submit" value="Simpan" disabled>
+                     <input type="reset" class="btn btn-danger btn-lg" id="tombol_reset" value="Atur Ulang" onclick="reset_form()">
                   </div>
                </div>
             </div>
             <input type="hidden" id="usia_tahun" name="usia_tahun">
             <input type="hidden" id="usia_bulan" name="usia_bulan">
+            <input type="hidden" id="usia_hari" name="usia_hari">
          </form>
          <div class="panel-footer" id="form_footer">
          </div>
       </div>
    </div>
 </div>
+
+
+<script>
+   kabupaten = <?php echo $kabupaten; ?>;
+   kecamatan = <?php echo $kecamatan; ?>;
+   kelurahan = <?php echo $kelurahan; ?>;
+</script>

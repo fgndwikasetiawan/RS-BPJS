@@ -33,7 +33,9 @@
       }
 
       public function insert($data) {
-         $data['TGL_DAFTAR'] = 'SYSDATE';
+         $this->db->set('TGL_DAFTAR', 'SYSDATE', false);
+         $this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
+         unset($data['TGL_LAHIR']);
          if (!$this->db->insert('PASIEN_IRJ', $data)) {
             return false;
          };
@@ -41,7 +43,11 @@
       }
 
       public function update($data) {
-         $this->db->where('no_medrec', $data['no_medrec']);
+         $no_medrec = $data['NO_MEDREC'];
+         $this->db->where('NO_MEDREC', $no_medrec);
+         unset($data['NO_MEDREC']);
+         $this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
+         unset($data['TGL_LAHIR']);
          if (!$this->db->update('PASIEN_IRJ', $data)) {
             return false;
          };
@@ -63,6 +69,12 @@
          else {
             return false;
          }
+      }
+      
+      public function get_new_medrec() {
+         $query = $this->db->query('select s_medrec.nextval from dual');
+         $result = $query->row();
+         return $result->NEXTVAL;
       }
 
    }

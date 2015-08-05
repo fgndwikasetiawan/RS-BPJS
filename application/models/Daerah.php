@@ -4,6 +4,7 @@
          parent::__construct();
       }
 
+      //Tidak dipakai
       public function cari_by_id_kecamatan($id_kecamatan) {
          $this->db->where('ID_KECAMATAN', $id_kecamatan);
          $query = $this->db->get('KECAMATAN');
@@ -11,6 +12,7 @@
          return $kecamatan;
       }
 
+      //Tidak dipakai
       public function cari_by_id_desa($id_desa) {
          $this->db->where('ID_DESA', $id_desa);
          $query = $this->db->get('DESAKELURAHAN');
@@ -24,6 +26,28 @@
          );
          return $daerah;
       }
+
+      public function get_kabupaten() {
+         $this->db->where('ID_DAERAH !=', '9999');
+         $this->db->order_by('NAMA_DAERAH', 'ASC');
+         $query = $this->db->get('KABUPATENKOTA');
+         return $query->result();
+      }
+
+      public function get_kecamatan() {
+         $this->db->where('ID_KECAMATAN !=', '9999');
+         $this->db->order_by('NAMA_KECAMATAN', 'ASC');
+         $query = $this->db->get('KECAMATAN');
+         return $query->result();
+      }
+
+      public function get_kelurahan() {
+         $this->db->where('ID_KECAMATAN !=', '9999');
+         $this->db->order_by('NAMA_DESA', 'ASC');
+         $query = $this->db->get('DESAKELURAHAN');
+         return $query->result();
+      }
+
 
    }
  ?>

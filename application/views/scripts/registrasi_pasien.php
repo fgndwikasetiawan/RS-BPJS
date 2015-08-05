@@ -12,41 +12,47 @@
       for (i=year; i>=1900; i--) {
          $('#tahun_lahir').append('<option value=' + i + '>' + i + '</option>');
       }
+      isi_kabupaten();
       //timepicker
       $('.timepicker').timepicker({
        showMeridian: false
       });
    });
 
-   function cari_desa(input) {
-      id = $(input).val();
-      $.ajax({
-         url: '/ajax/daerah_by_id_desa/' + id,
-         statusCode: {
-            200: function(data) {
-               data = JSON.parse(data);
-               $('#kelurahan').val(data.NAMA_DESA);
-               $('#id_kecamatan').val(data.ID_KECAMATAN);
-               $('#kecamatan').val(data.NAMA_KECAMATAN);
-            }
-         }
-      });
+   function isi_kabupaten() {
+     var kabSelect = $('#kabupaten');
+     kabSelect.empty();
+     kabSelect.append('<option value="9999">(Luar daerah)</option>');
+     kabupaten.forEach(function(e, i) {
+       kabSelect.append('<option value="' + e[0] + '">' + e[1] + '</option>');
+     });
    }
-   function cari_kecamatan(input) {
-      id = $(input).val();
-      $.ajax({
-         url: '/ajax/daerah_by_id_kecamatan/' + id,
-         statusCode: {
-            200: function(data) {
-               data = JSON.parse(data);
-               $('#id_desa').val('');
-               $('#kelurahan').val('');
-               $('#id_kecamatan').val(data.ID_KECAMATAN);
-               $('#kecamatan').val(data.NAMA_KECAMATAN);
-            }
-         }
-      });
+   
+   function isi_kecamatan() {
+     var idKab = $('#kabupaten').val();
+     var kecSelect = $('#kecamatan');
+     kecSelect.empty();
+     kecSelect.append('<option value="99999">(Luar daerah)</option>');
+     kecamatan.forEach(function(e, i) {
+       if (e[2] == idKab) {
+         kecSelect.append('<option value="' + e[0] + '">' + e[1] + '</option>');
+       }
+     });
+     $('#desa').empty(); 
    }
+   
+   function isi_desa() {
+     var idKec = $('#kecamatan').val();
+     var desaSelect = $('#desa');
+     desaSelect.empty();
+     desaSelect.append('<option value="999999">(Luar daerah)</option>')
+     kelurahan.forEach(function(e, i) {
+       if (e[2] == idKec) {
+         desaSelect.append('<option value="' + e[0] + '">' + e[1] + '</option>');
+       }
+     });
+   }
+
    function cari_pasien() {
       var tipe = $('#tipe_cari').val();
       var nomor = $('#nomor_cari').val();
@@ -110,7 +116,8 @@
    function hitung_usia(ms) {
       usia = {
          tahun: Math.floor(ms/31556952000),
-         bulan: Math.floor((ms % 31556952000)/2629746000)
+         bulan: Math.floor((ms % 31556952000)/2629746000),
+         hari: Math.floor((ms % 2629746000)/86400000)
       }
       return usia;
    }
@@ -132,9 +139,10 @@
             $('#tahun_lahir').removeClass('invalid-input');
             $('#usia').removeClass('warning-text');
             var usia = hitung_usia(now.getTime() - date.getTime());
-            $('#usia').text('(Usia: ' + usia.tahun + ' tahun, ' + usia.bulan + ' bulan)');
+            $('#usia').text('(Usia: ' + usia.tahun + ' tahun, ' + usia.bulan + ' bulan, ' + usia.hari + ' hari)');
             $('#usia_tahun').val(usia.tahun);
             $('#usia_bulan').val(usia.bulan);
+            $('#usia_hari').val(usia.hari);
             valid = true;
             $('#tombol_submit').removeAttr('disabled');
          }
@@ -147,5 +155,12 @@
          $('#usia').addClass('warning-text');
          $('#tombol_submit').attr('disabled', true);
       }
+   }
+   
+   function reset_form() {
+      $('#usia_tahun').val('');
+      $('#usia_bulan').val('');
+      $('#usia').text('');
+      $('#tombol_submit').attr('disabled', true);
    }
 </script>

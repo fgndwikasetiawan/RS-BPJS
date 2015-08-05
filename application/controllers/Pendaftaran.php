@@ -14,17 +14,41 @@ class Pendaftaran extends CI_Controller {
 	{
 		$this->load->model('agama');
 		$this->load->model('pendidikan');
+		$this->load->model('daerah');
+      $this->load->model('pasien_irj');
+      
 		$data['agama'] = $this->agama->get();
 		$data['pendidikan'] = $this->pendidikan->get();
+
+		$data['kabupaten'] = '[';
+		foreach($this->daerah->get_kabupaten() as $k) {
+			$data['kabupaten'] .= '[\'' . $k->ID_DAERAH . '\',\''. $k->NAMA_DAERAH . '\'],';
+		}
+		$data['kabupaten'] = substr($data['kabupaten'], 0, -1) . ']';
+
+		$data['kecamatan'] = '[';
+		foreach($this->daerah->get_kecamatan() as $k) {
+			$data['kecamatan'] .= '[\'' . $k->ID_KECAMATAN . '\',\''. $k->NAMA_KECAMATAN . '\',\'' . $k->ID_DAERAH . '\'],';
+		}
+		$data['kecamatan'] = substr($data['kecamatan'], 0, -1) . ']';
+
+		$data['kelurahan'] = '[';
+		foreach($this->daerah->get_kelurahan() as $k) {
+			$data['kelurahan'] .= '[\'' . $k->ID_DESA . '\',\''. $k->NAMA_DESA . '\',\'' . $k->ID_KECAMATAN . '\'],';
+		}
+		$data['kelurahan'] = substr($data['kelurahan'], 0, -1) . ']';
+		
+      $data['no_cm'] = sprintf("%'.010d", $this->pasien_irj->get_new_medrec());
+      
 		$alert_msg = $this->session->flashdata('alert_msg');
 		$alert_class = $this->session->flashdata('alert_class');
 		if ($alert_msg && $alert_class) {
 			$data['alert_msg'] = $alert_msg;
 			$data['alert_class'] = $alert_class;
 		}
-		load_main_template('Pendaftaran Poliklinik', 'Pendaftaran Poliklinik', 'pendaftaran_poli', $data, 1);
+		load_main_template('Registrasi Pasien', 'Registrasi Pasien', 'registrasi_pasien', $data, 1);
 	}
-
+        
 	public function daftar_poli() {
 		$this->load->model('pasien_irj');
 		//nama field tabel => nama field di post
@@ -42,6 +66,7 @@ class Pendaftaran extends CI_Controller {
 			'WNEGARA' => 'kwn',
 			'UMUR' => 'usia_tahun',
 			'UBULAN' => 'usia_bulan',
+         'UHARI' => 'usia_hari',
 			'RT' => 'rt',
 			'RW' => 'rw',
 			'GOLDARAH' => 'gol_darah',
@@ -55,6 +80,12 @@ class Pendaftaran extends CI_Controller {
 		foreach ($data as $key => $value) {
 			$data[$key] = $this->input->post($value);
 		}
+      
+      //ubah umur jadi numerik
+      $data['UMUR'] = intval($data['UMUR']);
+      $data['UBULAN'] = intval($data['UBULAN']);
+      $data['UHARI'] = intval($data['UHARI']);
+      
 		//buat string tanggal lahir
 		$string_tanggal = '';
 		$tanggal = intval($this->input->post('tanggal_lahir'));
@@ -75,21 +106,21 @@ class Pendaftaran extends CI_Controller {
 
 		if ($this->pasien_irj->cek_no_medrec($data['NO_MEDREC'])) {
 			if ($this->pasien_irj->update($data)) {
-				$this->session->set_flashdata('alert_msg', 'Sukses mendaftarkan pasien');
+				$this->session->set_flashdata('alert_msg', 'Berhasil menyimpan data pasien');
 				$this->session->set_flashdata('alert_class', 'alert-success');
 			}
 			else {
-				$this->session->set_flashdata('alert_msg', 'Gagal mendaftarkan pasien');
+				$this->session->set_flashdata('alert_msg', 'Gagal menyimpan data pasien');
 				$this->session->set_flashdata('alert_class', 'alert-danger');
 			}
 		}
 		else {
 			if ($this->pasien_irj->insert($data)) {
-				$this->session->set_flashdata('alert_msg', 'Sukses mendaftarkan pasien');
+				$this->session->set_flashdata('alert_msg', 'Berhasil menyimpan data pasien baru');
 				$this->session->set_flashdata('alert_class', 'alert-success');
 			}
 			else {
-				$this->session->set_flashdata('alert_msg', 'Gagal mendaftarkan pasien');
+				$this->session->set_flashdata('alert_msg', 'Gagal menyimpan data pasien baru');
 				$this->session->set_flashdata('alert_class', 'alert-danger');
 			}
 		}

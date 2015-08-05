@@ -27,8 +27,9 @@
          echo json_encode($daerah);
       }
 
-      public function foo($string) {
-         $this->session->rndm = $string;
+      public function foo() {
+         $this->load->model('pasien_irj');
+         echo $this->pasien_irj->get_new_medrec();
       }
 
       public function bar() {
