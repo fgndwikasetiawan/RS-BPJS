@@ -15,7 +15,7 @@ class Pendaftaran extends CI_Controller {
 		$this->load->model('agama');
 		$this->load->model('pendidikan');
 		$this->load->model('daerah');
-      $this->load->model('pasien_irj');
+      	$this->load->model('pasien_irj');
       
 		$data['agama'] = $this->agama->get();
 		$data['pendidikan'] = $this->pendidikan->get();
@@ -38,7 +38,7 @@ class Pendaftaran extends CI_Controller {
 		}
 		$data['kelurahan'] = substr($data['kelurahan'], 0, -1) . ']';
 		
-      $data['no_cm'] = sprintf("%'.010d", $this->pasien_irj->get_new_medrec());
+      	$data['no_cm'] = sprintf("%'.010d", $this->pasien_irj->get_new_medrec());
       
 		$alert_msg = $this->session->flashdata('alert_msg');
 		$alert_class = $this->session->flashdata('alert_class');
@@ -130,7 +130,51 @@ class Pendaftaran extends CI_Controller {
 	}
 	
 	public function daftar_poli() {
+
 		load_main_template('Pendaftaran Poliklinik', 'Pendaftaran Poliklinik', 'pendaftaran_poli', null, 2);
+
 	}
 
+	public function cari_pasien($no_medrec){
+		$this->load->model('pasien_irj');
+		$query = $this->pasien_irj->cari_by_medrec($no_medrec);
+		foreach ($variable as $row) {
+			$data['no_cm'] = $row->NO_MEDREC;
+			$data['nama'] = $row->NAMA;
+			$data['usia'] = $row->UMUR;
+			$data['jenis_kelamin'] = $row->SEX;
+			$data['no_bpjs'] = $row->NO_ASURANSI;
+			$data['pisa'] = $row->PISA;
+			$data['tgl_cetak'] = $row->KELAS_PASIEN;
+			$data['jenis_peserta'] = $row->ID_POLI;
+			$data['hak_kelas'] = $row->CARA_KUNJ;
+			# code...
+		}
+
+		$this->load->model('poliklinik');
+		$query = $this->poliklinik->get_pasien($no_medrec);
+		$i = 0;
+		foreach ($query as $row) {
+			$data['tgl_kunjungan'] = $row->TGL_KUNJUNGAN;
+			$data['no_register'] = $row->NO_REGISTER;
+			$data['ruang'] = $row->KD_RUANG;
+			$data['pol_tujuan'] = $row->ID_POLI;
+			$data['cara_kunjungan'] = $row->CARA_KUNJ;
+			$data['cara_bayar'] = $row->CARA_BAYAR;
+			$data['kelas'] = $row->KELAS_PASIEN;
+			# code...
+			$data['id_kontraktor'] = $row->ID_KONTRAKTOR;
+			$data['perusahaan'] = $row->IDX_PERUSAHAAN;
+			$data['no_sjp_askes'] = $row->NO_SJP_ASKES;
+			$data['nama'] = $row->NAMA;
+			// $data['hub_kel']
+
+			$data['anamnesa'] = $row->ANAMNASA;
+			// $data['id_diagnosa'] = $row->ID_DIAGNOSA;
+			$data['nama_diagnosa'] = $row->NM_DIAGNOSA;
+			$i++;
+		}
+		$data['pasiennum'] = $i;
+		load_main_template('Pendaftaran Poliklinik', 'Pendaftaran Poliklinik', 'pendaftaran_poli', $data, 3);
+	}
 }

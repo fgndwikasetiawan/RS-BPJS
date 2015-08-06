@@ -4,7 +4,7 @@
          <div class="panel-heading">
             <div class="row">
                <div class="col-md-4 col-lg-3" id="label_cari">Poliklinik</div>
-               <!-- <div class="col-md-2">
+               <div class="col-md-2">
                   <select id="tipe_cari" class="form-control">
                      <option value="medrec">No. CM</option>
                      <option value="bpjs">No. BPJS</option>
@@ -20,13 +20,13 @@
                </div>
                <div class="col-md-1" id="icon_loading">
                   <i class="fa fa-circle-o-notch fa-spin fa-lg fa-fw"></i>
-               </div> -->
+               </div>
             </div>
          </div>
          <form role="form" class="formsmall-" method="post">
             <div class="panel-body bg-blue-gradient">
                <!--Kolom kiri-->
-               <div class="col-md-1" id="kolom_kiri">
+               <div class="col-md-2" id="kolom_kiri">
                   <div class="row">
                      <div class="table-responsive">
                         <table class="table col-md-3">
@@ -99,7 +99,8 @@
                   </div>
                </div>
 
-               <div class="col-md-1 col-md-offset-2" id="kolom_kiri">
+               <!-- kolom kanan -->
+               <div class="col-md-2 col-md-offset-2" id="kolom_kiri">
                   <div class="row">
                      <div class="table-responsive">
                         <table class="table col-md-3">
@@ -146,93 +147,92 @@
             </ul>
 
             <div class="tab-content">
-               <div id="pendaftaran" class="tab-pane fade in active">
-                  <div class="table-responsive">
-                     <table class="table">
+                <div id="pendaftaran" class="tab-pane fade in active">
+                    <div class="table-responsive">
+                      <table class="table">
                         <thead>
-                           <tr>
-                             <th>#</th>
-                             <th>Tanggal</th>
-                             <th>No Register</th>
-                             <th>Ruang</th>
-                             <th>Poliklinik Tujuan</th>
-                             <th>Cara Berkunjung</th>
-                             <th>Cara Bayar</th>
-                             <th>Kelas</th>
+                          <tr>
+                           <th>#</th>
+                            <th>Tanggal</th>
+                            <th>No Register</th>
+                            <th>Ruang</th>
+                            <th>Poliklinik Tujuan</th>
+                            <th>Cara Berkunjung</th>
+                            <th>Cara Bayar</th>
+                            <th>Kelas</th>
                           </tr>
-                       </thead>
-                       <tbody>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+
+                <div id="penjamin" class="tab-pane fade">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Nama Perusahaan</th>
+                          <th>No SJP/Rujukan Pers</th>
+                          <th>Nama Peserta</th>
+                          <th>Hubungan Keluarga</th>
+                        </tr>
+                      </thead>
+                      <tbody>
                         <tr>
                           <td>1</td>
-                       </tr>
-                       <tr>
+                        </tr>
+                        <tr>
                           <td>2</td>
-
-                       </tr>
-                       <tr>
+                        </tr>
+                        <tr>
                           <td>3</td>
-                       </tr>
-                    </tbody>
-                 </table>
-              </div>
-           </div>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
 
-           <div id="penjamin" class="tab-pane fade">
-            <div class="table-responsive">
-               <table class="table">
-                  <thead>
-                     <tr>
-                       <th>#</th>
-                       <th>Nama Perusahaan</th>
-                       <th>No SJP/Rujukan Pers</th>
-                       <th>Nama Peserta</th>
-                       <th>Hubungan Keluarga</th>
-                    </tr>
-                 </thead>
-                 <tbody>
-                  <tr>
-                    <td>1</td>
-                 </tr>
-                 <tr>
-                    <td>2</td>
-                 </tr>
-                 <tr>
-                    <td>3</td>
-                 </tr>
-              </tbody>
-           </table>
+                <div id="diagnosa" class="tab-pane fade">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Anamnesa</th>
+                          <th>Diagnosa ICD10</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+            </div>
+
+          </form>
+        <div class="panel-footer" id="form_footer">
         </div>
-     </div>
-
-     <div id="diagnosa" class="tab-pane fade">
-      <div class="table-responsive">
-         <table class="table">
-            <thead>
-               <tr>
-                 <th>#</th>
-                 <th>Anamnesa</th>
-                 <th>Diagnosa ICD10</th>
-              </tr>
-           </thead>
-           <tbody>
-            <tr>
-              <td>1</td>
-           </tr>
-           <tr>
-              <td>2</td>
-           </tr>
-           <tr>
-              <td>3</td>
-           </tr>
-        </tbody>
-     </table>
-  </div>
-</div>
-</div>
-
-</form>
-<div class="panel-footer" id="form_footer">
-</div>
-</div>
-</div>
+      </div>
+    </div>
 </div>
