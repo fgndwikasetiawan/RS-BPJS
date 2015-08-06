@@ -49,7 +49,8 @@ class Pendaftaran extends CI_Controller {
 		load_main_template('Registrasi Pasien', 'Registrasi Pasien', 'registrasi_pasien', $data, 1);
 	}
         
-	public function daftar_poli() {
+	public function simpan_pasien() {
+		/*
 		$this->load->model('pasien_irj');
 		//nama field tabel => nama field di post
 		$data = array(
@@ -124,7 +125,12 @@ class Pendaftaran extends CI_Controller {
 				$this->session->set_flashdata('alert_class', 'alert-danger');
 			}
 		}
-		redirect(base_url() . 'pendaftaran/index');
+		*/
+		redirect(base_url() . 'pendaftaran/daftar_poli');
+	}
+	
+	public function daftar_poli() {
+		load_main_template('Pendaftaran Poliklinik', 'Pendaftaran Poliklinik', 'pendaftaran_poli', null, 2);
 	}
 
 }

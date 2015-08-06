@@ -11,6 +11,11 @@
          'text' => 'Registrasi Pasien'
       ),
       array(
+         'icon' => 'fa fa-pencil-square-o fa-fw',
+         'href' => base_url() . 'pendaftaran/daftar_poli',
+         'text' => 'Pendaftaran Poliklinik' 
+      ),
+      array(
          'icon' => 'fa fa-sign-out fa-fw',
          'href' => base_url() . 'auth/logout',
          'text' => 'Keluar'

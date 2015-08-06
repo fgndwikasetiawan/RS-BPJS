@@ -6,13 +6,16 @@ body {
     width: 100%;
 }
 #page-wrapper {
+    position: absolute;
     padding: 0 15px;
     min-height: 568px;
     background-color: #fff;
+    transition-property: min-width left;
+    transition: 0.8s ease;
 }
 @media(min-width:768px) {
     #page-wrapper {
-        margin: 0 0 0 250px;
+        left: 250px;
         padding: 0 30px;
         border-left: 1px solid #e7e7e7;
     }
@@ -56,6 +59,14 @@ form .form-group {
    background-color: #dfdfff;
 }
 
+.bg-cyan {
+   background-color: #dfefff;
+}
+
+.bg-peach {
+  background-color: #ffdab9;
+}
+
 .bg-blue-gradient {
    background: #feffff;
    background: -moz-linear-gradient(top, #eeeeff 0%, #dfdfff 100%);
@@ -63,14 +74,6 @@ form .form-group {
    background: -o-linear-gradient(top, #eeeeff 0%,#dfdfff 100%);
    background: -ms-linear-gradient(top, #eeeeff 0%,#dfdfff 100%);
    background: linear-gradient(to bottom, #eeeeff 0%,#dfdfff 100%);
-}
-
-.bg-cyan {
-   background-color: #dfefff;
-}
-
-.bg-peach {
-  background-color: #ffdab9;
 }
 
 .form-control {
@@ -97,6 +100,9 @@ form .form-group {
 
 .navbar {
   border: none;
+  position: absolute;
+  left: 0px;
+  transition: left 0.8s ease;
 }
 
 .warning-text {
@@ -107,4 +113,26 @@ form .form-group {
 .invalid-input {
    box-shadow: 0 0 2px red;
    border: 1px solid red;
+}
+
+#menubutton {
+    display: none;
+    transition: transform 0.8s ease;
+}
+
+@media(min-width: 768px) {
+    #menubutton {
+        z-index: 1;
+        display:block;
+        font-size: 60px;
+        position: absolute;
+        left: -30px;
+        color: #bbbbbb;
+        background: white;
+    }
+
+    #menubutton:hover {
+        color: #222222;
+        cursor: pointer;
+    }
 }
