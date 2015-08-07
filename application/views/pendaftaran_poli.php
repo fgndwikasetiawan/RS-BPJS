@@ -26,118 +26,84 @@
          <form role="form" class="formsmall-" method="post">
             <div class="panel-body bg-blue-gradient">
                <!--Kolom kiri-->
-               <div class="col-md-2" id="kolom_kiri">
+               <div class="col-md-3 col-md-offset-2" id="kolom_kiri">
                   <div class="row">
                      <div class="table-responsive">
-                        <table class="table col-md-3">
+                        <table class="table">
                            <tbody>
-                              <tr class="success">
-                                 <td><label>No CM</label></td>
+                              <tr>
+                                 <td class="success col-md-3" ><b>No CM</b></td>
+                                 <td class="info col-md-3" id="no_cm"></td>
                               </tr>
                            </tbody>
                            <tbody>
-                              <tr class="success">
-                                 <td><label>Nama</label></td>
-                                 <!-- <td></td> -->
+                              <tr>
+                                 <td class="success col-md-3"><b>Nama</b></td>
+                                 <td class="info col-md-3" id="nama"></td>
                               </tr>
                            </tbody>
                            <tbody>
-                              <tr class="success">
-                                 <td><label>Usia</label></td>
-                                 <!-- <td></td> -->
+                              <tr>
+                                 <td class="success col-md-3"><b>Usia</b></td>
+                                 <td class="info col-md-3" id="usia"></td>
                               </tr>
                            </tbody>
                            <tbody>
-                              <tr class="success">
-                                 <td><label>Jenis Kelamin</label></td>
-                                 <!-- <td></td> -->
+                              <tr>
+                                 <td class="success col-md-3"><b>Jenis Kelamin</b></td>
+                                 <td class="info col-md-3" id="sex"></td>
                               </tr>
                            </tbody>
                            <tbody>
-                              <tr class="success">
-                                 <td><label>Jenis Kelamin</label></td>
-                                 <!-- <td></td> -->
+                              <tr>
+                                 <td class="success col-md-3"><b>Jenis Kelamin</b></td>
+                                 <td class="info col-md-3" id="sex"></td>
                               </tr>
                            </tbody>
                         </table>
                      </div>
-                  </div>
-               </div>
-               <div class="col-md-2" id="kolom_kiri">
-                  <div class="row">
-                     <table class="table col-md-3">
-                        <tbody>
-                           <tr class="info">
-                              <!-- <td><label></label></td> -->
-                           </tr>
-                        </tbody>
-                        <tbody>
-                           <tr class="info">
-                              <!-- <td><label></label></td> -->
-                              <!-- <td></td> -->
-                           </tr>
-                        </tbody>
-                        <tbody>
-                           <tr class="info">
-                              <!-- <td><label></label></td> -->
-                              <!-- <td></td> -->
-                           </tr>
-                        </tbody>
-                        <tbody>
-                           <tr class="info">
-                              <!-- <td><label></label></td> -->
-                              <!-- <td></td> -->
-                           </tr>
-                        </tbody>
-                        <tbody>
-                           <tr class="info">
-                              <!-- <td><label> </label></td> -->
-                              <!-- <td></td> -->
-                           </tr>
-                        </tbody>
-                     </table>
                   </div>
                </div>
 
                <!-- kolom kanan -->
-               <div class="col-md-2 col-md-offset-2" id="kolom_kiri">
+               <div class="col-md-3 col-md-offset-1" id="kolom_kanan">
                   <div class="row">
                      <div class="table-responsive">
-                        <table class="table col-md-3">
+                        <table class="table">
                            <tbody>
-                              <tr class="success">
-                                 <td><label>No BPJS</label></td>
+                              <tr>
+                                 <td class="success col-md-3"><b>No BPJS</b></td>
+                                 <td class="info col-md-3" id="no_bpjs"></td>
                               </tr>
                            </tbody>
                            <tbody>
-                              <tr class="success">
-                                 <td><label>PISA</label></td>
-                                 <!-- <td></td> -->
+                              <tr>
+                                 <td class="success col-md-3"><b>PISA</b></td>
+                                 <td class="info col-md-3" id="pisa"></td>
                               </tr>
                            </tbody>
                            <tbody>
-                              <tr class="success">
-                                 <td><label>Tgl. Cetak</label></td>
-                                 <!-- <td></td> -->
+                              <tr>
+                                 <td class="success col-md-3"><b>Tgl. Cetak</b></td>
+                                 <td class="info col-md-3" id="tgl_cetak"></td>
                               </tr>
                            </tbody>
                            <tbody>
-                              <tr class="success">
-                                 <td><label>Jenis Peserta</label></td>
-                                 <!-- <td></td> -->
+                              <tr>
+                                 <td class="success col-md-3"><b>Jenis Peserta</b></td>
+                                 <td class="info col-md-3" id="jenis_peserta"></td>
                               </tr>
                            </tbody>
                            <tbody>
-                              <tr class="success">
-                                 <td><label>HAK Kelas</label></td>
-                                 <!-- <td></td> -->
+                              <tr>
+                                 <td class="success col-md-3"><b>HAK Kelas</b></td>
+                                 <td class="info col-md-3" id="hak_kelas"></td>
                               </tr>
                            </tbody>
                         </table>
                      </div>
                   </div>
                </div>
-
             </div>
             
             <ul class="nav nav-tabs">
