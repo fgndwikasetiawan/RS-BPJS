@@ -13,7 +13,7 @@
                            NAMA_KEL, AGAMA, ALAMAT, STATUS,
                            GOLDARAH, RT, RW, ID_DESA, ID_KECAMATAN, ID_DAERAH,
                            KECAMATAN, KELURAHAN, KOTAKAB, PENDIDIKAN, PEKERJAAN,
-                           NO_ASURANSI, SEX, WNEGARA, TEMPAT_KARTU');
+                           NO_ASURANSI, SEX, WNEGARA, TEMPAT_KARTU, UMUR');
          $query = $this->db->get('PASIEN_IRJ');
          return $query->row();
       }
@@ -27,7 +27,7 @@
                            NAMA_KEL, AGAMA, ALAMAT, STATUS,
                            GOLDARAH, RT, RW, ID_DESA, ID_KECAMATAN, ID_DAERAH,
                            KECAMATAN, KELURAHAN, KOTAKAB, PENDIDIKAN, PEKERJAAN,
-                           NO_ASURANSI, SEX, WNEGARA, TEMPAT_KARTU');
+                           NO_ASURANSI, SEX, WNEGARA, TEMPAT_KARTU, UMUR');
          $query = $this->db->get('PASIEN_IRJ');
          return $query->row();
       }

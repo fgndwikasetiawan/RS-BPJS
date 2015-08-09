@@ -3,12 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pendaftaran extends CI_Controller {
 
-	public function __construct() {
-		parent::__construct();
-		if (!$this->session->has_userdata('username')) {
-			redirect(base_url() . 'Auth');
-		}
-	}
+	// public function __construct() {
+	// 	parent::__construct();
+	// 	if (!$this->session->has_userdata('username')) {
+	// 		redirect(base_url() . 'Auth');
+	// 	}
+	// }
 
 	public function index()
 	{
@@ -17,35 +17,35 @@ class Pendaftaran extends CI_Controller {
 		$this->load->model('daerah');
       	$this->load->model('pasien_irj');
       
-		$data['agama'] = $this->agama->get();
-		$data['pendidikan'] = $this->pendidikan->get();
+		// $data['agama'] = $this->agama->get();
+		// $data['pendidikan'] = $this->pendidikan->get();
 
-		$data['kabupaten'] = '[';
-		foreach($this->daerah->get_kabupaten() as $k) {
-			$data['kabupaten'] .= '[\'' . $k->ID_DAERAH . '\',\''. $k->NAMA_DAERAH . '\'],';
-		}
-		$data['kabupaten'] = substr($data['kabupaten'], 0, -1) . ']';
+		// $data['kabupaten'] = '[';
+		// foreach($this->daerah->get_kabupaten() as $k) {
+		// 	$data['kabupaten'] .= '[\'' . $k->ID_DAERAH . '\',\''. $k->NAMA_DAERAH . '\'],';
+		// }
+		// $data['kabupaten'] = substr($data['kabupaten'], 0, -1) . ']';
 
-		$data['kecamatan'] = '[';
-		foreach($this->daerah->get_kecamatan() as $k) {
-			$data['kecamatan'] .= '[\'' . $k->ID_KECAMATAN . '\',\''. $k->NAMA_KECAMATAN . '\',\'' . $k->ID_DAERAH . '\'],';
-		}
-		$data['kecamatan'] = substr($data['kecamatan'], 0, -1) . ']';
+		// $data['kecamatan'] = '[';
+		// foreach($this->daerah->get_kecamatan() as $k) {
+		// 	$data['kecamatan'] .= '[\'' . $k->ID_KECAMATAN . '\',\''. $k->NAMA_KECAMATAN . '\',\'' . $k->ID_DAERAH . '\'],';
+		// }
+		// $data['kecamatan'] = substr($data['kecamatan'], 0, -1) . ']';
 
-		$data['kelurahan'] = '[';
-		foreach($this->daerah->get_kelurahan() as $k) {
-			$data['kelurahan'] .= '[\'' . $k->ID_DESA . '\',\''. $k->NAMA_DESA . '\',\'' . $k->ID_KECAMATAN . '\'],';
-		}
-		$data['kelurahan'] = substr($data['kelurahan'], 0, -1) . ']';
+		// $data['kelurahan'] = '[';
+		// foreach($this->daerah->get_kelurahan() as $k) {
+		// 	$data['kelurahan'] .= '[\'' . $k->ID_DESA . '\',\''. $k->NAMA_DESA . '\',\'' . $k->ID_KECAMATAN . '\'],';
+		// }
+		// $data['kelurahan'] = substr($data['kelurahan'], 0, -1) . ']';
 		
-      	$data['no_cm'] = sprintf("%'.010d", $this->pasien_irj->get_new_medrec());
+  //     	$data['no_cm'] = sprintf("%'.010d", $this->pasien_irj->get_new_medrec());
       
-		$alert_msg = $this->session->flashdata('alert_msg');
-		$alert_class = $this->session->flashdata('alert_class');
-		if ($alert_msg && $alert_class) {
-			$data['alert_msg'] = $alert_msg;
-			$data['alert_class'] = $alert_class;
-		}
+		// $alert_msg = $this->session->flashdata('alert_msg');
+		// $alert_class = $this->session->flashdata('alert_class');
+		// if ($alert_msg && $alert_class) {
+		// 	$data['alert_msg'] = $alert_msg;
+		// 	$data['alert_class'] = $alert_class;
+		// }
 		load_main_template('Registrasi Pasien', 'Registrasi Pasien', 'registrasi_pasien', $data, 1);
 	}
         
@@ -130,51 +130,49 @@ class Pendaftaran extends CI_Controller {
 	}
 	
 	public function daftar_poli() {
-
 		load_main_template('Pendaftaran Poliklinik', 'Pendaftaran Poliklinik', 'pendaftaran_poli', null, 2);
-
 	}
 
-	public function cari_pasien($no_medrec){
+	public function histori_pasien($tipe, $nomor){		
 		$this->load->model('pasien_irj');
-		$query = $this->pasien_irj->cari_by_medrec($no_medrec);
-		foreach ($variable as $row) {
-			$data['no_cm'] = $row->NO_MEDREC;
-			$data['nama'] = $row->NAMA;
-			$data['usia'] = $row->UMUR;
-			$data['jenis_kelamin'] = $row->SEX;
-			$data['no_bpjs'] = $row->NO_ASURANSI;
-			$data['pisa'] = $row->PISA;
-			$data['tgl_cetak'] = $row->KELAS_PASIEN;
-			$data['jenis_peserta'] = $row->ID_POLI;
-			$data['hak_kelas'] = $row->CARA_KUNJ;
-			# code...
-		}
-
 		$this->load->model('poliklinik');
-		$query = $this->poliklinik->get_pasien($no_medrec);
-		$i = 0;
-		foreach ($query as $row) {
-			$data['tgl_kunjungan'] = $row->TGL_KUNJUNGAN;
-			$data['no_register'] = $row->NO_REGISTER;
-			$data['ruang'] = $row->KD_RUANG;
-			$data['pol_tujuan'] = $row->ID_POLI;
-			$data['cara_kunjungan'] = $row->CARA_KUNJ;
-			$data['cara_bayar'] = $row->CARA_BAYAR;
-			$data['kelas'] = $row->KELAS_PASIEN;
-			# code...
-			$data['id_kontraktor'] = $row->ID_KONTRAKTOR;
-			$data['perusahaan'] = $row->IDX_PERUSAHAAN;
-			$data['no_sjp_askes'] = $row->NO_SJP_ASKES;
-			$data['nama'] = $row->NAMA;
-			// $data['hub_kel']
+		$result = null;
 
-			$data['anamnesa'] = $row->ANAMNASA;
-			// $data['id_diagnosa'] = $row->ID_DIAGNOSA;
-			$data['nama_diagnosa'] = $row->NM_DIAGNOSA;
-			$i++;
+		if($tipe == 'medrec'){
+			$result = $this->pasien_irj->cari_by_medrec($nomor);
 		}
-		$data['pasiennum'] = $i;
-		load_main_template('Pendaftaran Poliklinik', 'Pendaftaran Poliklinik', 'pendaftaran_poli', $data, 3);
+		else if($tipe == 'bpjs'){
+			$result = $this->pasien_irj->cari_by_bpjs($nomor);
+		}
+
+		$data['no_cm'] = $result->NO_MEDREC;
+		$data['nama'] = $result->NAMA;
+		$data['usia'] = $result->UMUR;
+		$data['sex'] = $result->SEX;
+		$data['no_bpjs'] = $result->NO_ASURANSI;
+		// $data['pisa'] = $result->PISA;
+		// $data['tgl_cetak'] = $result->KELAS_PASIEN;
+		// $data['jenis_peserta'] = $result->ID_POLI;
+		// $data['hak_kelas'] = $result->CARA_KUNJ;
+
+		$query = $this->poliklinik->get_historis($result->NO_MEDREC);
+		$data['historis'] = $query;
+
+		$query = $this->poliklinik->get_poli();
+		$data['poli'] = $query;
+
+		$query = $this->poliklinik->get_cara_kunj();
+		$data['kunj'] = $query;
+
+		$query = $this->poliklinik->get_cara_bayar();
+		$data['bayar'] = $query;
+
+		$query = $this->poliklinik->get_perusahaan();
+		$data['perusahaan'] = $query;
+
+		$query = $this->poliklinik->get_diagnosa();
+		$data['diagnosa'] = $query;
+
+		load_main_template('Pendaftaran Poliklinik', 'Pendaftaran Poliklinik', 'pendaftaran_poli', $data, 2);
 	}
 }
