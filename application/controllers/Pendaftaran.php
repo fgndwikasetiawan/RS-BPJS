@@ -67,7 +67,7 @@ class Pendaftaran extends CI_Controller {
 			'WNEGARA' => 'kwn',
 			'UMUR' => 'usia_tahun',
 			'UBULAN' => 'usia_bulan',
-         'UHARI' => 'usia_hari',
+         	'UHARI' => 'usia_hari',
 			'RT' => 'rt',
 			'RW' => 'rw',
 			'GOLDARAH' => 'gol_darah',
@@ -131,6 +131,25 @@ class Pendaftaran extends CI_Controller {
 	
 	public function daftar_poli() {
 		load_main_template('Pendaftaran Poliklinik', 'Pendaftaran Poliklinik', 'pendaftaran_poli', null, 2);
+	}
+
+	function simpan_poliklinik($data){
+		$this->load->model('poliklinik');
+		$data = array(
+			'NPEMBAYAR' => 'npembayar',
+			'' => 'hub_keluarga',
+			'CARA_KUNJ' => 'cara_kunj',
+			'KELAS' => 'kelas',
+			'ID_KONTRAKTOR' => 'nm_perusahaan',
+			'CARA_BAYAR' => 'cara_bayar',
+			'ID_POLI' => 'nm_poli',
+			'ANAMNESA' => 'anamnesa',
+			'ID_DIAGNOSA' => 'diagnosa',
+
+			);
+		// foreach ($data as $key => $value) {
+		// 	$data[$key] = $this->input->post($value);
+		// }
 	}
 
 	public function histori_pasien($tipe, $nomor){		
