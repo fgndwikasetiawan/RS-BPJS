@@ -1,5 +1,5 @@
 <?php
-	require('fpdf.php');
+	require(getenv('DOCUMENT_ROOT'). '/assets/fpdf.php');
 	class Surat extends FPDF {
 		private $pdf = null;
 		private $fields_value = array();
@@ -11,6 +11,7 @@
 		public function cetak() {
 			$this->AddPage();
 			$this->header_surat();
+			/*
 			$fields = array(
 				'No. SEP' => '123091238',
 				'Tgl. SEP' => date('d/m/Y'),
@@ -27,6 +28,8 @@
 				'Catatan' => 'JKM'
 			); 
 			$this->set_nilai($fields);
+			*/
+
 			$this->SetFont('Arial', '', 6);
 			
 			//No. SEP
@@ -63,11 +66,7 @@
 			//Jenis Kelamin
 			$this->Cell(5);
 			$this->Cell(20, 3, 'Jenis Kelamin');
-			$this->Cell(50, 3, ': ' . $this->fields_value['Jenis Kelamin'], 0, 0);
-			
-			//Jenis Rawat
-			$this->Cell(20, 3, 'Jenis Rawat');
-			$this->Cell(0, 3, ': ' . $this->fields_value['Jenis Rawat'], 0, 1);
+			$this->Cell(0, 3, ': ' . $this->fields_value['Jenis Kelamin'], 0,1);
 				
 			//Poli Tujuan
 			$this->Cell(5);
@@ -78,20 +77,12 @@
 			$this->Cell(20, 3, 'Kelas Rawat');
 			$this->Cell(0, 3, ': ' . $this->fields_value['Kelas Rawat'], 0, 1);
 			
-			//Asal Faskes
-			$this->Cell(5);
-			$this->Cell(20, 3, 'Asal Faskes Tk. I');
-			$this->Cell(0, 3, ': ' . $this->fields_value['Asal Faskes'], 0, 1);
 			
 			//Diagnosa Awal
 			$this->Cell(5);
 			$this->Cell(20, 3, 'Diagnosa Awal');
 			$this->Cell(0, 3, ': ' . $this->fields_value['Diagnosa Awal'], 0, 1);
 			
-			//Catatan
-			$this->Cell(5);
-			$this->Cell(20, 3, 'Catatan');
-			$this->Cell(0, 3, ': ' . $this->fields_value['Catatan'], 0, 1);
 			
 			$this->Cell(0, 4, ' ', 0, 1);
 
@@ -116,7 +107,7 @@
 			$this->fields_value = $array;
 		}
 		private function header_surat() {
-			$this->Image('C:/Users/Wik/xampp/htdocs/RS-BPJS/assets/images/logobpjs.png',0,0, 20);
+			$this->Image(getenv('DOCUMENT_ROOT'). '/assets/images/logobpjs.png',0,0, 20);
 			$this->SetFont('Arial', 'B', 8);
 			$this->Cell(0, 3, '', 0, 2);
 			$this->Cell(20);

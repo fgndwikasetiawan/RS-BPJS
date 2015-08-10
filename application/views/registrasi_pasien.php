@@ -23,7 +23,7 @@
                </div>
             </div>
          </div>
-         <form role="form" class="form-small" method="post" action="<?php echo base_url(); ?>pendaftaran/daftar_poli">
+         <form role="form" class="form-small" method="post" action="<?php echo base_url(); ?>pendaftaran/simpan_pasien">
             <div class="panel-body bg-blue-gradient">
                <!--Kolom kiri-->
                <div class="col-md-7" id="kolom_kiri">

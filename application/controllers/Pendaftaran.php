@@ -3,54 +3,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pendaftaran extends CI_Controller {
 
-	// public function __construct() {
-	// 	parent::__construct();
-	// 	if (!$this->session->has_userdata('username')) {
-	// 		redirect(base_url() . 'Auth');
-	// 	}
-	// }
+	public function __construct() {
+		parent::__construct();
+		if (!$this->session->has_userdata('username')) {
+			redirect(base_url() . 'Auth');
+		}
+	}
 
-	public function index()
-	{
+	public function index(){
 		$this->load->model('agama');
 		$this->load->model('pendidikan');
 		$this->load->model('daerah');
       	$this->load->model('pasien_irj');
       
-		// $data['agama'] = $this->agama->get();
-		// $data['pendidikan'] = $this->pendidikan->get();
+		$data['agama'] = $this->agama->get();
+		$data['pendidikan'] = $this->pendidikan->get();
 
-		// $data['kabupaten'] = '[';
-		// foreach($this->daerah->get_kabupaten() as $k) {
-		// 	$data['kabupaten'] .= '[\'' . $k->ID_DAERAH . '\',\''. $k->NAMA_DAERAH . '\'],';
-		// }
-		// $data['kabupaten'] = substr($data['kabupaten'], 0, -1) . ']';
+		$data['kabupaten'] = '[';
+		foreach($this->daerah->get_kabupaten() as $k) {
+			$data['kabupaten'] .= '[\'' . $k->ID_DAERAH . '\',\''. $k->NAMA_DAERAH . '\'],';
+		}
+		$data['kabupaten'] = substr($data['kabupaten'], 0, -1) . ']';
 
-		// $data['kecamatan'] = '[';
-		// foreach($this->daerah->get_kecamatan() as $k) {
-		// 	$data['kecamatan'] .= '[\'' . $k->ID_KECAMATAN . '\',\''. $k->NAMA_KECAMATAN . '\',\'' . $k->ID_DAERAH . '\'],';
-		// }
-		// $data['kecamatan'] = substr($data['kecamatan'], 0, -1) . ']';
+		$data['kecamatan'] = '[';
+		foreach($this->daerah->get_kecamatan() as $k) {
+			$data['kecamatan'] .= '[\'' . $k->ID_KECAMATAN . '\',\''. $k->NAMA_KECAMATAN . '\',\'' . $k->ID_DAERAH . '\'],';
+		}
+		$data['kecamatan'] = substr($data['kecamatan'], 0, -1) . ']';
 
-		// $data['kelurahan'] = '[';
-		// foreach($this->daerah->get_kelurahan() as $k) {
-		// 	$data['kelurahan'] .= '[\'' . $k->ID_DESA . '\',\''. $k->NAMA_DESA . '\',\'' . $k->ID_KECAMATAN . '\'],';
-		// }
-		// $data['kelurahan'] = substr($data['kelurahan'], 0, -1) . ']';
+		$data['kelurahan'] = '[';
+		foreach($this->daerah->get_kelurahan() as $k) {
+			$data['kelurahan'] .= '[\'' . $k->ID_DESA . '\',\''. $k->NAMA_DESA . '\',\'' . $k->ID_KECAMATAN . '\'],';
+		}
+		$data['kelurahan'] = substr($data['kelurahan'], 0, -1) . ']';
 		
-  //     	$data['no_cm'] = sprintf("%'.010d", $this->pasien_irj->get_new_medrec());
+      	$data['no_cm'] = sprintf("%'.010d", $this->pasien_irj->get_new_medrec());
       
-		// $alert_msg = $this->session->flashdata('alert_msg');
-		// $alert_class = $this->session->flashdata('alert_class');
-		// if ($alert_msg && $alert_class) {
-		// 	$data['alert_msg'] = $alert_msg;
-		// 	$data['alert_class'] = $alert_class;
-		// }
+		$alert_msg = $this->session->flashdata('alert_msg');
+		$alert_class = $this->session->flashdata('alert_class');
+		if ($alert_msg && $alert_class) {
+			$data['alert_msg'] = $alert_msg;
+			$data['alert_class'] = $alert_class;
+		}
 		load_main_template('Registrasi Pasien', 'Registrasi Pasien', 'registrasi_pasien', $data, 1);
 	}
         
 	public function simpan_pasien() {
-		/*
 		$this->load->model('pasien_irj');
 		//nama field tabel => nama field di post
 		$data = array(
@@ -82,10 +80,10 @@ class Pendaftaran extends CI_Controller {
 			$data[$key] = $this->input->post($value);
 		}
       
-      //ubah umur jadi numerik
-      $data['UMUR'] = intval($data['UMUR']);
-      $data['UBULAN'] = intval($data['UBULAN']);
-      $data['UHARI'] = intval($data['UHARI']);
+	    //ubah umur jadi numerik
+	    $data['UMUR'] = intval($data['UMUR']);
+	    $data['UBULAN'] = intval($data['UBULAN']);
+	    $data['UHARI'] = intval($data['UHARI']);
       
 		//buat string tanggal lahir
 		$string_tanggal = '';
@@ -109,52 +107,59 @@ class Pendaftaran extends CI_Controller {
 			if ($this->pasien_irj->update($data)) {
 				$this->session->set_flashdata('alert_msg', 'Berhasil menyimpan data pasien');
 				$this->session->set_flashdata('alert_class', 'alert-success');
+				redirect(base_url() . 'pendaftaran/histori_pasien/medrec/' . $data['NO_MEDREC']);	
 			}
 			else {
 				$this->session->set_flashdata('alert_msg', 'Gagal menyimpan data pasien');
 				$this->session->set_flashdata('alert_class', 'alert-danger');
+				redirect(base_url() . 'pendaftaran/index');	
 			}
 		}
 		else {
 			if ($this->pasien_irj->insert($data)) {
 				$this->session->set_flashdata('alert_msg', 'Berhasil menyimpan data pasien baru');
 				$this->session->set_flashdata('alert_class', 'alert-success');
+				redirect(base_url() . 'pendaftaran/histori_pasien/medrec/' . $data['NO_MEDREC']);	
 			}
 			else {
 				$this->session->set_flashdata('alert_msg', 'Gagal menyimpan data pasien baru');
 				$this->session->set_flashdata('alert_class', 'alert-danger');
+				redirect(base_url() . 'pendaftaran/index');
 			}
 		}
-		*/
-		redirect(base_url() . 'pendaftaran/daftar_poli');
 	}
 	
 	public function daftar_poli() {
 		load_main_template('Pendaftaran Poliklinik', 'Pendaftaran Poliklinik', 'pendaftaran_poli', null, 2);
 	}
 
-	function simpan_poliklinik($data){
-		$this->load->model('poliklinik');
+	function daftar_ulang($data){
+		if ($this->input->post('no_cm') === null) {
+			redirect(base_url() . 'pendaftaran/daftar_poli');
+		}
+
+		$this->load->model('daftar_ulang');
 		$data = array(
+			'NO_MEDREC' => 'no_cm',
 			'NPEMBAYAR' => 'npembayar',
-			'' => 'hub_keluarga',
+			'KETPEMBAYAR' => 'ketpembayar',
 			'CARA_KUNJ' => 'cara_kunj',
 			'KELAS' => 'kelas',
 			'ID_KONTRAKTOR' => 'nm_perusahaan',
 			'CARA_BAYAR' => 'cara_bayar',
 			'ID_POLI' => 'nm_poli',
 			'ANAMNESA' => 'anamnesa',
-			'ID_DIAGNOSA' => 'diagnosa',
-
+			'ID_DIAGNOSA' => 'nm_diagnosa'
 			);
-		// foreach ($data as $key => $value) {
-		// 	$data[$key] = $this->input->post($value);
-		// }
+		foreach ($data as $key => $value) {
+			$data[$key] = $this->input->post($value);
+		}
+		$this->daftar_ulang->insert($data);
 	}
 
 	public function histori_pasien($tipe, $nomor){		
 		$this->load->model('pasien_irj');
-		$this->load->model('poliklinik');
+		$this->load->model('daftar_ulang');
 		$result = null;
 
 		if($tipe == 'medrec'){
@@ -164,34 +169,61 @@ class Pendaftaran extends CI_Controller {
 			$result = $this->pasien_irj->cari_by_bpjs($nomor);
 		}
 
+		if ($result == null) {
+			redirect(base_url() . 'pendaftaran/daftar_poli');
+			//set flash data
+		}
+
+
 		$data['no_cm'] = $result->NO_MEDREC;
 		$data['nama'] = $result->NAMA;
 		$data['usia'] = $result->UMUR;
 		$data['sex'] = $result->SEX;
 		$data['no_bpjs'] = $result->NO_ASURANSI;
+		$data['tgl_lahir'] = $result->TGL_LAHIR;
 		// $data['pisa'] = $result->PISA;
 		// $data['tgl_cetak'] = $result->KELAS_PASIEN;
 		// $data['jenis_peserta'] = $result->ID_POLI;
 		// $data['hak_kelas'] = $result->CARA_KUNJ;
 
-		$query = $this->poliklinik->get_historis($result->NO_MEDREC);
+		$query = $this->daftar_ulang->get_historis($result->NO_MEDREC);
 		$data['historis'] = $query;
 
-		$query = $this->poliklinik->get_poli();
+		$query = $this->daftar_ulang->get_poli();
 		$data['poli'] = $query;
 
-		$query = $this->poliklinik->get_cara_kunj();
+		$query = $this->daftar_ulang->get_cara_kunj();
 		$data['kunj'] = $query;
 
-		$query = $this->poliklinik->get_cara_bayar();
+		$query = $this->daftar_ulang->get_cara_bayar();
 		$data['bayar'] = $query;
 
-		$query = $this->poliklinik->get_perusahaan();
+		$query = $this->daftar_ulang->get_perusahaan();
 		$data['perusahaan'] = $query;
 
-		$query = $this->poliklinik->get_diagnosa();
+		$query = $this->daftar_ulang->get_diagnosa();
 		$data['diagnosa'] = $query;
 
 		load_main_template('Pendaftaran Poliklinik', 'Pendaftaran Poliklinik', 'pendaftaran_poli', $data, 2);
+		
+	}
+
+	public function cetak_sep() {
+		require(getenv('DOCUMENT_ROOT') . '/assets/Surat.php');
+		$surat = new Surat();
+		$fields = array(
+				'No. SEP' => $this->input->post('no_sjp'),
+				'Tgl. SEP' => date('d-m-Y'),
+				'No. Kartu' => $this->input->post('input_no_bpjs'),
+				'Peserta' => $this->input->post('ketpembayar'),
+				'Nama Peserta' => $this->input->post('input_nama'),
+				'Tgl. Lahir' => $this->input->post('tgl_lahir'),
+				'Jenis Kelamin' => $this->input->post('input_sex'),
+				'Poli Tujuan' => $this->input->post('input_nama_poli'),
+				'Kelas Rawat' => $this->input->post('kelas'),
+				'Diagnosa Awal' => $this->input->post('nm_diagnosa')
+			); 
+		$surat->set_nilai($fields);
+		$surat->cetak();
 	}
 }

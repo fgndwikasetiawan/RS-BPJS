@@ -20,7 +20,7 @@
                </div>
             </div>
          </div>
-          <form role="form" class="formsmall-" method="post">
+          <form id="form" role="form" target="_blank" method="post">
             <div class="panel-body bg-blue-gradient">
                <!--Kolom kiri-->               
                 <div class="row">
@@ -31,6 +31,7 @@
                             <tr>
                                <td class="success col-md-2" ><b>No CM</b></td>
                                <td class="info col-md-3" id="no_cm"><?php if (isset($no_cm)) echo $no_cm ?></td>
+                               <?php if (isset($no_cm)) { ?><input type="hidden" id="input_no_cm" name="no_cm" value="<?php echo $no_cm;?>"> <?php } ?>
                             </tr>
                          </tbody>
                          
@@ -38,12 +39,14 @@
                             <tr>
                                <td class="success col-md-2"><b>Nama</b></td>
                                <td class="info col-md-3" id="nama"><?php if(isset($nama)) echo $nama ?></td>
+                               <input type="hidden" name="input_nama" value="<?php if (isset($nama)) echo $nama; ?>">
                             </tr>
                          </tbody>
                          <tbody>
                             <tr>
                                <td class="success col-md-2"><b>Jenis Kelamin</b></td>
                                <td class="info col-md-3" id="sex"><?php if(isset($sex)) echo $sex ?></td>
+                               <input type="hidden" name="input_sex" value="<?php if (isset($sex)) echo $sex; ?>">
                             </tr>
                          </tbody>                           
                       </table>
@@ -56,12 +59,14 @@
                               <tr>
                                  <td class="success col-md-2"><b>No BPJS</b></td>
                                  <td class="info col-md-3" id="no_bpjs"><?php if (isset($no_bpjs)) echo $no_bpjs ?></td>
+                                 <input type="hidden" name="input_no_bpjs" value="<?php if (isset($no_bpjs)) echo $no_bpjs; ?>">
                               </tr>
                            </tbody>
                            <tbody>
                               <tr>
                                  <td class="success col-md-2"><b>Usia</b></td>
                                  <td class="info col-md-3" id="usia"><?php if (isset($usia)) echo $usia ?></td>
+                                 <input type="hidden" name="tgl_lahir" value="<?php if (isset($tgl_lahir)) echo $tgl_lahir; ?>">
                               </tr>
                            </tbody>
                            <tbody>
@@ -84,7 +89,7 @@
                   </div>
                   <div class="row">      
                     <label>Hubungan Keluarga</label>
-                    <select class="form-control" id="hub_keluarga" name="hub_keluarga">
+                    <select class="form-control" id="ketpembayar" name="ketpembayar">
                        <option value="ANAK">Anak</option>
                        <option value="ISTRI">Istri</option>
                        <option value="SUAMI">Suami</option>
@@ -130,6 +135,10 @@
                   </div>
                   <div class="row">
                     <label>No SJP/Rujukan Pers</label>
+                    <input type="text" class="form-control" name="no_sjp" id="no_sjp">
+                  </div>
+                  <div class="row">
+                    <label>No Register</label>
                     <input type="text" class="form-control" name="nama_kel" id="nama_kel">
                   </div>
                   
@@ -143,6 +152,7 @@
                         <option value="<?php echo $p->ID_POLI; ?>"><?php echo $p->NM_POLI; ?></option>
                       <?php } ?>
                     </select>
+                    <input type="hidden" id="input_nama_poli" name="input_nama_poli" value="">
                   </div>
                   <div class="row">
                     <label>Anamnesa</label>
@@ -150,7 +160,7 @@
                   </div>
                   <div class="row">
                     <label>Diagnosa ICD10</label>
-                    <textarea class="form-control" name="diagnosa" id="diagnosa"></textarea>
+                    <textarea class="form-control" name="nm_diagnosa" id="nm_diagnosa"></textarea>
                   </div>
                 </div>
 
@@ -159,14 +169,9 @@
           
             <div class="panel-footer" id="form_footer">
               <!-- <div class="row"> -->
-                <div id="baris-tombol">
-                  <button type="submit" class="btn btn-primary btn-lg">Simpan</button>
-                  <button type="button" class="btn btn-primary btn-lg">Keluar</button>
-                  <button type="button" class="btn btn-primary btn-lg">Batal Daftar</button>
-                  <button type="button" class="btn btn-primary btn-lg">Daftar Paisen</button>
-                  <button type="button" class="btn btn-primary btn-lg">Cetak Karcis</button>
-                  <button type="button" class="btn btn-primary btn-lg">Cetak Kartu Poli</button>
-                  <button type="button" class="btn btn-primary btn-lg">Cetak Kartu Berobat</button>
+                <div id="baris_tombol">
+                  <button id="tombol_simpan" class="btn btn-primary btn-lg">Simpan</button>
+                  <button id="tombol_cetak_SEP" class="btn btn-primary btn-lg">Cetak SEP</button>
                 </div>
               <!-- </div> -->
             </div>
@@ -288,6 +293,7 @@
               </table>
             </div>
           </div>
+
         </div>            
     </div>
 </div>
