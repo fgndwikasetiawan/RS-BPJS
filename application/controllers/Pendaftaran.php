@@ -217,7 +217,7 @@ class Pendaftaran extends CI_Controller {
 				'No. Kartu' => $this->input->post('input_no_bpjs'),
 				'Peserta' => $this->input->post('ketpembayar'),
 				'Nama Peserta' => $this->input->post('input_nama'),
-				'Tgl. Lahir' => $this->input->post('tgl_lahir'),
+				'Tgl. Lahir' => $this->input->post('input_tgl_lahir'),
 				'Jenis Kelamin' => $this->input->post('input_sex'),
 				'Poli Tujuan' => $this->input->post('input_nama_poli'),
 				'Kelas Rawat' => $this->input->post('kelas'),

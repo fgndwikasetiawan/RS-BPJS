@@ -29,26 +29,27 @@
                       <table class="table center-table">
                          <tbody>
                             <tr>
-                               <td class="success col-md-2" ><b>No CM</b></td>
-                               <td class="info col-md-3" id="no_cm"><?php if (isset($no_cm)) echo $no_cm ?></td>
-                               <?php if (isset($no_cm)) { ?><input type="hidden" id="input_no_cm" name="no_cm" value="<?php echo $no_cm;?>"> <?php } ?>
+                              <td class="success col-md-2" ><b>No CM</b></td>
+                              <td class="info col-md-3" id="no_cm"><?php if (isset($no_cm)) echo $no_cm ?></td>
+                              <?php if (isset($no_cm)) { ?><input type="hidden" id="input_no_cm" name="no_cm" value="<?php echo $no_cm;?>"> <?php } ?>
                             </tr>
                          </tbody>
                          
                          <tbody>
                             <tr>
-                               <td class="success col-md-2"><b>Nama</b></td>
-                               <td class="info col-md-3" id="nama"><?php if(isset($nama)) echo $nama ?></td>
-                               <input type="hidden" name="input_nama" value="<?php if (isset($nama)) echo $nama; ?>">
+                              <td class="success col-md-2"><b>Nama</b></td>
+                              <td class="info col-md-3" id="nama"><?php if(isset($nama)) echo $nama ?></td>
+                              <input type="hidden" name="input_nama" value="<?php if (isset($nama)) echo $nama; ?>">
                             </tr>
                          </tbody>
                          <tbody>
                             <tr>
-                               <td class="success col-md-2"><b>Jenis Kelamin</b></td>
-                               <td class="info col-md-3" id="sex"><?php if(isset($sex)) echo $sex ?></td>
-                               <input type="hidden" name="input_sex" value="<?php if (isset($sex)) echo $sex; ?>">
+                              <td class="success col-md-2"><b>Tanggal Lahir</b></td>
+                              <td class="info col-md-3" id="tgl_lahir"><?php if (isset($tgl_lahir)) echo $tgl_lahir ?></td>
+                              <input type="hidden" name="input_tgl_lahir" value="<?php if (isset($tgl_lahir)) echo $tgl_lahir; ?>">
                             </tr>
-                         </tbody>                           
+                         </tbody>
+                                                   
                       </table>
                     </div>
                   </div>
@@ -56,25 +57,25 @@
                      <div class="table-responsive">
                         <table class="table">
                           <tbody>
-                              <tr>
-                                 <td class="success col-md-2"><b>No BPJS</b></td>
-                                 <td class="info col-md-3" id="no_bpjs"><?php if (isset($no_bpjs)) echo $no_bpjs ?></td>
-                                 <input type="hidden" name="input_no_bpjs" value="<?php if (isset($no_bpjs)) echo $no_bpjs; ?>">
-                              </tr>
+                            <tr>
+                              <td class="success col-md-2"><b>No BPJS</b></td>
+                              <td class="info col-md-3" id="no_bpjs"><?php if (isset($no_bpjs)) echo $no_bpjs ?></td>
+                              <input type="hidden" name="input_no_bpjs" value="<?php if (isset($no_bpjs)) echo $no_bpjs; ?>">
+                            </tr>
                            </tbody>
                            <tbody>
-                              <tr>
-                                 <td class="success col-md-2"><b>Usia</b></td>
-                                 <td class="info col-md-3" id="usia"><?php if (isset($usia)) echo $usia ?></td>
-                                 <input type="hidden" name="tgl_lahir" value="<?php if (isset($tgl_lahir)) echo $tgl_lahir; ?>">
-                              </tr>
-                           </tbody>
+                            <tr>
+                              <td class="success col-md-2"><b>Jenis Kelamin</b></td>
+                              <td class="info col-md-3" id="sex"><?php if(isset($sex)) echo $sex ?></td>
+                              <input type="hidden" name="input_sex" value="<?php if (isset($sex)) echo $sex; ?>">
+                            </tr>
+                            </tbody> 
                            <tbody>
-                              <tr>
-                                 <td class="success col-md-2"><b>Tanggal Cetak</b></td>
-                                 <td class="info col-md-3" id="tgl_cetak"></td>
-                              </tr>
-                           </tbody>
+                            <tr>
+                              <td class="success col-md-2"><b>Usia</b></td>
+                              <td class="info col-md-3" id="usia"><?php if (isset($usia)) echo $usia ?></td>
+                            </tr>
+                           </tbody>                           
                          </table>
                      </div>
                   </div>
@@ -177,7 +178,10 @@
             </div>
           </form>
         </div>
-        <div>Histori Pasien</div>
+
+        <!-- <hr> -->
+        <div style=""><b>Histori Pasien</b></div>
+        <hr>
 
         <ul class="nav nav-tabs">
            <li class="active"><a data-toggle="tab" href="#pendaftaran">Pendaftaran</a></li>
