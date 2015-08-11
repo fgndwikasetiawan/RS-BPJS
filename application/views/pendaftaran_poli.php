@@ -83,10 +83,14 @@
                 <hr>
 
 
-                <div class="col-md-3 col-md-offset-1">
+                <div class="col-md-3" id="kolom_kiri">
                   <div class="row">
-                    <label>Nama Peserta</label>
-                    <input type="text" class="form-control" name="npembayar" id="npembayar">                     
+                    <label>No Register</label>
+                    <input class="form-control" name="no_register" id="no_register" value="<?php if (isset($noreg)) echo $noreg; ?>" readonly>
+                  </div>
+                  <div class="row">
+                    <label>Nama Pembayar</label>
+                    <input type="text" class="form-control" name="npembayar" id="npembayar" placeholder="Nama Pembayar">                     
                   </div>
                   <div class="row">      
                     <label>Hubungan Keluarga</label>
@@ -106,7 +110,41 @@
                         <option value="<?php echo $k->CARA_KUNJ; ?>"><?php echo $k->CARA_KUNJ; ?></option>
                       <?php } ?>
                     </select>                     
+                  </div>                  
+                </div>
+
+                <div class="col-md-3 col-md-offset-1">
+                  <div class="row">
+                    <label>Cara Bayar</label>
+                    <select class="form-control" name="cara_bayar" id="cara_bayar">
+                      <?php foreach($bayar as $b) { ?>
+                        <option value="<?php echo $b->CARA_BAYAR; ?>"><?php echo $b->CARA_BAYAR; ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
+                  <div class="row">                   
+                    <label>Nama Perusahaan</label>
+                    <select class="form-control" name="nm_perusahaan" id="nm_perusahaan">
+                      <?php foreach($perusahaan as $p) { ?>
+                        <option value="<?php echo $p->ID_KONTRAKTOR; ?>"><?php echo $p->NM_PERUSAHAAN; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                  <div class="row">div>
+                    <label>PPK Rujukan</label>
+                    <input class="form-control" id="ppk_rujukan">
+                  </div>
+                  <div class="row">
+                    <label>No SJP/Rujukan Pers</label>
+                    <input type="text" class="form-control" name="no_sjp" id="no_sjp">
+                  </div>
+                  <div class="row">                      
+                    <label>Jenis Pelayanan</label>
+                    <select class="form-control" id="pelayanan">
+                      <option value="1">Rawat Inap</option>
+                      <option value="2">Rawat Jalan</option>                       
+                    </select>                        
+                  </div>                 
                   <div class="row">                      
                     <label>Kelas</label>
                     <select class="form-control" id="kelas" name="kelas">
@@ -116,36 +154,15 @@
                     </select>                        
                   </div>
                 </div>
-
-                <div class="col-md-3 col-md-offset-1">
-                  <div class="row">                   
-                    <label>Nama Perusahaan</label>
-                    <select class="form-control" name="nm_perusahaan" id="nm_perusahaan">
-                      <?php foreach($perusahaan as $p) { ?>
-                        <option value="<?php echo $p->ID_KONTRAKTOR; ?>"><?php echo $p->NM_PERUSAHAAN; ?></option>
-                      <?php } ?>
-                    </select>
+                <div class="col-md-3 col-md-offset-1">                              
+                  <div class="row">
+                    <label>Anamnesa</label>
+                    <textarea class="form-control" name="anamnesa" id="anamnesa"></textarea>
                   </div>
                   <div class="row">
-                    <label>Cara Bayar</label>
-                    <select class="form-control" name="cara_bayar" id="cara_bayar">
-                      <?php foreach($bayar as $b) { ?>
-                        <option value="<?php echo $b->CARA_BAYAR; ?>"><?php echo $b->CARA_BAYAR; ?></option>
-                      <?php } ?>
-                    </select>
+                    <label>Diagnosa ICD10</label>                    
+                    <input class="form-control" name="nm_diagnosa" id="nm_diagnosa" placeholder="ID_ICD10">
                   </div>
-                  <div class="row">
-                    <label>No SJP/Rujukan Pers</label>
-                    <input type="text" class="form-control" name="no_sjp" id="no_sjp">
-                  </div>
-                  <div class="row">
-                    <label>No SEP</label>
-                    <input type="text" class="form-control" name="no_sep" id="no_sep">
-                  </div>
-                  
-                </div>
-
-                <div class="col-md-3 col-md-offset-1">
                   <div class="row">
                     <label>Poliklinik Tujuan</label>
                     <select class="form-control" name="nm_poli" id="nm_poli">
@@ -154,14 +171,14 @@
                       <?php } ?>
                     </select>
                     <input type="hidden" id="input_nama_poli" name="input_nama_poli" value="">
-                  </div>                  
-                  <div class="row">
-                    <label>Diagnosa ICD10</label>                    
-                    <input class="form-control" name="nm_diagnosa" id="nm_diagnosa">
                   </div>
                   <div class="row">
-                    <label>Anamnesa</label>
-                    <textarea class="form-control" name="anamnesa" id="anamnesa"></textarea>
+                    <label>Catatan</label>
+                    <textarea class="form-control" id="catatan"></textarea>
+                  </div>
+                  <div class="row">
+                    <label>No SEP</label>
+                    <input type="text" class="form-control" name="no_sep" id="no_sep">
                   </div>
                 </div>
             </div>
@@ -224,7 +241,7 @@
                     }
                   } 
                   ?>
-                  
+
                 </tbody>
               </table>
             </div>
@@ -238,7 +255,7 @@
                     <th>#</th>
                     <th>Nama Perusahaan</th>
                     <th>No SJP/Rujukan Pers</th>
-                    <th>Nama Peserta</th>
+                    <th>Nama Pembayar</th>
                     <th>Hubungan Keluarga</th>
                   </tr>
                 </thead>

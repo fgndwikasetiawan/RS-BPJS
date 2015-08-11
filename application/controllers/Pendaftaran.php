@@ -174,7 +174,6 @@ class Pendaftaran extends CI_Controller {
 			//set flash data
 		}
 
-
 		$data['no_cm'] = $result->NO_MEDREC;
 		$data['nama'] = $result->NAMA;
 		$data['usia'] = $result->UMUR;
@@ -185,6 +184,9 @@ class Pendaftaran extends CI_Controller {
 		// $data['tgl_cetak'] = $result->KELAS_PASIEN;
 		// $data['jenis_peserta'] = $result->ID_POLI;
 		// $data['hak_kelas'] = $result->CARA_KUNJ;
+
+		$noreg = 'RJ' . $this->daftar_ulang->get_new_noreg();
+		$data['noreg'] = $noreg;
 
 		$query = $this->daftar_ulang->get_historis($result->NO_MEDREC);
 		$data['historis'] = $query;
