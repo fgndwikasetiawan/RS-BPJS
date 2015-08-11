@@ -14,7 +14,7 @@
                   <div class="input-group">
                      <input class="form-control" id="nomor_cari" placeholder="No. CM / No. BPJS">
                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" onclick="cari_pasien()"><i class="fa fa-search fa-fw" style="height: 20px;"></i></button>
+                        <button class="btn btn-default" type="button" onclick="cari_pasien()"><i class="fa fa-search fa-fw"></i></button>
                      </span>
                   </div>
                </div>
@@ -110,10 +110,7 @@
                         <option value="<?php echo $k->CARA_KUNJ; ?>"><?php echo $k->CARA_KUNJ; ?></option>
                       <?php } ?>
                     </select>                     
-                  </div>                  
-                </div>
-
-                <div class="col-md-3 col-md-offset-1">
+                  </div>
                   <div class="row">
                     <label>Cara Bayar</label>
                     <select class="form-control" name="cara_bayar" id="cara_bayar">
@@ -121,7 +118,10 @@
                         <option value="<?php echo $b->CARA_BAYAR; ?>"><?php echo $b->CARA_BAYAR; ?></option>
                       <?php } ?>
                     </select>
-                  </div>
+                  </div>                  
+                </div>
+
+                <div class="col-md-3 col-md-offset-1">
                   <div class="row">                   
                     <label>Nama Perusahaan</label>
                     <select class="form-control" name="nm_perusahaan" id="nm_perusahaan">
@@ -130,7 +130,7 @@
                       <?php } ?>
                     </select>
                   </div>
-                  <div class="row">div>
+                  <div class="row">
                     <label>PPK Rujukan</label>
                     <input class="form-control" id="ppk_rujukan">
                   </div>
@@ -178,7 +178,12 @@
                   </div>
                   <div class="row">
                     <label>No SEP</label>
-                    <input type="text" class="form-control" name="no_sep" id="no_sep">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="no_sep" id="no_sep" readonly>
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" style="font-size: 10px; line-height: 18px;" type="button" id="tombol_sep">Generate</button>
+                        </span>
+                    </div>
                   </div>
                 </div>
             </div>
