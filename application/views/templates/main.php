@@ -58,7 +58,7 @@
       </nav>
 
       <div id="page-wrapper" style="min-height: 354px;">
-          <i id="menubutton" class="fa fa-chevron-circle-left fa-lg"></i>
+          <i id="menubutton" style="display:none" class="fa fa-chevron-circle-left fa-lg"></i>
          <div class="row">
             <div class="col-lg-12">
                <h1 class="page-header"><?php echo $page_header; ?></h1>

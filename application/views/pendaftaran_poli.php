@@ -139,8 +139,8 @@
                     <input type="text" class="form-control" name="no_sjp" id="no_sjp">
                   </div>
                   <div class="row">
-                    <label>No Register</label>
-                    <input type="text" class="form-control" name="nama_kel" id="nama_kel">
+                    <label>No SEP</label>
+                    <input type="text" class="form-control" name="no_sep" id="no_sep">
                   </div>
                   
                 </div>
@@ -154,17 +154,16 @@
                       <?php } ?>
                     </select>
                     <input type="hidden" id="input_nama_poli" name="input_nama_poli" value="">
+                  </div>                  
+                  <div class="row">
+                    <label>Diagnosa ICD10</label>                    
+                    <input class="form-control" name="nm_diagnosa" id="nm_diagnosa">
                   </div>
                   <div class="row">
                     <label>Anamnesa</label>
                     <textarea class="form-control" name="anamnesa" id="anamnesa"></textarea>
                   </div>
-                  <div class="row">
-                    <label>Diagnosa ICD10</label>
-                    <textarea class="form-control" name="nm_diagnosa" id="nm_diagnosa"></textarea>
-                  </div>
                 </div>
-
             </div>
 
           

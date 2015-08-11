@@ -2,6 +2,7 @@ var sidebar = true;
 $(function(){
     resize();
     $('#menubutton').on('click', toggleSidebar);
+    $('#menubutton').show();
 });
 
 $(window).resize(resize);
