@@ -84,15 +84,15 @@
 
 
                 <div class="col-md-3" id="kolom_kiri">
-                  <div class="row">
+                  <div class="form-group">
                     <label>No Register</label>
                     <input class="form-control" name="no_register" id="no_register" value="<?php if (isset($noreg)) echo $noreg; ?>" readonly>
                   </div>
-                  <div class="row">
+                  <div class="form-group">
                     <label>Nama Pembayar</label>
                     <input type="text" class="form-control" name="npembayar" id="npembayar" placeholder="Nama Pembayar">                     
                   </div>
-                  <div class="row">      
+                  <div class="form-group">      
                     <label>Hubungan Keluarga</label>
                     <select class="form-control" id="ketpembayar" name="ketpembayar">
                        <option value="ANAK">Anak</option>
@@ -103,7 +103,7 @@
                        <option value="YBS">Yang Bersangkutan</option>                         
                     </select>                     
                   </div>
-                  <div class="row">                      
+                  <div class="form-group">                      
                     <label>Cara Berkunjung</label>
                     <select class="form-control" name="cara_kunj" id="cara_kunj">
                       <?php foreach($kunj as $k) { ?>
@@ -111,7 +111,7 @@
                       <?php } ?>
                     </select>                     
                   </div>
-                  <div class="row">
+                  <div class="form-group">
                     <label>Cara Bayar</label>
                     <select class="form-control" name="cara_bayar" id="cara_bayar">
                       <?php foreach($bayar as $b) { ?>
@@ -122,7 +122,7 @@
                 </div>
 
                 <div class="col-md-3 col-md-offset-1">
-                  <div class="row">                   
+                  <div class="form-group">                   
                     <label>Nama Perusahaan</label>
                     <select class="form-control" name="nm_perusahaan" id="nm_perusahaan">
                       <?php foreach($perusahaan as $p) { ?>
@@ -130,22 +130,22 @@
                       <?php } ?>
                     </select>
                   </div>
-                  <div class="row">
+                  <div class="form-group">
                     <label>PPK Rujukan</label>
                     <input class="form-control" id="ppk_rujukan">
                   </div>
-                  <div class="row">
+                  <div class="form-group">
                     <label>No SJP/Rujukan Pers</label>
                     <input type="text" class="form-control" name="no_sjp" id="no_sjp">
                   </div>
-                  <div class="row">                      
+                  <div class="form-group">                      
                     <label>Jenis Pelayanan</label>
                     <select class="form-control" id="pelayanan">
                       <option value="1">Rawat Inap</option>
                       <option value="2">Rawat Jalan</option>                       
                     </select>                        
                   </div>                 
-                  <div class="row">                      
+                  <div class="form-group">                      
                     <label>Kelas</label>
                     <select class="form-control" id="kelas" name="kelas">
                       <option value="I">I</option>
@@ -155,15 +155,15 @@
                   </div>
                 </div>
                 <div class="col-md-3 col-md-offset-1">                              
-                  <div class="row">
+                  <div class="form-group">
                     <label>Anamnesa</label>
                     <textarea class="form-control" name="anamnesa" id="anamnesa"></textarea>
                   </div>
-                  <div class="row">
+                  <div class="form-group">
                     <label>Diagnosa ICD10</label>                    
                     <input class="form-control" name="nm_diagnosa" id="nm_diagnosa" placeholder="ID_ICD10">
                   </div>
-                  <div class="row">
+                  <div class="form-group">
                     <label>Poliklinik Tujuan</label>
                     <select class="form-control" name="nm_poli" id="nm_poli">
                       <?php foreach($poli as $p) { ?>
@@ -172,11 +172,11 @@
                     </select>
                     <input type="hidden" id="input_nama_poli" name="input_nama_poli" value="">
                   </div>
-                  <div class="row">
+                  <div class="form-group">
                     <label>Catatan</label>
                     <textarea class="form-control" id="catatan"></textarea>
                   </div>
-                  <div class="row">
+                  <div class="form-group">
                     <label>No SEP</label>
                     <div class="input-group">
                         <input type="text" class="form-control" name="no_sep" id="no_sep" readonly>
