@@ -181,7 +181,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" name="no_sep" id="no_sep" readonly>
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" style="font-size: 10px; line-height: 18px;" type="button" id="tombol_sep">Generate</button>
+                            <button class="btn btn-primary" style="font-size: 12px; line-height: 18px;" type="button" id="tombol_sep">Generate</button>
                         </span>
                     </div>
                   </div>
