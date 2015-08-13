@@ -140,17 +140,19 @@ class Pendaftaran extends CI_Controller {
 
 		$this->load->model('daftar_ulang');
 		$data = array(
+			'NO_REGISTER' => 'no_register',
 			'NO_MEDREC' => 'no_cm',
-			'NPEMBAYAR' => 'npembayar',
+			'NMPEMBAYAR' => 'nmpembayar',
 			'KETPEMBAYAR' => 'ketpembayar',
 			'CARA_KUNJ' => 'cara_kunj',
-			'KELAS' => 'kelas',
+			'KELAS_PASIEN' => 'kelas_pasien',
 			'ID_KONTRAKTOR' => 'nm_perusahaan',
 			'CARA_BAYAR' => 'cara_bayar',
 			'ID_POLI' => 'nm_poli',
 			'ANAMNESA' => 'anamnesa',
 			'ID_DIAGNOSA' => 'nm_diagnosa'
 			);
+
 		foreach ($data as $key => $value) {
 			$data[$key] = $this->input->post($value);
 		}
@@ -180,10 +182,6 @@ class Pendaftaran extends CI_Controller {
 		$data['sex'] = $result->SEX;
 		$data['no_bpjs'] = $result->NO_ASURANSI;
 		$data['tgl_lahir'] = $result->TGL_LAHIR;
-		// $data['pisa'] = $result->PISA;
-		// $data['tgl_cetak'] = $result->KELAS_PASIEN;
-		// $data['jenis_peserta'] = $result->ID_POLI;
-		// $data['hak_kelas'] = $result->CARA_KUNJ;
 
 		$noreg = 'RJ' . $this->daftar_ulang->get_new_noreg();
 		$data['noreg'] = $noreg;

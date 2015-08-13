@@ -15,7 +15,6 @@
 			$this->db->join('KONTRAKTOR', 'KONTRAKTOR.ID_KONTRAKTOR = DAFTAR_ULANG.ID_KONTRAKTOR', 'left');
 			$this->db->join('ICD10', 'ICD10.ID_ICD10 = DAFTAR_ULANG.ID_DIAGNOSA', 'left');
 			$this->db->select('*');
-			// $this->db->select('ORDER BY DAFTAR_ULANG.TGL_REGISTER DESC LIMIT 3');
 			$this->db->where('DAFTAR_ULANG.NO_MEDREC', $no_medrec);
 			$this->db->order_by("DAFTAR_ULANG.TGL_KUNJUNGAN", "desc");
 			$this->db->limit(5);
@@ -57,7 +56,7 @@
 		function get_new_noreg() {
 			$query = $this->db->query('select s_register.nextval from dual');
 			$result = $query->row();
-			$noreg = date('y') . sprintf("%08d", $result->NEXTVAL);
+			$noreg = date('y') . sprintf("%06d", $result->NEXTVAL);
 			return $noreg;
 		}
 	}	

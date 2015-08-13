@@ -90,7 +90,7 @@
                   </div>
                   <div class="form-group">
                     <label>Nama Pembayar</label>
-                    <input type="text" class="form-control" name="npembayar" id="npembayar" placeholder="Nama Pembayar">                     
+                    <input type="text" class="form-control" name="nmpembayar" id="nmpembayar" placeholder="Nama Pembayar">                     
                   </div>
                   <div class="form-group">      
                     <label>Hubungan Keluarga</label>
@@ -147,7 +147,7 @@
                   </div>                 
                   <div class="form-group">                      
                     <label>Kelas</label>
-                    <select class="form-control" id="kelas" name="kelas">
+                    <select class="form-control" id="kelas_pasien" name="kelas_pasien">
                       <option value="I">I</option>
                       <option value="II">II</option>
                       <option value="III">III</option>                        
