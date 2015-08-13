@@ -157,6 +157,7 @@ class Pendaftaran extends CI_Controller {
 			$data[$key] = $this->input->post($value);
 		}
 		$this->daftar_ulang->insert($data);
+		redirect(base_url().'pendaftaran/daftar_poli');
 	}
 
 	public function histori_pasien($tipe, $nomor){		
