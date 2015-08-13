@@ -133,7 +133,7 @@ class Pendaftaran extends CI_Controller {
 		load_main_template('Pendaftaran Poliklinik', 'Pendaftaran Poliklinik', 'pendaftaran_poli', null, 2);
 	}
 
-	function daftar_ulang($data){
+	function daftar_ulang(){
 		if ($this->input->post('no_cm') === null) {
 			redirect(base_url() . 'pendaftaran/daftar_poli');
 		}

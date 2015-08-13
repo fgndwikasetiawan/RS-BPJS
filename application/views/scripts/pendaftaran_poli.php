@@ -33,6 +33,7 @@
    		$('#tombol_simpan').click(function(e) {
    			e.preventDefault();
    			var form = $('#form');
+			form.removeAttr('target');
    			form.attr('action', '<?php echo base_url(); ?>pendaftaran/daftar_ulang');
    			form.submit();
    		});
