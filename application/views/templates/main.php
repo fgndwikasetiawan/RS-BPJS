@@ -64,7 +64,11 @@
                <h1 class="page-header"><?php echo $page_header; ?></h1>
             </div>
          </div>
-         <?php if (isset($alert_msg)) { ?>
+         <?php 
+           $alert_msg = $this->session->flashdata('alert_msg');
+           $alert_class = $this->session->flashdata('alert_class')
+         ?>
+         <?php if ($alert_msg !== null && $alert_class !== null) { ?>
          <div class="row alert <?php echo $alert_class; ?> alert-dismissible" role="alert">
            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
            <?php echo $alert_msg; ?>

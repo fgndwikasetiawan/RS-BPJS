@@ -6,13 +6,14 @@
    	}
 	function generate_sep() {
 		var data = {
-			no_kartu: $('#no_bpjs').text(),
+			no_bpjs: $('#no_bpjs').text(),
+			no_sjp: $('#no_sjp').val(),
 			ppk_rujukan: $('#ppk_rujukan').val(),
 			pelayanan: $('#pelayanan').val(),
 			catatan: $('#catatan').val(),
-			diagnosa: $('#diagnosa').val(),
-			nama_poli: $('#input_nama_poli').val(),
-			kelas: $('#kelas').val(),
+			nm_diagnosa: $('#nm_diagnosa').val(),
+			nm_poli: $('#nm_poli').val(),
+			kelas_pasien: $('#kelas_pasien').val(),
 			no_cm: $('#no_cm').text() 
 		};
 		$.ajax({

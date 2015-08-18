@@ -1,6 +1,0 @@
-main.php
-   page_title
-   [file]extra_stylesheets
-   page_header
-   [file]content
-   [file]extra_scripts

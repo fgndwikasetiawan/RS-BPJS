@@ -70,6 +70,7 @@ class Pendaftaran extends CI_Controller {
 			'RW' => 'rw',
 			'GOLDARAH' => 'gol_darah',
 			'NO_ASURANSI' => 'no_bpjs',
+			'ID_DAERAH' => 'id_daerah',
 			'ID_DESA' => 'id_desa',
 			'ID_KECAMATAN' => 'id_kecamatan',
 			'NAMA_KEL' => 'nama_kel',
@@ -100,9 +101,7 @@ class Pendaftaran extends CI_Controller {
 		$data['TGL_LAHIR'] = "TO_DATE('". $string_tanggal ."', 'DD-MM-YYYY')";
 		//selesai buat string tanggal lahir
 
-		//field yang belum ada:
-		//kecamatan, kelurahan, kotakab
-
+		//Redirect + pesan alert yang sesuai
 		if ($this->pasien_irj->cek_no_medrec($data['NO_MEDREC'])) {
 			if ($this->pasien_irj->update($data)) {
 				$this->session->set_flashdata('alert_msg', 'Berhasil menyimpan data pasien');

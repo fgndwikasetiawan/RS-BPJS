@@ -26,6 +26,60 @@
          $daerah = $this->daerah->cari_by_id_kecamatan($id_kecamatan);
          echo json_encode($daerah);
       }
+      
+      
+      //Memanggil webservice buat SEP dengan parameter-parameter yang diberikan
+      //method: POST
+      public function buat_SEP() {
+         $timezone = date_default_timezone_get();
+         date_default_timezone_set('UTC');
+         $timestamp = strval(time()-strtotime('1970-01-01 00:00:00'));
+         $http_header = array(
+               'Accept: application/json', 
+               'Content-type: application/xml',
+               'X-cons-id: ?',
+               'X-timestamp: ' . $timestamp,
+               'X-signature: ?'
+         );
+         date_default_timezone_set($timezone);
+         //nama variabel sesuai dengan nama di xml
+         $noMR = $this->input->post('no_cm');
+         $noKartu = $this->input->post('no_bpjs');
+         $noRujukan = $this->input->post('no_sjp');
+         $ppkRujukan = $this->input->post('ppk_rujukan');
+         $jnsPelayanan = $this->input->post('pelayanan');
+         $klsRawat = $this->input->post('kelas_pasien');
+         $diagAwal = $this->input->post('nm_diagnosa');
+         $poliTujuan = $this->input->post('nm_poli');
+         $catatan = $this->input->post('catatan');
+         $user = 'Administrator';
+         $ppkPelayanan = '0601R001';
+         $tglSep = date('Y-M-d H:i:s');
+         $tglRujukan = date('Y-M-d H:i:s');
+         $data = '<request><data><t_sep>'.
+                        '<noKartu>' . $noKartu . '</noKartu>'.
+                        '<tglSep>' . $tglSep . '</tglSep>'.
+                        '<tglRujukan>' . $tglRujukan . '</tglRujukan>'.
+                        '<noRujukan>' . $noRujukan . '</noRujukan>'.
+                        '<ppkRujukan>' . $ppkRujukan . '</ppkRujukan>'.
+                        '<ppkPelayanan>' . $ppkPelayanan . '</ppkPelayanan>'.
+                        '<jnsPelayanan>' . $jnsPelayanan . '</jnsPelayanan>'.
+                        '<catatan>' . $catatan . '</catatan>'.
+                        '<diagAwal>' . $diagAwal . '</diagAwal>'.
+                        '<poliTujuan>' . $poliTujuan . '</poliTujuan>'.
+                        '<klsRawat>' . $klsRawat . '</klsRawat>'.
+                        '<user>' . $user . '</user>'.
+                        '<noMR>' . $noMR . '</noMR>'.
+                    '</t_sep></data></request>';
+            $ch = curl_init('http://api.asterix.co.id/SepWebRest/sep/create/');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $http_header);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $result = curl_exec($ch);
+            curl_close($ch);
+            echo $result;
+      }
 
       public function foo() {
             $timezone = date_default_timezone_get();
