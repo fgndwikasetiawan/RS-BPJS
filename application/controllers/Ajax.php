@@ -34,12 +34,14 @@
          $timezone = date_default_timezone_get();
          date_default_timezone_set('UTC');
          $timestamp = strval(time()-strtotime('1970-01-01 00:00:00'));
+         $signature = hash_hmac('sha256', '27952' . '&' . $timestamp, 'rsm32h1', true);
+         $encoded_signature = base64_encode($signature);
          $http_header = array(
                'Accept: application/json', 
                'Content-type: application/xml',
-               'X-cons-id: ?',
+               'X-cons-id: 27952',
                'X-timestamp: ' . $timestamp,
-               'X-signature: ?'
+               'X-signature: ' . $encoded_signature
          );
          date_default_timezone_set($timezone);
          //nama variabel sesuai dengan nama di xml
@@ -71,51 +73,18 @@
                         '<user>' . $user . '</user>'.
                         '<noMR>' . $noMR . '</noMR>'.
                     '</t_sep></data></request>';
-            $ch = curl_init('http://api.asterix.co.id/SepWebRest/sep/create/');
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $http_header);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $result = curl_exec($ch);
-            curl_close($ch);
-            echo $result;
+         $ch = curl_init('http://api.asterix.co.id/SepWebRest/sep/create/');
+         curl_setopt($ch, CURLOPT_POST, true);
+         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+         curl_setopt($ch, CURLOPT_HTTPHEADER, $http_header);
+         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+         $result = curl_exec($ch);
+         curl_close($ch);
+         echo $result;
       }
 
       public function foo() {
-            $timezone = date_default_timezone_get();
-            date_default_timezone_set('UTC');
-            $timestamp = strval(time()-strtotime('1970-01-01 00:00:00'));
-            $http_header = array(
-                  'Accept: application/json', 
-                  'Content-type: application/xml',
-                  'X-cons-id: 743627386',
-                  'X-timestamp: ' . $timestamp,
-                  'X-signature: DogC5UiQurNcigrBdQ3QN5oYvXeUF5E82I/LHUcI9v0='
-            );
-            date_default_timezone_set($timezone);
-            $data = '<request><data><t_sep>'.
-                        '<noKartu>' . '1234567890123' . '</noKartu>'.
-                        '<tglSep>' . date('Y-M-d H:i:s') . '</tglSep>'.
-                        '<tglRujukan>' . date('Y-M-d H:i:s') . '</tglRujukan>'.
-                        '<noRujukan>' . '1234590000300003' . '</noRujukan>'.
-                        '<ppkRujukan>' . '09010100' . '</ppkRujukan>'.
-                        '<ppkPelayanan>' . '0901R001' . '</ppkPelayanan>'.
-                        '<jnsPelayanan>' . '1' . '</jnsPelayanan>'.
-                        '<catatan>' . 'halo' . '</catatan>'.
-                        '<diagAwal>' . 'B010' . '</diagAwal>'.
-                        '<poliTujuan>' . 'SAR' . '</poliTujuan>'.
-                        '<klsRawat>' . '2' . '</klsRawat>'.
-                        '<user>' . 'JD' . '</user>'.
-                        '<noMR>' . '1234' . '</noMR>'.
-                    '</t_sep></data></request>';
-            $ch = curl_init('http://api.asterix.co.id/SepWebRest/sep/create/');
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $http_header);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $result = curl_exec($ch);
-            curl_close($ch);
-            echo $result;
+         echo 'FOO!';
       }
 
       public function bar() {

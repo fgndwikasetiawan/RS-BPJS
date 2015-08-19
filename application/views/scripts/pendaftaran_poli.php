@@ -17,7 +17,7 @@
 			no_cm: $('#no_cm').text() 
 		};
 		$.ajax({
-			url: '',
+			url: '<?php echo base_url(); ?>ajax/buat_SEP',
 			method: 'POST',
 			data: data,
 			success: function(res) {
