@@ -143,8 +143,8 @@
             $('#usia_tahun').val(usia.tahun);
             $('#usia_bulan').val(usia.bulan);
             $('#usia_hari').val(usia.hari);
-            valid = true;
             $('#tombol_submit').removeAttr('disabled');
+            valid = true;
          }
       }
       if (!valid) {

@@ -50,10 +50,16 @@
    			var selected = $('#nm_poli option:selected');
    			$('#input_nama_poli').val(selected.text());
    		});
+			
+			$('.tombol-hapus').click(function(e) {
+				var tombol = $(e.target);
+				var r = confirm("Apakah anda yakin ingin menghapus entri dengan No. Register " + tombol.data('noreg') + "?");
+				if (r) window.location = '<?php echo base_url(); ?>pendaftaran/hapus_entri/' + tombol.data('id') + '/' + tombol.data('noreg');
+			})
 		   
-		$('#tombol_sep').click(generate_sep);
-
-   		var selected = $('#nm_poli option:selected');
-		$('#input_nama_poli').val(selected.text());	
-   	})
+			$('#tombol_sep').click(generate_sep);
+	
+	   		var selected = $('#nm_poli option:selected');
+			$('#input_nama_poli').val(selected.text());	
+   	});
 </script>

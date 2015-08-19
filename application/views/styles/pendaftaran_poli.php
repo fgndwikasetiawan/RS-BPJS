@@ -9,9 +9,11 @@
 	display: inline-block;
 }
 
+/*
 #kolom_kiri {
 	margin-left: 50px;
 }
+*/
 
 #baris_sep {
 	margin: 20px auto 0 auto;

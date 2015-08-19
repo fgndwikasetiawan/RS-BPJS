@@ -212,7 +212,7 @@ class Pendaftaran extends CI_Controller {
 		require(getenv('DOCUMENT_ROOT') . '/assets/Surat.php');
 		$surat = new Surat();
 		$fields = array(
-				'No. SEP' => $this->input->post('no_sjp'),
+				'No. SEP' => $this->input->post('no_sep'),
 				'Tgl. SEP' => date('d-m-Y'),
 				'No. Kartu' => $this->input->post('input_no_bpjs'),
 				'Peserta' => $this->input->post('ketpembayar'),
@@ -225,5 +225,11 @@ class Pendaftaran extends CI_Controller {
 			); 
 		$surat->set_nilai($fields);
 		$surat->cetak();
+	}
+	
+	public function hapus_entri($id, $noreg) {
+		$this->load->model('daftar_ulang');
+		$this->daftar_ulang->hapus($noreg);
+		redirect(base_url() . 'pendaftaran/histori_pasien/medrec/' . $id);
 	}
 }

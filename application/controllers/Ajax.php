@@ -56,8 +56,8 @@
          $catatan = $this->input->post('catatan');
          $user = 'Administrator';
          $ppkPelayanan = '0601R001';
-         $tglSep = date('Y-M-d H:i:s');
-         $tglRujukan = date('Y-M-d H:i:s');
+         $tglSep = date('Y-m-d H:i:s');
+         $tglRujukan = date('Y-m-d H:i:s');
          $data = '<request><data><t_sep>'.
                         '<noKartu>' . $noKartu . '</noKartu>'.
                         '<tglSep>' . $tglSep . '</tglSep>'.
@@ -80,7 +80,8 @@
          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
          $result = curl_exec($ch);
          curl_close($ch);
-         echo $result;
+         $sep = json_decode($result)->response;
+         echo $sep;
       }
 
       public function foo() {

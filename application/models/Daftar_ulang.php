@@ -59,5 +59,11 @@
 			$noreg = date('y') . sprintf("%06d", $result->NEXTVAL);
 			return $noreg;
 		}
+		
+		function hapus($noreg) {
+			$this->db->where('NO_REGISTER', $noreg);
+			$query = $this->db->delete('DAFTAR_ULANG');
+			return $query;
+		}
 	}	
 ?>

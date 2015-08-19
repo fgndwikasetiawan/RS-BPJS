@@ -83,7 +83,7 @@
                 <hr>
 
 
-                <div class="col-md-3" id="kolom_kiri">
+                <div class="col-md-4" id="kolom_kiri">
                   <div class="form-group">
                     <label>No Register</label>
                     <input class="form-control" name="no_register" id="no_register" value="<?php if (isset($noreg)) echo $noreg; ?>" readonly>
@@ -121,7 +121,7 @@
                   </div>                  
                 </div>
 
-                <div class="col-md-3 col-md-offset-1">
+                <div class="col-md-4">
                   <div class="form-group">                   
                     <label>Nama Perusahaan</label>
                     <select class="form-control" name="nm_perusahaan" id="nm_perusahaan">
@@ -154,15 +154,7 @@
                     </select>                        
                   </div>
                 </div>
-                <div class="col-md-3 col-md-offset-1">                              
-                  <div class="form-group">
-                    <label>Anamnesa</label>
-                    <textarea class="form-control" name="anamnesa" id="anamnesa"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label>Diagnosa ICD10</label>                    
-                    <input class="form-control" name="nm_diagnosa" id="nm_diagnosa" placeholder="ID_ICD10">
-                  </div>
+                <div class="col-md-4">                              
                   <div class="form-group">
                     <label>Poliklinik Tujuan</label>
                     <select class="form-control" name="nm_poli" id="nm_poli">
@@ -171,6 +163,14 @@
                       <?php } ?>
                     </select>
                     <input type="hidden" id="input_nama_poli" name="input_nama_poli" value="">
+                  </div>
+                  <div class="form-group">
+                    <label>Anamnesa</label>
+                    <textarea class="form-control" name="anamnesa" id="anamnesa"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label>Diagnosa ICD10</label>                    
+                    <input class="form-control" name="nm_diagnosa" id="nm_diagnosa" placeholder="ID_ICD10">
                   </div>
                   <div class="form-group">
                     <label>Catatan</label>
@@ -224,6 +224,7 @@
                     <th>Cara Berkunjung</th>
                     <th>Cara Bayar</th>
                     <th>Kelas</th>
+                    <th>Opsi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -239,6 +240,7 @@
                     <td><?php echo $h->CARA_KUNJ; ?></td>
                     <td><?php echo $h->CARA_BAYAR; ?></td>
                     <td><?php echo $h->KELAS_PASIEN; ?></td>
+                    <td><button type="button" class="btn btn-danger tombol-hapus" data-id="<?php echo $no_cm; ?>" data-noreg="<?php echo $h->NO_REGISTER; ?>">Hapus</button></td>
                   </tr>
 
                   <?php
@@ -262,6 +264,7 @@
                     <th>No SJP/Rujukan Pers</th>
                     <th>Nama Pembayar</th>
                     <th>Hubungan Keluarga</th>
+                    <th>Opsi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -275,6 +278,7 @@
                     <!-- <td><?php echo $h->NO_REGISTER; ?></td> -->
                     <td><?php echo $h->NMPEMBAYAR; ?></td>
                     <td><?php echo $h->KETPEMBAYAR; ?></td>
+                    <td><button type="button" class="btn btn-danger tombol-hapus" data-id="<?php echo $no_cm; ?>" data-noreg="<?php echo $h->NO_REGISTER; ?>">Hapus</button></td>
                   </tr>
 
                   <?php
@@ -296,6 +300,7 @@
                     <th>#</th>
                     <th>Anamnesa</th>
                     <th>Diagnosa ICD10</th>
+                    <th>Opsi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -306,6 +311,7 @@
                     <td><?php echo $i; ?></td>
                     <td><?php echo $h->ANAMNESA; ?></td>
                     <td><?php echo $h->NAMA_DIAGNOSA; ?></td>
+                    <td><button type="button" class="btn btn-danger tombol-hapus" data-id="<?php echo $no_cm; ?>" data-noreg="<?php echo $h->NO_REGISTER; ?>">Hapus</button></td>
                   </tr>
 
                   <?php
@@ -319,6 +325,6 @@
             </div>
           </div>
 
-        </div>            
+        </div>      
     </div>
 </div>
