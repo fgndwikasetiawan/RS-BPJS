@@ -11,7 +11,7 @@ class Rawat_inap extends CI_Controller {
 	}
 
 	public function index(){
-		echo "Hai, halaman ini sedang dibangun";
+		load_main_template('Pendaftaran Rawat Inap', 'Pendaftaran Rawat Inap', 'rawat_inap', null, 3);
 	}
         
 	
