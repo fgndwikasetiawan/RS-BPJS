@@ -29,7 +29,7 @@ Class Auth extends CI_Controller{
         $result = $this->authentication->login($data);
         if ($result == TRUE){
           $this->session->username = $data['username'];
-          redirect(base_url() . 'pendaftaran/');
+          redirect(base_url() . 'rawat_jalan');
         }
         else {
           $data = array(

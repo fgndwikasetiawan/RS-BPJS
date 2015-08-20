@@ -6,14 +6,19 @@
          'text' => 'Beranda'
       ),
       array(
-         'icon' => 'fa fa-pencil-square-o fa-fw',
-         'href' => base_url() . 'pendaftaran',
-         'text' => 'Registrasi Pasien'
+         'icon' => 'fa fa-user-plus fa-fw',
+         'href' => base_url() . 'pasien',
+         'text' => 'Pasien Baru / Edit Pasien'
       ),
       array(
-         'icon' => 'fa fa-pencil-square-o fa-fw',
-         'href' => base_url() . 'pendaftaran/daftar_poli',
-         'text' => 'Pendaftaran Poliklinik' 
+         'icon' => 'fa fa-stethoscope fa-fw',
+         'href' => base_url() . 'rawat_jalan',
+         'text' => 'Rawat Jalan' 
+      ),
+      array(
+         'icon' => 'fa fa-bed fa-fw',
+         'href' => base_url() . 'rawat_inap',
+         'text' => 'Rawat Inap' 
       ),
       array(
          'icon' => 'fa fa-sign-out fa-fw',

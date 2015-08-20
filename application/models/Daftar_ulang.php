@@ -6,7 +6,7 @@
 
 		function insert($data){
 			$this->db->set('TGL_KUNJUNGAN', 'SYSDATE', false);
-			$this->db->insert('DAFTAR_ULANG', $data);
+			return $this->db->insert('DAFTAR_ULANG', $data);
 		}
 
 		function get_historis($no_medrec) {

@@ -2,7 +2,7 @@
 	function cari_pasien() {
 		var tipe = $('#tipe_cari').val();
 		var nomor = $('#nomor_cari').val();
-    	window.location = '<?php echo base_url(); ?>pendaftaran/histori_pasien/'+ tipe + '/' + nomor;
+    	window.location = '<?php echo base_url(); ?>rawat_jalan/form/'+ tipe + '/' + nomor;
    	}
 	function generate_sep() {
 		var data = {
@@ -35,14 +35,14 @@
    			e.preventDefault();
    			var form = $('#form');
 			form.removeAttr('target');
-   			form.attr('action', '<?php echo base_url(); ?>pendaftaran/daftar_ulang');
+   			form.attr('action', '<?php echo base_url(); ?>rawat_jalan/submit');
    			form.submit();
    		});
 
    		$('#tombol_cetak_SEP').click(function(e) {
    			e.preventDefault();
    			var form = $('#form');
-   			form.attr('action', '<?php echo base_url(); ?>pendaftaran/cetak_sep');
+   			form.attr('action', '<?php echo base_url(); ?>rawat_jalan/cetak_sep');
    			form.submit();
    		});
 
@@ -54,12 +54,12 @@
 			$('.tombol-hapus').click(function(e) {
 				var tombol = $(e.target);
 				var r = confirm("Apakah anda yakin ingin menghapus entri dengan No. Register " + tombol.data('noreg') + "?");
-				if (r) window.location = '<?php echo base_url(); ?>pendaftaran/hapus_entri/' + tombol.data('id') + '/' + tombol.data('noreg');
+				if (r) window.location = '<?php echo base_url(); ?>rawat_jalan/hapus_entri/' + tombol.data('id') + '/' + tombol.data('noreg');
 			})
 		   
 			$('#tombol_sep').click(generate_sep);
 	
-	   		var selected = $('#nm_poli option:selected');
+   		var selected = $('#nm_poli option:selected');
 			$('#input_nama_poli').val(selected.text());	
    	});
 </script>

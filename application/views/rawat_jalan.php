@@ -132,19 +132,21 @@
                   </div>
                   <div class="form-group">
                     <label>PPK Rujukan</label>
-                    <input class="form-control" id="ppk_rujukan">
+                    <input class="form-control" id="ppk_rujukan" name="ppk_rujukan">
                   </div>
                   <div class="form-group">
                     <label>No SJP/Rujukan Pers</label>
                     <input type="text" class="form-control" name="no_sjp" id="no_sjp">
+                  </div>        
+                  <div class="form-group">
+                    <label>Poliklinik Tujuan</label>
+                    <select class="form-control" name="nm_poli" id="nm_poli">
+                      <?php foreach($poli as $p) { ?>
+                        <option value="<?php echo $p->ID_POLI; ?>"><?php echo $p->NM_POLI; ?></option>
+                      <?php } ?>
+                    </select>
+                    <input type="hidden" id="input_nama_poli" name="input_nama_poli" value="">
                   </div>
-                  <div class="form-group">                      
-                    <label>Jenis Pelayanan</label>
-                    <select class="form-control" id="pelayanan">
-                      <option value="1">Rawat Inap</option>
-                      <option value="2">Rawat Jalan</option>                       
-                    </select>                        
-                  </div>                 
                   <div class="form-group">                      
                     <label>Kelas</label>
                     <select class="form-control" id="kelas_pasien" name="kelas_pasien">
@@ -156,15 +158,6 @@
                 </div>
                 <div class="col-md-4">                              
                   <div class="form-group">
-                    <label>Poliklinik Tujuan</label>
-                    <select class="form-control" name="nm_poli" id="nm_poli">
-                      <?php foreach($poli as $p) { ?>
-                        <option value="<?php echo $p->ID_POLI; ?>"><?php echo $p->NM_POLI; ?></option>
-                      <?php } ?>
-                    </select>
-                    <input type="hidden" id="input_nama_poli" name="input_nama_poli" value="">
-                  </div>
-                  <div class="form-group">
                     <label>Anamnesa</label>
                     <textarea class="form-control" name="anamnesa" id="anamnesa"></textarea>
                   </div>
@@ -174,7 +167,7 @@
                   </div>
                   <div class="form-group">
                     <label>Catatan</label>
-                    <textarea class="form-control" id="catatan"></textarea>
+                    <textarea class="form-control" id="catatan" name="catatan"></textarea>
                   </div>
                   <div class="form-group">
                     <label>No SEP</label>
@@ -213,7 +206,7 @@
         <div class="tab-content">
           <div id="pendaftaran" class="tab-pane fade in active">
             <div class="table-responsive">
-              <table class="table">
+              <table class="table table-hover">
                 <thead>
                   <tr>
                    <th>#</th>
@@ -274,8 +267,7 @@
                   <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $h->NM_PERUSAHAAN; ?></td>
-                    <td></td>
-                    <!-- <td><?php echo $h->NO_REGISTER; ?></td> -->
+                    <td><?php echo $h->NO_SJP_ASKES; ?></td>
                     <td><?php echo $h->NMPEMBAYAR; ?></td>
                     <td><?php echo $h->KETPEMBAYAR; ?></td>
                     <td><button type="button" class="btn btn-danger tombol-hapus" data-id="<?php echo $no_cm; ?>" data-noreg="<?php echo $h->NO_REGISTER; ?>">Hapus</button></td>
