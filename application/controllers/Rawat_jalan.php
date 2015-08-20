@@ -77,11 +77,11 @@ class Rawat_jalan extends CI_Controller {
 			'CARA_KUNJ' => 'cara_kunj',
 			'NO_SJP_ASKES' => 'no_sjp',
 			'KELAS_PASIEN' => 'kelas_pasien',
-			'ID_KONTRAKTOR' => 'nm_perusahaan',
+			'ID_KONTRAKTOR' => 'id_perusahaan',
 			'CARA_BAYAR' => 'cara_bayar',
-			'ID_POLI' => 'nm_poli',
+			'ID_POLI' => 'id_poli',
 			'ANAMNESA' => 'anamnesa',
-			'ID_DIAGNOSA' => 'nm_diagnosa'
+			'ID_DIAGNOSA' => 'id_diagnosa'
 			);
 
 		foreach ($data as $key => $value) {
@@ -108,10 +108,10 @@ class Rawat_jalan extends CI_Controller {
 				'Tgl. Lahir' => $this->input->post('input_tgl_lahir'),
 				'Jenis Kelamin' => $this->input->post('input_sex'),
 				'Asal Faskes' => $this->input->post('ppk_rujukan'),
-				'Poli Tujuan' => $this->input->post('input_nama_poli'),
+				'Poli Tujuan' => $this->input->post('nm_poli'),
 				'Kelas Rawat' => $this->input->post('kelas_pasien'),
 				'Jenis Rawat' => 'Rawat Jalan',
-				'Diagnosa Awal' => $this->input->post('nm_diagnosa'),
+				'Diagnosa Awal' => $this->input->post('id_diagnosa'),
 				'Catatan' => $this->input->post('catatan')
 			); 
 		$surat->set_nilai($fields);

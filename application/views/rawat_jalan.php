@@ -124,7 +124,7 @@
                 <div class="col-md-4">
                   <div class="form-group">                   
                     <label>Nama Perusahaan</label>
-                    <select class="form-control" name="nm_perusahaan" id="nm_perusahaan">
+                    <select class="form-control" name="id_perusahaan" id="id_perusahaan">
                       <?php foreach($perusahaan as $p) { ?>
                         <option value="<?php echo $p->ID_KONTRAKTOR; ?>"><?php echo $p->NM_PERUSAHAAN; ?></option>
                       <?php } ?>
@@ -140,12 +140,12 @@
                   </div>        
                   <div class="form-group">
                     <label>Poliklinik Tujuan</label>
-                    <select class="form-control" name="nm_poli" id="nm_poli">
+                    <select class="form-control" name="id_poli" id="id_poli">
                       <?php foreach($poli as $p) { ?>
                         <option value="<?php echo $p->ID_POLI; ?>"><?php echo $p->NM_POLI; ?></option>
                       <?php } ?>
                     </select>
-                    <input type="hidden" id="input_nama_poli" name="input_nama_poli" value="">
+                    <input type="hidden" id="nm_poli" name="nm_poli" value="">
                   </div>
                   <div class="form-group">                      
                     <label>Kelas</label>
@@ -162,8 +162,8 @@
                     <textarea class="form-control" name="anamnesa" id="anamnesa"></textarea>
                   </div>
                   <div class="form-group">
-                    <label>Diagnosa ICD10</label>                    
-                    <input class="form-control" name="nm_diagnosa" id="nm_diagnosa" placeholder="ID_ICD10">
+                    <label>Diagnosa ICD1</label>                    
+                    <input class="form-control" name="id_diagnosa" id="id_diagnosa">
                   </div>
                   <div class="form-group">
                     <label>Catatan</label>
@@ -291,7 +291,7 @@
                   <tr>
                     <th>#</th>
                     <th>Anamnesa</th>
-                    <th>Diagnosa ICD10</th>
+                    <th>Diagnosa ICD1</th>
                     <th>Opsi</th>
                   </tr>
                 </thead>
@@ -302,7 +302,7 @@
                   <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $h->ANAMNESA; ?></td>
-                    <td><?php echo $h->NAMA_DIAGNOSA; ?></td>
+                    <td><?php echo $h->NM_DIAGNOSA; ?></td>
                     <td><button type="button" class="btn btn-danger tombol-hapus" data-id="<?php echo $no_cm; ?>" data-noreg="<?php echo $h->NO_REGISTER; ?>">Hapus</button></td>
                   </tr>
 

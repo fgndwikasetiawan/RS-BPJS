@@ -46,9 +46,9 @@
    			form.submit();
    		});
 
-   		$('#nm_poli').on('change', function(){
-   			var selected = $('#nm_poli option:selected');
-   			$('#input_nama_poli').val(selected.text());
+   		$('#id_poli').on('change', function(){
+   			var selected = $('#id_poli option:selected');
+   			$('#nm_poli').val(selected.text());
    		});
 			
 			$('.tombol-hapus').click(function(e) {
@@ -59,7 +59,7 @@
 		   
 			$('#tombol_sep').click(generate_sep);
 	
-   		var selected = $('#nm_poli option:selected');
-			$('#input_nama_poli').val(selected.text());	
+   		var selected = $('#id_poli option:selected');
+			$('#nm_poli').val(selected.text());	
    	});
 </script>

@@ -13,7 +13,7 @@
 			$this->db->from('DAFTAR_ULANG');
 			$this->db->join('POLIKLINIK', 'POLIKLINIK.ID_POLI = DAFTAR_ULANG.ID_POLI', 'left');
 			$this->db->join('KONTRAKTOR', 'KONTRAKTOR.ID_KONTRAKTOR = DAFTAR_ULANG.ID_KONTRAKTOR', 'left');
-			$this->db->join('ICD10', 'ICD10.ID_ICD10 = DAFTAR_ULANG.ID_DIAGNOSA', 'left');
+			$this->db->join('ICD1', 'ICD1.ID_ICD = DAFTAR_ULANG.ID_DIAGNOSA', 'left');
 			$this->db->select('*');
 			$this->db->where('DAFTAR_ULANG.NO_MEDREC', $no_medrec);
 			$this->db->order_by("DAFTAR_ULANG.TGL_KUNJUNGAN", "desc");
