@@ -4,13 +4,13 @@
          <div class="panel-heading">
             <div class="row">
                <div class="col-md-4 col-lg-3" id="label_cari">Cari pasien berdasarkan:</div>
-               <div class="col-md-2">
+               <div class="col-md-3">
                   <select id="tipe_cari" class="form-control">
                      <option value="medrec">No. CM</option>
                      <option value="bpjs">No. BPJS</option>
                   </select>
                </div>
-               <div class="col-md-3 col-lg-4">
+               <div class="col-md-4 col-lg-4">
                   <div class="input-group">
                      <input class="form-control" id="nomor_cari" placeholder="No. CM / No. BPJS">
                      <span class="input-group-btn">
@@ -170,7 +170,7 @@
                     <textarea class="form-control" id="catatan" name="catatan"></textarea>
                   </div>
                   <div class="form-group">
-                    <label>No SEP</label>
+                    <label>No. SEP</label>
                     <div class="input-group">
                         <input type="text" class="form-control" name="no_sep" id="no_sep" readonly>
                         <span class="input-group-btn">
