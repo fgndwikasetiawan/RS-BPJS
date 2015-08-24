@@ -133,6 +133,7 @@
                   <div class="form-group">
                     <label>PPK Rujukan</label>
                     <input class="form-control" id="ppk_rujukan" name="ppk_rujukan">
+                    <span class="note" id="nama_ppk"></span>
                   </div>
                   <div class="form-group">
                     <label>No SJP/Rujukan Pers</label>

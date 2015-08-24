@@ -3,6 +3,13 @@
 
    class Ajax extends CI_Controller {
 
+      public function __construct() {
+      	parent::__construct();
+      	if (!$this->session->has_userdata('username')) {
+      		redirect(base_url() . 'Auth');
+      	}
+      }
+
       public function data_pasien_by_medrec($no_medrec) {
          $this->load->model('pasien_irj');
          $data_pasien = $this->pasien_irj->cari_by_medrec($no_medrec);
@@ -25,6 +32,12 @@
          $this->load->model('daerah');
          $daerah = $this->daerah->cari_by_id_kecamatan($id_kecamatan);
          echo json_encode($daerah);
+      }
+      
+      public function data_ppk($kd_ppk) {
+         $this->load->model('ppk');
+         $data_ppk = json_encode($this->ppk->get_data($kd_ppk));
+         echo $data_ppk;
       }
       
       

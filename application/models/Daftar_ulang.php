@@ -24,6 +24,7 @@
 
 		function get_poli(){
 			$this->db->select('ID_POLI, NM_POLI');
+			$this->db->order_by('NM_POLI', 'ASC');
 			$query = $this->db->get('POLIKLINIK');
 			return $query->result();
 		}
@@ -42,6 +43,7 @@
 
 		function get_perusahaan(){
 			$this->db->select('ID_KONTRAKTOR, NM_PERUSAHAAN');
+			$this->db->order_by('NM_PERUSAHAAN', 'ASC');
 			$query = $this->db->get('KONTRAKTOR');
 			return $query->result();
 		}

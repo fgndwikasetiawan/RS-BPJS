@@ -99,6 +99,14 @@ class Rawat_jalan extends CI_Controller {
 	public function cetak_sep() {
 		require(getenv('DOCUMENT_ROOT') . '/assets/Surat.php');
 		$surat = new Surat();
+		$this->load->model('ppk');
+		$ppk = $this->ppk->get_data($this->input->post('ppk_rujukan'));
+		if ($ppk) {
+			$ppk = $ppk->NM_PPK;
+		}
+		else {
+			$ppk = $this->input->post('ppk_rujukan');
+		}
 		$fields = array(
 				'No. SEP' => $this->input->post('no_sep'),
 				'Tgl. SEP' => date('d-m-Y'),
@@ -107,7 +115,7 @@ class Rawat_jalan extends CI_Controller {
 				'Nama Peserta' => $this->input->post('input_nama'),
 				'Tgl. Lahir' => $this->input->post('input_tgl_lahir'),
 				'Jenis Kelamin' => $this->input->post('input_sex'),
-				'Asal Faskes' => $this->input->post('ppk_rujukan'),
+				'Asal Faskes' => $ppk,
 				'Poli Tujuan' => $this->input->post('nm_poli'),
 				'Kelas Rawat' => $this->input->post('kelas_pasien'),
 				'Jenis Rawat' => 'Rawat Jalan',

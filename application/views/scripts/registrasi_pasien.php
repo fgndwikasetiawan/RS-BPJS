@@ -1,5 +1,3 @@
-<script src="<?php echo assets_url(); ?>/js/bootstrap-timepicker.min.js"></script>
-
 <script>
    $(function() {
       for (i=1; i<=31; i++) {
@@ -13,10 +11,6 @@
          $('#tahun_lahir').append('<option value=' + i + '>' + i + '</option>');
       }
       isi_kabupaten();
-      //timepicker
-      $('.timepicker').timepicker({
-       showMeridian: false
-      });
    });
 
    function isi_kabupaten() {
