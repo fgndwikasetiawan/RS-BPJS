@@ -2,7 +2,7 @@
    $navbar = array(
       array(
          'icon' => 'fa fa-home fa-fw',
-         'href' => base_url(),
+         'href' => base_url() . 'beranda',
          'text' => 'Beranda'
       ),
       array(

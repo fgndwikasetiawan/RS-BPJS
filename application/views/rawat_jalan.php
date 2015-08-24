@@ -4,13 +4,13 @@
          <div class="panel-heading">
             <div class="row">
                <div class="col-md-4 col-lg-3" id="label_cari">Cari pasien berdasarkan:</div>
-               <div class="col-md-2">
+               <div class="col-md-3">
                   <select id="tipe_cari" class="form-control">
                      <option value="medrec">No. CM</option>
                      <option value="bpjs">No. BPJS</option>
                   </select>
                </div>
-               <div class="col-md-3 col-lg-4">
+               <div class="col-md-4 col-lg-4">
                   <div class="input-group">
                      <input class="form-control" id="nomor_cari" placeholder="No. CM / No. BPJS">
                      <span class="input-group-btn">
@@ -24,17 +24,17 @@
             <div class="panel-body bg-blue-gradient">
                <!--Kolom kiri-->               
                 <div class="row">
+                  <!-- Tabel data pasien -->
                   <div class="col-md-4 col-md-offset-2">
                     <div class="table-responsive">
                       <table class="table center-table">
                          <tbody>
                             <tr>
-                              <td class="success col-md-2" ><b>No CM</b></td>
+                              <td class="success col-md-2" ><b>No. CM</b></td>
                               <td class="info col-md-3" id="no_cm"><?php if (isset($no_cm)) echo $no_cm ?></td>
                               <?php if (isset($no_cm)) { ?><input type="hidden" id="input_no_cm" name="no_cm" value="<?php echo $no_cm;?>"> <?php } ?>
                             </tr>
-                         </tbody>
-                         
+                         </tbody>                         
                          <tbody>
                             <tr>
                               <td class="success col-md-2"><b>Nama</b></td>
@@ -48,17 +48,17 @@
                               <td class="info col-md-3" id="tgl_lahir"><?php if (isset($tgl_lahir)) echo $tgl_lahir ?></td>
                               <input type="hidden" name="input_tgl_lahir" value="<?php if (isset($tgl_lahir)) echo $tgl_lahir; ?>">
                             </tr>
-                         </tbody>
-                                                   
+                         </tbody>                                                   
                       </table>
                     </div>
                   </div>
+                  <!-- Kolom kanan -->
                   <div class="col-md-4">
                      <div class="table-responsive">
                         <table class="table">
                           <tbody>
                             <tr>
-                              <td class="success col-md-2"><b>No BPJS</b></td>
+                              <td class="success col-md-2"><b>No. BPJS</b></td>
                               <td class="info col-md-3" id="no_bpjs"><?php if (isset($no_bpjs)) echo $no_bpjs ?></td>
                               <input type="hidden" name="input_no_bpjs" value="<?php if (isset($no_bpjs)) echo $no_bpjs; ?>">
                             </tr>
@@ -81,11 +81,10 @@
                   </div>
                 </div>
                 <hr>
-
-
+                <!-- Formulir pendaftaran poliklinik -->
                 <div class="col-md-4" id="kolom_kiri">
                   <div class="form-group">
-                    <label>No Register</label>
+                    <label>No. Register</label>
                     <input class="form-control" name="no_register" id="no_register" value="<?php if (isset($noreg)) echo $noreg; ?>" readonly>
                   </div>
                   <div class="form-group">
@@ -120,7 +119,7 @@
                     </select>
                   </div>                  
                 </div>
-
+                <!-- Kolom tengah -->
                 <div class="col-md-4">
                   <div class="form-group">                   
                     <label>Nama Perusahaan</label>
@@ -136,7 +135,7 @@
                     <span class="note" id="nama_ppk"></span>
                   </div>
                   <div class="form-group">
-                    <label>No SJP/Rujukan Pers</label>
+                    <label>No. SJP/Rujukan Pers</label>
                     <input type="text" class="form-control" name="no_sjp" id="no_sjp">
                   </div>        
                   <div class="form-group">
@@ -157,6 +156,7 @@
                     </select>                        
                   </div>
                 </div>
+                <!-- Kolom kanan -->
                 <div class="col-md-4">                              
                   <div class="form-group">
                     <label>Anamnesa</label>
@@ -171,7 +171,7 @@
                     <textarea class="form-control" id="catatan" name="catatan"></textarea>
                   </div>
                   <div class="form-group">
-                    <label>No SEP</label>
+                    <label>No. SEP</label>
                     <div class="input-group">
                         <input type="text" class="form-control" name="no_sep" id="no_sep" readonly>
                         <span class="input-group-btn">
@@ -181,39 +181,33 @@
                   </div>
                 </div>
             </div>
-
-          
+            <!-- Baris tombol -->
             <div class="panel-footer" id="form_footer">
-              <!-- <div class="row"> -->
                 <div id="baris_tombol">
                   <button id="tombol_simpan" class="btn btn-primary btn-lg">Simpan</button>
                   <button id="tombol_cetak_SEP" class="btn btn-primary btn-lg">Cetak SEP</button>
                 </div>
-              <!-- </div> -->
             </div>
           </form>
         </div>
-
-        <!-- <hr> -->
+        <!-- Tabel histori pasien -->
         <div style=""><b>Histori Pasien</b></div>
         <hr>
-
         <ul class="nav nav-tabs">
            <li class="active"><a data-toggle="tab" href="#pendaftaran">Pendaftaran</a></li>
            <li><a data-toggle="tab" href="#penjamin">Penjamin</a></li>
            <li><a data-toggle="tab" href="#diagnosa">Diagnosa</a></li>
         </ul>
-
         <div class="tab-content">
+          <!-- Tab pendaftaran -->
           <div id="pendaftaran" class="tab-pane fade in active">
             <div class="table-responsive">
-              <table class="table table-hover">
+              <table class="table table-striped table-hover">
                 <thead>
                   <tr>
                    <th>#</th>
                     <th>Tanggal</th>
-                    <th>No Register</th>
-                    <!-- <th>Ruang</th> -->
+                    <th>No. Register</th>
                     <th>Poliklinik Tujuan</th>
                     <th>Cara Berkunjung</th>
                     <th>Cara Bayar</th>
@@ -224,38 +218,34 @@
                 <tbody>
                   <?php $i = 1; ?>
                   <?php  if(isset($historis)) {foreach ($historis as $h) { ?>
-
                   <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $h->TGL_KUNJUNGAN; ?></td>
                     <td><?php echo $h->NO_REGISTER; ?></td>
-                    <!-- <td><?php echo $h->KD_RUANG; ?></td> -->
                     <td><?php echo $h->NM_POLI; ?></td>
                     <td><?php echo $h->CARA_KUNJ; ?></td>
                     <td><?php echo $h->CARA_BAYAR; ?></td>
                     <td><?php echo $h->KELAS_PASIEN; ?></td>
                     <td><button type="button" class="btn btn-danger tombol-hapus" data-id="<?php echo $no_cm; ?>" data-noreg="<?php echo $h->NO_REGISTER; ?>">Hapus</button></td>
                   </tr>
-
                   <?php
                     $i++;
                     }
                   } 
                   ?>
-
                 </tbody>
               </table>
             </div>
           </div>
-
+          <!-- Tab penjamin -->
           <div id="penjamin" class="tab-pane fade">
             <div class="table-responsive">
-              <table class="table">
+              <table class="table table-striped table-hover">
                 <thead>
                   <tr>
                     <th>#</th>
                     <th>Nama Perusahaan</th>
-                    <th>No SJP/Rujukan Pers</th>
+                    <th>No. SJP/Rujukan Pers</th>
                     <th>Nama Pembayar</th>
                     <th>Hubungan Keluarga</th>
                     <th>Opsi</th>
@@ -264,7 +254,6 @@
                 <tbody>
                   <?php $i=1; ?>
                   <?php  if(isset($historis)) {foreach ($historis as $h) { ?>
-
                   <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $h->NM_PERUSAHAAN; ?></td>
@@ -273,21 +262,19 @@
                     <td><?php echo $h->KETPEMBAYAR; ?></td>
                     <td><button type="button" class="btn btn-danger tombol-hapus" data-id="<?php echo $no_cm; ?>" data-noreg="<?php echo $h->NO_REGISTER; ?>">Hapus</button></td>
                   </tr>
-
                   <?php
                     $i++;
                     }
                   } 
                   ?>
-
                 </tbody>
               </table>
             </div>
           </div>
-
+          <!-- Tab diagnosa -->
           <div id="diagnosa" class="tab-pane fade">
             <div class="table-responsive">
-              <table class="table">
+              <table class="table table-striped table-hover">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -299,25 +286,22 @@
                 <tbody>
                   <?php $i = 1; ?>
                   <?php  if(isset($historis)) {foreach ($historis as $h) { ?>
-
                   <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $h->ANAMNESA; ?></td>
                     <td><?php echo $h->NM_DIAGNOSA; ?></td>
                     <td><button type="button" class="btn btn-danger tombol-hapus" data-id="<?php echo $no_cm; ?>" data-noreg="<?php echo $h->NO_REGISTER; ?>">Hapus</button></td>
                   </tr>
-
                   <?php
                     $i++;
                     }
                   } 
-                  ?>
-                  
+                  ?>                  
                 </tbody>
               </table>
             </div>
           </div>
-
-        </div>      
+        </div> 
+        <!-- End tab content -->
     </div>
 </div>

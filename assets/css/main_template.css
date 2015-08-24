@@ -130,7 +130,8 @@ form .form-group {
         position: absolute;
         left: -30px;
         color: #bbbbbb;
-        background: white;
+        background: #fff;
+        border-radius: 25px;
     }
 
     #menubutton:hover {

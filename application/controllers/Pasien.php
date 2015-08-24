@@ -14,7 +14,7 @@ class Pasien extends CI_Controller {
 		$this->load->model('agama');
 		$this->load->model('pendidikan');
 		$this->load->model('daerah');
-   	$this->load->model('pasien_irj');
+   		$this->load->model('pasien_irj');
 		$data['agama'] = $this->agama->get();
 		$data['pendidikan'] = $this->pendidikan->get();
 		$data['kabupaten'] = '[';
@@ -32,7 +32,7 @@ class Pasien extends CI_Controller {
 			$data['kelurahan'] .= '[\'' . $k->ID_DESA . '\',\''. $k->NAMA_DESA . '\',\'' . $k->ID_KECAMATAN . '\'],';
 		}
 		$data['kelurahan'] = substr($data['kelurahan'], 0, -1) . ']';
-   	$data['no_cm'] = sprintf("%'.010d", $this->pasien_irj->get_new_medrec());
+   		$data['no_cm'] = sprintf("%'.010d", $this->pasien_irj->get_new_medrec());
 		load_main_template('Registrasi Pasien', 'Registrasi Pasien', 'registrasi_pasien', $data, 1);
 	}
         
@@ -53,7 +53,7 @@ class Pasien extends CI_Controller {
 			'WNEGARA' => 'kwn',
 			'UMUR' => 'usia_tahun',
 			'UBULAN' => 'usia_bulan',
-      	'UHARI' => 'usia_hari',
+      		'UHARI' => 'usia_hari',
 			'RT' => 'rt',
 			'RW' => 'rw',
 			'GOLDARAH' => 'gol_darah',
