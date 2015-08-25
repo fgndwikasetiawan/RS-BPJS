@@ -20,7 +20,7 @@ class Rawat_jalan extends CI_Controller {
 		}
 		else {
 			$this->load->model('pasien_irj');
-			$this->load->model('daftar_ulang');
+			$this->load->model('rawat_jalan');
 			$result = null;
 			if($tipe == 'medrec'){
 				$result = $this->pasien_irj->cari_by_medrec($nomor);
@@ -39,25 +39,25 @@ class Rawat_jalan extends CI_Controller {
 			$data['no_bpjs'] = $result->NO_ASURANSI;
 			$data['tgl_lahir'] = $result->TGL_LAHIR;
 	
-			$noreg = 'RJ' . $this->daftar_ulang->get_new_noreg();
+			$noreg = 'RJ' . $this->rawat_jalan->get_new_noreg();
 			$data['noreg'] = $noreg;
 	
-			$query = $this->daftar_ulang->get_historis($result->NO_MEDREC);
+			$query = $this->rawat_jalan->get_historis($result->NO_MEDREC);
 			$data['historis'] = $query;
 	
-			$query = $this->daftar_ulang->get_poli();
+			$query = $this->rawat_jalan->get_poli();
 			$data['poli'] = $query;
 	
-			$query = $this->daftar_ulang->get_cara_kunj();
+			$query = $this->rawat_jalan->get_cara_kunj();
 			$data['kunj'] = $query;
 	
-			$query = $this->daftar_ulang->get_cara_bayar();
+			$query = $this->rawat_jalan->get_cara_bayar();
 			$data['bayar'] = $query;
 	
-			$query = $this->daftar_ulang->get_perusahaan();
+			$query = $this->rawat_jalan->get_perusahaan();
 			$data['perusahaan'] = $query;
 	
-			$query = $this->daftar_ulang->get_diagnosa();
+			$query = $this->rawat_jalan->get_diagnosa();
 			$data['diagnosa'] = $query;
 	
 			load_main_template('Pendaftaran Rawat Jalan', 'Pendaftaran Rawat Jalan', 'rawat_jalan', $data, 2);
@@ -68,7 +68,7 @@ class Rawat_jalan extends CI_Controller {
 		if ($this->input->post('no_cm') === null) {
 			redirect(base_url() . 'pendaftaran/form');
 		}
-		$this->load->model('daftar_ulang');
+		$this->load->model('rawat_jalan');
 		$data = array(
 			'NO_REGISTER' => 'no_register',
 			'NO_MEDREC' => 'no_cm',
@@ -87,7 +87,7 @@ class Rawat_jalan extends CI_Controller {
 		foreach ($data as $key => $value) {
 			$data[$key] = $this->input->post($value);
 		}
-		if ($this->daftar_ulang->insert($data)) {
+		if ($this->rawat_jalan->insert($data)) {
 			alert_success('Berhasil melakukan pendaftaran');
 		}
 		else {
@@ -127,8 +127,8 @@ class Rawat_jalan extends CI_Controller {
 	}
 	
 	public function hapus_entri($no_cm, $no_reg) {
-		$this->load->model('daftar_ulang');
-		$this->daftar_ulang->hapus($no_reg);
+		$this->load->model('rawat_jalan');
+		$this->rawat_jalan->hapus($no_reg);
 		redirect(base_url() . 'rawat_jalan/form/medrec/' . $no_cm);
 	}
 }

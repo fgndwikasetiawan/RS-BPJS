@@ -1,5 +1,5 @@
 <?php
-	class Daftar_ulang extends CI_Model{
+	class Rawat_jalan extends CI_Model{
 		public function __construct(){
 			parent::__construct();
 		}	
