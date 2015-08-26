@@ -4,8 +4,8 @@
 	text-align: center;	
 }
 .form-control  {
-	font-size: 0.8em;
-	line-height: 0.8em;
+	font-size: 0.9em;
+	line-height: 0.9em;
 	height: 30px;
 }
 .form-group label {
@@ -26,6 +26,11 @@
 #baris_sep {
 	margin: 20px auto 0 auto;
 	width: 400px;
+}
+
+label.form-title {
+	display: block;
+	text-align: center;
 }
 
 </style>

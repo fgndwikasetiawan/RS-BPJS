@@ -3,7 +3,7 @@
 	function cari_pasien() {
 		var tipe = $('#tipe_cari').val();
 		var nomor = $('#nomor_cari').val();
-	 	window.location = '<?php echo base_url(); ?>rawat_jalan/form/'+ tipe + '/' + nomor;
+	 	window.location = '<?php echo base_url(); ?>rawat_inap/form/'+ tipe + '/' + nomor;
 	}
 	
 	function generate_sep() {

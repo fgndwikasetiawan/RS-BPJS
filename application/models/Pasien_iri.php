@@ -11,12 +11,11 @@
 			return true;
 		}
 		
-		public function get_no_cm($ipd) {
-			$this->db->select('NO_CM');
+		public function get_pasien($ipd) {
 			$this->db->where('NO_IPD', $ipd);
 			$query = $this->db->get('PASIEN_IRI');
 			$result = $query->row();
-			return !$result ? null : $result->NO_CM;
+			return $result;
 		}
 	}
 ?>
