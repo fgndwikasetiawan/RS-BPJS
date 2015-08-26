@@ -9,6 +9,14 @@
 			return $this->db->insert('DAFTAR_ULANG', $data);
 		}
 
+		function get_no_cm($no_register) {
+			$this->db->select('NO_MEDREC');
+			$this->db->where('NO_REGISTER', $no_register);
+			$query = $this->db->get('DAFTAR_ULANG');
+			$result = $query->row();
+			return !$result ? null : $result->NO_MEDREC;
+		}
+	
 		function get_historis($no_medrec) {
 			$this->db->from('DAFTAR_ULANG');
 			$this->db->join('POLIKLINIK', 'POLIKLINIK.ID_POLI = DAFTAR_ULANG.ID_POLI', 'left');
