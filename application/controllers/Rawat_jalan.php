@@ -21,6 +21,11 @@ class Rawat_jalan extends CI_Controller {
 		else {
 			$this->load->model('pasien_irj');
 			$this->load->model('rawat_jalan');
+			$this->load->model('cara_bayar');
+			$this->load->model('cara_berkunjung');
+			$this->load->model('kontraktor');
+			$this->load->model('poliklinik');
+			
 			$result = null;
 			if($tipe == 'medrec'){
 				$result = $this->pasien_irj->cari_by_medrec($nomor);
@@ -45,21 +50,18 @@ class Rawat_jalan extends CI_Controller {
 			$query = $this->rawat_jalan->get_historis($result->NO_MEDREC);
 			$data['historis'] = $query;
 	
-			$query = $this->rawat_jalan->get_poli();
+			$query = $this->poliklinik->get_poli();
 			$data['poli'] = $query;
 	
-			$query = $this->rawat_jalan->get_cara_kunj();
+			$query = $this->cara_berkunjung->get_cara_kunj();
 			$data['kunj'] = $query;
 	
-			$query = $this->rawat_jalan->get_cara_bayar();
+			$query = $this->cara_bayar->get_cara_bayar();
 			$data['bayar'] = $query;
 	
-			$query = $this->rawat_jalan->get_perusahaan();
+			$query = $this->kontraktor->get_perusahaan();
 			$data['perusahaan'] = $query;
-	
-			$query = $this->rawat_jalan->get_diagnosa();
-			$data['diagnosa'] = $query;
-	
+
 			load_main_template('Pendaftaran Rawat Jalan', 'Pendaftaran Rawat Jalan', 'rawat_jalan', $data, 2);
 		}
 	}
