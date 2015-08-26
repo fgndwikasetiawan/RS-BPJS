@@ -59,7 +59,7 @@ class Rawat_jalan extends CI_Controller {
 			$query = $this->cara_bayar->get_cara_bayar();
 			$data['bayar'] = $query;
 	
-			$query = $this->kontraktor->get_perusahaan();
+			$query = $this->kontraktor->get_kontraktor();
 			$data['perusahaan'] = $query;
 
 			load_main_template('Pendaftaran Rawat Jalan', 'Pendaftaran Rawat Jalan', 'rawat_jalan', $data, 2);

@@ -4,7 +4,7 @@
 			parent::__construct();
 		}
 		
-		function get_perusahaan(){
+		function get_kontraktor(){
 			$this->db->select('ID_KONTRAKTOR, NM_PERUSAHAAN');
 			$this->db->order_by('NM_PERUSAHAAN', 'ASC');
 			$query = $this->db->get('KONTRAKTOR');
