@@ -59,6 +59,16 @@ class Rawat_inap extends CI_Controller {
 			if ($tipe == 'ipd') { 
 				$data['ruang_iri'] = $this->ruang_iri->get_entri_by_ipd($nomor);
 			}
+			$tgl_lahir = $data_pasien->TGL_LAHIR;
+			if ($tgl_lahir != '') {
+				$tgl_lahir_exploded = explode('-', $tgl_lahir);
+				$usia = hitung_umur(intval($tgl_lahir_exploded[0]), intval($tgl_lahir_exploded[1]), intval($tgl_lahir_exploded[2]));
+				$data_pasien->UMUR = $usia['tahun'] . ' tahun ' . $usia['bulan'] . ' bulan ' . $usia['hari'] . ' hari';
+				//update usia pasien
+				$data_update = ['NO_MEDREC' => $data_pasien->NO_MEDREC, 'UMUR' => $usia['tahun'], 'UBULAN' => $usia['bulan'], 'UHARI' => $usia['hari']];
+				$this->pasien_irj->update($data_update);
+				//selesai update usia pasien
+			}
 			$data['pasien'] = $data_pasien;
 			
 			load_main_template('Pendaftaran Rawat Inap', 'Pendaftaran Rawat Inap', 'rawat_inap', $data, 3);

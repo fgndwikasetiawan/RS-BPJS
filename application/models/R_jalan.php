@@ -29,6 +29,15 @@
 			$query = $this->db->get();
 			return $query->result();
 		}
+		
+		function get_entri($noreg) {
+			$this->db->from('DAFTAR_ULANG');
+			$this->db->join('POLIKLINIK', 'POLIKLINIK.ID_POLI = DAFTAR_ULANG.ID_POLI', 'left');
+			$this->db->select('*');
+			$this->db->where('DAFTAR_ULANG.NO_REGISTER', $noreg);
+			$query = $this->db->get();
+			return $query->row();
+		}
 
 		//return no register baru dengan tahun tanpa kode di depan (RG / RJ)
 		function get_new_noreg() {
