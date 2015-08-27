@@ -37,6 +37,7 @@ class Rawat_jalan extends CI_Controller {
 				alert_fail('Pasien tidak ditemukan');
 				redirect(base_url() . 'rawat_jalan/form');
 			}
+			
 			$data['no_cm'] = $result->NO_MEDREC;
 			$data['nama'] = $result->NAMA;
 			$data['usia'] = $result->UMUR;
@@ -131,3 +132,4 @@ class Rawat_jalan extends CI_Controller {
 		redirect(base_url() . 'rawat_jalan/form/medrec/' . $no_cm);
 	}
 }
+?>

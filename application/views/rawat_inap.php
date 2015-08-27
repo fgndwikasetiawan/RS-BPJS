@@ -161,7 +161,7 @@
                   </div>
 
                   <div class="col-md-4">
-                     <label class="form-title">Penjamin</label>
+                    <label class="form-title">Penjamin</label>
                     <div class="form-group">
                       <label class="control-label col-md-4">No.SJP / No. Surat</label>
                       <div class="col-md-8">
@@ -219,7 +219,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label class="control-label col-md-6">Golongan</label>
-                            <div class="col-md-6">
+                            <div class="col-md-6"> 
                              <input class="form-control" name="golpembayarri" id="golpembayarri" value="<?php if (isset($pasien->GOLPEMBAYARRI)) echo $pasien->GOLPEMBAYARRI; ?>">  
                             </div>
                            </div>
@@ -237,7 +237,7 @@
                   </div> 
 
                   <div class="col-md-4">
-                     <label class="form-title">Keluarga</label>
+                    <label class="form-title">Keluarga</label>
                     <div class="form-group">
                       <label class="control-label col-md-3">Nama</label>
                       <div class="col-md-8"> 
@@ -252,25 +252,19 @@
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3">No.Telp / HP</label>
-                      <div class="col-md-8">
+                      <div class="col-md-8">   
                         <input class="form-control" name="notlppjawab" id="notlppjawab" value="<?php if (isset($pasien->NOTLPPJAWAB)) echo $pasien->NOTLPPJAWAB; ?>">   
                        </div>
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3">No. Identitas</label>
-                      <div class="col-md-8">
-                        <div class="row">
-                          <div class="col-md-8">
-                            <select class="form-control" name="kartuidpjawab">
-                               <option></option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <input class="form-control" name="noidpjawab" id="noidpjawab" placeholder="No. ID" value="<?php if (isset($pasien->NOIDPJAWAB)) echo $pasien->NOIDPJAWAB; ?>">
-                          </div>
-                        </div>
+                      <div class="col-md-4">
+                        <select class="form-control" name="kartuidpjawab">
+                          <option></option>
+                        </select>
+                      </div>
+                      <div class="col-md-8 col-md-offset-3">
+                        <input class="form-control" name="noidpjawab" id="noidpjawab" placeholder="No. ID" value="<?php if (isset($pasien->NOIDPJAWAB)) echo $pasien->NOIDPJAWAB; ?>">
                       </div>
                     </div>                      
                     <div class="form-group">
@@ -311,7 +305,7 @@
               </tr>
             </thead>
             <tbody>
-               <?php if (isset($ruang_iri)) { foreach($ruang_iri as $r) { ?>
+              <?php if (isset($ruang_iri)) { foreach($ruang_iri as $r) { ?>
                   <tr>
                      <td class="col-md-2">
                         <?php echo $r->NMRUANG; ?>

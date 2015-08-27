@@ -113,3 +113,4 @@ class Pasien extends CI_Controller {
 	}
 	
 }
+?>
