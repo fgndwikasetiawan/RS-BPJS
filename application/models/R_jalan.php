@@ -1,5 +1,5 @@
 <?php
-	class Rawat_jalan extends CI_Model{
+	class R_jalan extends CI_Model{
 		public function __construct(){
 			parent::__construct();
 		}	
@@ -9,6 +9,14 @@
 			return $this->db->insert('DAFTAR_ULANG', $data);
 		}
 
+		function get_no_cm($no_register) {
+			$this->db->select('NO_MEDREC');
+			$this->db->where('NO_REGISTER', $no_register);
+			$query = $this->db->get('DAFTAR_ULANG');
+			$result = $query->row();
+			return !$result ? null : $result->NO_MEDREC;
+		}
+	
 		function get_historis($no_medrec) {
 			$this->db->from('DAFTAR_ULANG');
 			$this->db->join('POLIKLINIK', 'POLIKLINIK.ID_POLI = DAFTAR_ULANG.ID_POLI', 'left');
@@ -19,38 +27,6 @@
 			$this->db->order_by("DAFTAR_ULANG.TGL_KUNJUNGAN", "desc");
 			$this->db->limit(5);
 			$query = $this->db->get();
-			return $query->result();
-		}
-
-		function get_poli(){
-			$this->db->select('ID_POLI, NM_POLI');
-			$this->db->order_by('NM_POLI', 'ASC');
-			$query = $this->db->get('POLIKLINIK');
-			return $query->result();
-		}
-
-		function get_cara_kunj(){
-			$this->db->select('CARA_KUNJ, KELAS_RAWATJALAN');
-			$query = $this->db->get('CARA_BERKUNJUNG');
-			return $query->result();
-		}
-
-		function get_cara_bayar(){
-			$this->db->select('CARA_BAYAR, KLSRAWATJALAN');
-			$query = $this->db->get('CARA_BAYAR');
-			return $query->result();
-		}
-
-		function get_perusahaan(){
-			$this->db->select('ID_KONTRAKTOR, NM_PERUSAHAAN');
-			$this->db->order_by('NM_PERUSAHAAN', 'ASC');
-			$query = $this->db->get('KONTRAKTOR');
-			return $query->result();
-		}
-
-		function get_diagnosa(){
-			$this->db->select('ID_ICD10, NAMA_DIAGNOSA');
-			$query = $this->db->get('ICD10');
 			return $query->result();
 		}
 
