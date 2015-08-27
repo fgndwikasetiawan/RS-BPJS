@@ -34,7 +34,7 @@
 		function get_new_noreg() {
 			$query = $this->db->query('select s_register.nextval from dual');
 			$result = $query->row();
-			$noreg = date('y') . sprintf("%06d", $result->NEXTVAL);
+			$noreg = 'RJ' . date('y') . sprintf("%06d", $result->NEXTVAL);
 			return $noreg;
 		}
 		

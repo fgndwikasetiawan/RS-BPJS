@@ -14,7 +14,7 @@
                   <div class="input-group">
                      <input class="form-control" id="nomor_cari" placeholder="No. CM / No. BPJS">
                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" onclick="cari_pasien()"><i class="fa fa-search fa-fw" style="height: 20px;"></i></button>
+                        <button class="btn btn-default" type="button" id="tombol_cari"><i class="fa fa-search fa-fw" style="height: 20px;"></i></button>
                      </span>
                   </div>
                </div>
@@ -163,7 +163,12 @@
                   <div class="row">
                      <div class="col-lg-8 form-group">
                         <label>No. CM</label>
-                        <input class="form-control" name="no_cm" id="no_cm" value="<?php echo $no_cm; ?>" readonly>
+                        <div class="input-group">
+                           <input class="form-control" name="no_cm" id="no_cm"  readonly>
+                           <span class="input-group-btn">
+                              <button type="button" class="btn btn-success" id="tombol_cm"><i class="fa fa-plus"></i></button>
+                           </span>
+                        </div>
                      </div>
                   </div>
                   <div class="row">

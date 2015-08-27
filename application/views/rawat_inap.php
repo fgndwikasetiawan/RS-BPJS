@@ -14,12 +14,13 @@
                   <div class="input-group">
                      <input class="form-control" id="nomor_cari" placeholder="No. Reg. IRJ / No. IPD">
                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" onclick="cari_pasien()"><i class="fa fa-search fa-fw"></i></button>
+                        <button class="btn btn-default" type="button" id="tombol_cari"><i class="fa fa-search fa-fw"></i></button>
                      </span>
                   </div>
                </div>
             </div>
          </div>
+         <?php if (isset($pasien->NO_MEDREC)) { ?>
           <form class="form-horizontal" id="form" role="form" target="_blank" method="post">
             <div class="panel-body bg-blue-gradient">
                <!--Kolom kiri-->               
@@ -31,8 +32,8 @@
                          <tbody>
                             <tr>
                               <td class="success col-xs-6 col-sm-4 col-md-2" ><b>No. CM</b></td>
-                              <td class="info col-xs-6 col-sm-4 col-md-3" id="no_cm"><?php if (isset($pasien->NO_MEDREC)) echo $pasien->NO_MEDREC; ?></td>
-                              <?php if (isset($no_cm)) { ?><input type="hidden" id="input_no_cm" name="no_cm" value="<?php echo $pasien->NO_MEDREC;?>"> <?php } ?>
+                              <td class="info col-xs-6 col-sm-4 col-md-3" id="no_cm"><?php echo $pasien->NO_MEDREC; ?></td>
+                              <input type="hidden" id="input_no_cm" name="no_cm" value="<?php echo $pasien->NO_MEDREC;?>">
                             </tr>
                          </tbody>                         
                          <tbody>
@@ -372,6 +373,6 @@
             </tbody>
           </table>
         </div>
-        <?php } ?>
+        <?php }} ?>
     </div>
 </div>
