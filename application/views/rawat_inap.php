@@ -261,6 +261,7 @@
                         <div class="row">
                           <div class="col-md-8">
                             <select class="form-control" name="kartuidpjawab">
+                               <option></option>
                             </select>
                           </div>
                         </div>
@@ -275,6 +276,10 @@
                       <label class="control-label col-md-3">Hub. Keluarga</label>
                       <div class="col-md-8">
                         <select class="form-control" name="hubpjawabri" id="hubpjawabri">
+                           <option>PESERTA</option>
+                           <option>ISTRI</option>
+                           <option>SUAMI</option>
+                           <option>ANAK</option>
                         </select>
                       </div>
                     </div>                     
@@ -300,27 +305,57 @@
                 <th>Tanggal Masuk</th>
                 <th>Kelas</th>
                 <th>Bed</th>
+                <th>Tanggal Keluar</th>
                 <th>Opsi</th>
               </tr>
             </thead>
             <tbody>
+               <?php if (isset($ruang_iri)) { foreach($ruang_iri as $r) { ?>
+                  <tr>
+                     <td class="col-md-2">
+                        <?php echo $r->NMRUANG; ?>
+                     </td>
+                     <td class="col-md-2">
+                        <?php echo $r->TGLMASUKRG; ?>
+                     </td>
+                     <td class="col-md-2">
+                        <?php echo $r->KELAS; ?>
+                     </td>
+                     <td class="col-md-2">
+                        <?php echo $r->BED; ?>
+                     </td>
+                     <td class="col-md-2">
+                        <?php echo $r->TGLKELUARRG; ?>
+                     </td>
+                     <td class="col-md-2">
+                        <button type="button" class="btn btn-primary">Edit</button>
+                        <button type="button" class="btn btn-danger">Hapus</button>
+                     </td>
+                  </tr>
+               <?php }} ?>
               <tr class="tr">
-                <td class="col-md-3">
-                  <select class="form-control" id="ruang" name="id_ruang">                         
+                <td class="col-md-2">
+                  <select class="form-control" id="ruang" name="id_ruang">
+                     <?php if (isset($ruang_rawat)) { foreach($ruang_rawat as $r) { ?>
+                     <option value="<?php echo $r->IDRG;?>"><?php echo $r->NMRUANG;?></option>
+                     <?php }}?>                         
                   </select>
                 </td>
-                <td class="col-md-3">
+                <td class="col-md-2">
                   <timepicker name="tgl_masuk"></timepicker>
                 </td>
-                <td class="col-md-3">
+                <td class="col-md-2">
                   <select class="form-control" id="kelas" name="kelas">                         
                   </select> 
                 </td>
-                <td class="col-md-3">
+                <td class="col-md-2">
                   <select class="form-control" id="bed" name="bed">                         
                     </select>
                 </td>
-                <td>
+                <td class="col-md-2">
+                   --
+                </td>
+                <td class="col-md-2">
                   <button type="button" class="btn btn-success">Tambah</button>
                 </td>
               </tr>

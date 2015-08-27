@@ -13,17 +13,27 @@ function constructTimepicker() {
 	inputGroupButton.click(showTimepicker);
 	timepicker.append(inputGroup);
 	
+	var tanggal = ['','',''];
+	var waktu = ['',''];
+	if (timepicker.attr('value') != '') {
+		var timepickerValue = timepicker.attr('value').split(' ');
+		tanggal = timepickerValue[0].split('/');
+		waktu = timepickerValue[1].split(':');
+	}
 	var panel = $('<div class="panel panel-default" style="display:none; z-index: 10; min-width: 300px; width: inherit; position:absolute;">');
 	var panelBody = $('<div class="panel-body" style="box-shadow: 2px 2px 3px 1px #aaa">');
 	var formTanggal = $('<div class="form form-inline">');
-	formTanggal.append('<input class="form-control timepicker-tanggal" maxlength="2" placeholder="Tanggal" style="width: 30%; margin-right: 2%;">');
-	formTanggal.append('<input class="form-control timepicker-bulan" maxlength="2" placeholder="Bulan" style="width: 30%; margin-right: 2%;">');
-	formTanggal.append('<input class="form-control timepicker-tahun" placeholder="Tahun" style="width: 30%;">');
+	var closeButton = $('<button type="button" style="background: transparent; border: none; height: 20px; position:absolute; top:0; right:0;"><i class="fa fa-times"></i></button>');
+	closeButton.click(dismissTimepicker);
+	panel.append(closeButton);
+	formTanggal.append('<input class="form-control timepicker-tanggal" maxlength="2" placeholder="Tanggal" style="width: 30%; margin-right: 2%;" value="' + tanggal[0] +'">');
+	formTanggal.append('<input class="form-control timepicker-bulan" maxlength="2" placeholder="Bulan" style="width: 30%; margin-right: 2%;" value="' + tanggal[1] +'">');
+	formTanggal.append('<input class="form-control timepicker-tahun" placeholder="Tahun" style="width: 30%;" value="' + tanggal[2] +'">');
 	panelBody.append(formTanggal);
 	panelBody.append('<hr/>');
 	var formWaktu = $('<div class="form form-inline">');
-	formWaktu.append('<input class="form-control timepicker-jam" maxlength="2" placeholder="Jam" style="width: 30%; margin-left: 20%; margin-right: 2%">');
-	formWaktu.append('<input class="form-control timepicker-menit" maxlength="2" placeholder="Menit" style="width: 30%">');
+	formWaktu.append('<input class="form-control timepicker-jam" maxlength="2" placeholder="Jam" style="width: 30%; margin-left: 20%; margin-right: 2%;" value="' + waktu[0] +'">');
+	formWaktu.append('<input class="form-control timepicker-menit" maxlength="2" placeholder="Menit" style="width: 30%;" value="' + waktu[1] +'">');
 	panelBody.append(formWaktu);
 	panelBody.append('<div style="text-align: center"><br/><strong class="timepicker-warning" style="color: red; display: none;">Tanggal / waktu tidak valid!</strong></div>')
 	panel.append(panelBody);
@@ -37,9 +47,9 @@ function showTimepicker(event) {
 	button.empty();
 	button.text('OK');
 	button.off('click');
-	button.click(hideTimepicker);
+	button.click(submitTimepicker);
 }
-function hideTimepicker(event) {
+function submitTimepicker(event) {
 	var button = $(event.currentTarget);
 	var timepicker = button.parent().parent().parent();
 	var panel = $(timepicker.children()[1]);
@@ -60,6 +70,15 @@ function hideTimepicker(event) {
 	else {
 		$(timepicker.find('.timepicker-warning')[0]).show();
 	}
+}
+function dismissTimepicker(event) {
+	var button = $(event.currentTarget).parent().siblings().find('button')[0];
+	button = $(button);
+	button.append('<i class="fa fa-calendar">');
+	button.off('click');
+	button.click(showTimepicker);
+	var panel = $(event.currentTarget).parent();
+	panel.hide();
 }
 function cek_tanggal(tanggal, bulan, tahun) {
    var now = new Date();

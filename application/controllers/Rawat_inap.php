@@ -5,11 +5,9 @@ class Rawat_inap extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		/*
 		if (!$this->session->has_userdata('username')) {
 			redirect(base_url() . 'Auth');
 		}
-		*/
 	}
 
 	public function index(){
@@ -51,13 +49,17 @@ class Rawat_inap extends CI_Controller {
 			$this->load->model('cara_masuk');
 			$this->load->model('dokter');
 			$this->load->model('kontraktor');
-
+			$this->load->model('ruang_rawat');
+			$this->load->model('ruang_iri');
 			
 			$data['dokter'] = $this->dokter->get_dokter();
 			$data['kontraktor'] = $this->kontraktor->get_kontraktor();
 			$data['cara_bayar'] = $this->cara_bayar->get_cara_bayar();
 			$data['cara_masuk'] = $this->cara_masuk->get_cara_masuk();
-			
+			$data['ruang_rawat'] = $this->ruang_rawat->get_ruang_rawat();
+			if ($tipe == 'ipd') { 
+				$data['ruang_iri'] = $this->ruang_iri->get_entri_by_ipd($nomor);
+			}
 			$data['pasien'] = $data_pasien;
 			
 			load_main_template('Pendaftaran Rawat Inap', 'Pendaftaran Rawat Inap', 'rawat_inap', $data, 3);
