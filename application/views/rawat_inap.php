@@ -111,7 +111,8 @@
                     <div class="form-group">
                       <label class="control-label col-md-4">Tanggal Daftar <span id="usia">&nbsp;</span></label>
                         <div class="col-md-8">
-                          <timepicker name="tgldaftarri" id="tgldaftarri" value="<?php if (isset($pasien->TGLDAFTARRI)) echo $pasien->TGLDAFTARRI; ?>"></timepicker>                          
+                          <input type="text" class="form-control datetimepicker" value="">
+                          <!-- <timepicker name="tgldaftarri" id="tgldaftarri" value="<?php if (isset($pasien->TGLDAFTARRI)) echo $pasien->TGLDAFTARRI; ?>"></timepicker>   -->                        
                         </div>                                             
                     </div>
                     <div class="form-group">      
@@ -207,9 +208,9 @@
                       <div class="col-md-8">
                         <select class="form-control" name="ketpembayarri" id="ketpembayarri">
                            <option value="PESERTA" <?php if (isset($pasien->KETPEMBAYARRI) && ($pasien->KETPEMBAYARRI == "PESERTA")) echo "selected"; ?>>PESERTA</option>
-                           <option value="PESERTA" <?php if (isset($pasien->KETPEMBAYARRI) && ($pasien->KETPEMBAYARRI == "ISTRI")) echo "selected"; ?>>ISTRI</option>
-                           <option value="PESERTA" <?php if (isset($pasien->KETPEMBAYARRI) && ($pasien->KETPEMBAYARRI == "SUAMI")) echo "selected"; ?>>SUAMI</option>
-                           <option value="PESERTA" <?php if (isset($pasien->KETPEMBAYARRI) && ($pasien->KETPEMBAYARRI == "ANAK")) echo "selected"; ?>>ANAK</option>
+                           <option value="ISTRI" <?php if (isset($pasien->KETPEMBAYARRI) && ($pasien->KETPEMBAYARRI == "ISTRI")) echo "selected"; ?>>ISTRI</option>
+                           <option value="SUAMI" <?php if (isset($pasien->KETPEMBAYARRI) && ($pasien->KETPEMBAYARRI == "SUAMI")) echo "selected"; ?>>SUAMI</option>
+                           <option value="ANAK" <?php if (isset($pasien->KETPEMBAYARRI) && ($pasien->KETPEMBAYARRI == "ANAK")) echo "selected"; ?>>ANAK</option>
                         </select>
                       </div>
                     </div>
@@ -259,7 +260,10 @@
                       <label class="control-label col-md-3">No. Identitas</label>
                       <div class="col-md-4">
                         <select class="form-control" name="kartuidpjawab">
-                          <option></option>
+                          <option vlaue="KTP">KTP</option>
+                          <option value="NIP">NIP</option>
+                          <option value="SIM">SIM</option>
+                          <option value="PASPOR">PASPOR</option>
                         </select>
                       </div>
                       <div class="col-md-8 col-md-offset-3">
@@ -270,10 +274,15 @@
                       <label class="control-label col-md-3">Hub. Keluarga</label>
                       <div class="col-md-8">
                         <select class="form-control" name="hubpjawabri" id="hubpjawabri">
-                           <option>PESERTA</option>
-                           <option>ISTRI</option>
-                           <option>SUAMI</option>
-                           <option>ANAK</option>
+                          <option value="KELUARGA">KELUARGA</option>
+                          <option value="ORANGTUA">ORANGTUA</option>
+                          <option value="ISTRI">ISTRI</option>
+                          <option value="SUAMI">SUAMI</option>
+                          <option value="SAUDARA">SAUDARA</option>
+                          <option value="KERABAT">KERABAT</option>
+                          <option value="MERTUA">MERTUA</option>
+                          <option value="ANAK">ANAK</option>
+                          <option value="DIRI SAYA">DIRI SAYA</option>
                         </select>
                       </div>
                     </div>                     
@@ -330,24 +339,31 @@
               <tr class="tr">
                 <td class="col-md-2">
                   <select class="form-control" id="ruang" name="id_ruang">
-                     <?php if (isset($ruang_rawat)) { foreach($ruang_rawat as $r) { ?>
-                     <option value="<?php echo $r->IDRG;?>"><?php echo $r->NMRUANG;?></option>
-                     <?php }}?>                         
+                    <?php if (isset($ruang_rawat)) { foreach($ruang_rawat as $r) { ?>
+                      <option value="<?php echo $r->IDRG;?>"><?php echo $r->NMRUANG;?></option>
+                    <?php }}?>                         
                   </select>
                 </td>
                 <td class="col-md-2">
-                  <timepicker name="tgl_masuk"></timepicker>
+                  <input type="text" class="form-control datetimepicker" value="">
+                  <!-- <timepicker name="tgl_masuk"></timepicker> -->
                 </td>
                 <td class="col-md-2">
-                  <select class="form-control" id="kelas" name="kelas">                         
+                  <select class="form-control" id="kelas" name="kelas">
+                    <?php if (isset($kelas)) { foreach($kelas as $k) { ?>
+                      <option value="<?php echo $k->KELAS;?>"><?php echo $k->KELAS;?></option>
+                    <?php }}?>
                   </select> 
                 </td>
                 <td class="col-md-2">
-                  <select class="form-control" id="bed" name="bed">                         
-                    </select>
+                  <select class="form-control" id="bed" name="bed">    
+                    <?php if (isset($bed)) { foreach($bed as $b) { ?>
+                      <option value="<?php echo $b->BED;?>"><?php echo $b->BED;?></option>
+                    <?php }}?>
+                  </select>
                 </td>
                 <td class="col-md-2">
-                   --
+                  <input type="text" class="form-control datetimepicker" value="">
                 </td>
                 <td class="col-md-2">
                   <button type="button" class="btn btn-success">Tambah</button>

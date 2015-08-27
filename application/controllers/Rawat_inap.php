@@ -50,12 +50,16 @@ class Rawat_inap extends CI_Controller {
 			$this->load->model('kontraktor');
 			$this->load->model('ruang_rawat');
 			$this->load->model('ruang_iri');
+			$this->load->model('kelas');
+			$this->load->model('bed');
 			
 			$data['dokter'] = $this->dokter->get_dokter();
 			$data['kontraktor'] = $this->kontraktor->get_kontraktor();
 			$data['cara_bayar'] = $this->cara_bayar->get_cara_bayar();
 			$data['cara_masuk'] = $this->cara_masuk->get_cara_masuk();
 			$data['ruang_rawat'] = $this->ruang_rawat->get_ruang_rawat();
+			$data['kelas'] = $this->kelas->get_kelas();
+			$data['bed'] = $this->bed->get_bed();
 			if ($tipe == 'ipd') { 
 				$data['ruang_iri'] = $this->ruang_iri->get_entri_by_ipd($nomor);
 			}
