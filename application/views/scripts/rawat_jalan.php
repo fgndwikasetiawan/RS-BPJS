@@ -5,6 +5,27 @@
 	 	window.location = '<?php echo base_url(); ?>rawat_jalan/form/'+ tipe + '/' + nomor;
 	}
 	
+   function caripasien_keyup(event) {
+      if (event.keyCode == 13) {
+         cari_pasien();
+      }
+      else {
+         caripasien_change(event);
+      }
+   }
+	
+	function caripasien_change(event) {
+		var tipe_cari = $('#tipe_cari').val();
+      var field_cari = $(event.target);
+      
+      if (tipe_cari == 'medrec') {
+         if (field_cari.val().length >= 10) {
+            field_cari.val(field_cari.val().substr(0, 10));
+            cari_pasien();
+         }
+      }
+	}
+	
 	function generate_sep() {
 		var data = {
 			no_bpjs: $('#no_bpjs').text(),
@@ -40,6 +61,15 @@
 				}
 			}
 		});
+	}
+	
+	function get_new_noreg() {
+		$.ajax({
+			url: '<?php echo base_url(); ?>ajax/new_no_regrj',
+			success: function(data) {
+				$('#no_register').val(data);	
+			}
+		})
 	}
 	
 	$(function() {
@@ -82,5 +112,11 @@
 
 		var selected = $('#id_poli option:selected');
 		$('#nm_poli').val(selected.text());	
+		
+		$('#nomor_cari').focus();
+		$('#tombol_cari').click(cari_pasien);
+		$('#nomor_cari').on('keyup', caripasien_keyup);
+		$('#nomor_cari').on('change', caripasien_change);
+		$('#tombol_noreg').click(get_new_noreg);
 	});
 </script>

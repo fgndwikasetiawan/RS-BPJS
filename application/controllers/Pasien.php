@@ -32,7 +32,6 @@ class Pasien extends CI_Controller {
 			$data['kelurahan'] .= '[\'' . $k->ID_DESA . '\',\''. $k->NAMA_DESA . '\',\'' . $k->ID_KECAMATAN . '\'],';
 		}
 		$data['kelurahan'] = substr($data['kelurahan'], 0, -1) . ']';
-   		$data['no_cm'] = sprintf("%'.010d", $this->pasien_irj->get_new_medrec());
 		load_main_template('Registrasi Pasien', 'Registrasi Pasien', 'registrasi_pasien', $data, 1);
 	}
         

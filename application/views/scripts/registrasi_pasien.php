@@ -1,18 +1,4 @@
 <script>
-   $(function() {
-      for (i=1; i<=31; i++) {
-         $('#tanggal_lahir').append('<option value=' + i + '>' + i + '</option>');
-      }
-      for (i=1; i<=12; i++) {
-         $('#bulan_lahir').append('<option value=' + i + '>' + i + '</option>');
-      }
-      var year = new Date().getFullYear();
-      for (i=year; i>=1900; i--) {
-         $('#tahun_lahir').append('<option value=' + i + '>' + i + '</option>');
-      }
-      isi_kabupaten();
-   });
-
    function isi_kabupaten() {
      var kabSelect = $('#kabupaten');
      kabSelect.empty();
@@ -157,4 +143,54 @@
       $('#usia').text('');
       $('#tombol_submit').attr('disabled', true);
    }
+   
+   function get_no_cm() {
+      $.ajax({
+         url: '<?php echo base_url(); ?>ajax/new_no_medrec',
+         success: function(data) {
+            $('#no_cm').val(data);
+         }
+      });
+   }
+   
+   function caripasien_keyup(event) {
+      if (event.keyCode == 13) {
+         cari_pasien();
+      }
+      else {
+         caripasien_change(event);
+      }
+   }
+   
+   function caripasien_change(event) {
+      var tipe_cari = $('#tipe_cari').val();
+      var field_cari = $(event.target);
+      
+      if (tipe_cari == 'medrec') {
+         if (field_cari.val().length >= 10) {
+            field_cari.val(field_cari.val().substr(0, 10));
+            cari_pasien();
+         }
+      }
+   }
+   
+    $(function() {
+      for (i=1; i<=31; i++) {
+         $('#tanggal_lahir').append('<option value=' + i + '>' + i + '</option>');
+      }
+      for (i=1; i<=12; i++) {
+         $('#bulan_lahir').append('<option value=' + i + '>' + i + '</option>');
+      }
+      var year = new Date().getFullYear();
+      for (i=year; i>=1900; i--) {
+         $('#tahun_lahir').append('<option value=' + i + '>' + i + '</option>');
+      }
+      isi_kabupaten();
+      
+      $('#nomor_cari').on('keyup', caripasien_keyup);
+      $('#nomor_cari').on('change', caripasien_change);
+      $('#tombol_cari').click(cari_pasien);
+      $('#tombol_cm').click(get_no_cm);
+   });
+
 </script>

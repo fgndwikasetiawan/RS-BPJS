@@ -4,5 +4,8 @@
 			parent::__construct();
 		}
 		
+		public function get_new_ipd() {
+			return 90000;
+		}
 	}
 ?>

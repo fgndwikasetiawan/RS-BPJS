@@ -97,6 +97,22 @@
          echo $sep;
       }
 
+      public function new_no_medrec() {
+         $this->load->model('pasien_irj');
+         $medrec = $this->pasien_irj->get_new_medrec();
+         echo $medrec;
+      }
+
+      public function new_no_regrj() {
+         $this->load->model('r_jalan');
+         $noreg = $this->r_jalan->get_new_noreg();
+         echo $noreg;
+      }
+      
+      public function new_no_regri() {
+         
+      }
+
       public function foo() {
          echo 'FOO!';
       }

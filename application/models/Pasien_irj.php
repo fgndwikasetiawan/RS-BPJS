@@ -74,7 +74,8 @@
       public function get_new_medrec() {
          $query = $this->db->query('select s_medrec.nextval from dual');
          $result = $query->row();
-         return $result->NEXTVAL;
+         $medrec = sprintf("%'.010d", $result->NEXTVAL);
+         return $medrec;
       }
 
    }

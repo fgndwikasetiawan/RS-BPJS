@@ -14,12 +14,13 @@
                   <div class="input-group">
                      <input class="form-control" id="nomor_cari" placeholder="No. CM / No. BPJS">
                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" onclick="cari_pasien()"><i class="fa fa-search fa-fw"></i></button>
+                        <button class="btn btn-default" type="button" id="tombol_cari"><i class="fa fa-search fa-fw"></i></button>
                      </span>
                   </div>
                </div>
             </div>
          </div>
+          <?php if (isset($no_cm)) { ?>
           <form id="form" role="form" target="_blank" method="post">
             <div class="panel-body bg-blue-gradient">
                <!--Kolom kiri-->               
@@ -85,7 +86,12 @@
                 <div class="col-md-4" id="kolom_kiri">
                   <div class="form-group">
                     <label>No. Register</label>
-                    <input class="form-control" name="no_register" id="no_register" value="<?php if (isset($noreg)) echo $noreg; ?>" readonly>
+                    <div class="input-group">
+                        <input class="form-control" name="no_register" id="no_register" readonly>
+                        <span class="input-group-btn">
+                           <button type="button" class="btn btn-success" id="tombol_noreg"><i class="fa fa-plus"></i></button>
+                        </span>
+                    </div>
                   </div>
                   <div class="form-group">
                     <label>Nama Pembayar</label>
@@ -185,7 +191,6 @@
             <div class="panel-footer" id="form_footer">
                 <div id="baris_tombol">
                   <button id="tombol_simpan" class="btn btn-primary btn-lg">Simpan</button>
-                  <button id="tombol_cetak_SEP" class="btn btn-primary btn-lg">Cetak SEP</button>
                 </div>
             </div>
           </form>
@@ -302,6 +307,9 @@
             </div>
           </div>
         </div> 
+        
+          <?php } ?>
+          
         <!-- End tab content -->
     </div>
 </div>

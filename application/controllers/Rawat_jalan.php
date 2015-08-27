@@ -44,9 +44,6 @@ class Rawat_jalan extends CI_Controller {
 			$data['no_bpjs'] = $result->NO_ASURANSI;
 			$data['tgl_lahir'] = $result->TGL_LAHIR;
 	
-			$noreg = 'RJ' . $this->r_jalan->get_new_noreg();
-			$data['noreg'] = $noreg;
-	
 			$query = $this->r_jalan->get_historis($result->NO_MEDREC);
 			$data['historis'] = $query;
 	

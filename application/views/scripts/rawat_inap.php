@@ -6,6 +6,27 @@
 	 	window.location = '<?php echo base_url(); ?>rawat_inap/form/'+ tipe + '/' + nomor;
 	}
 	
+	function caripasien_keyup(event) {
+      if (event.keyCode == 13) {
+         cari_pasien();
+      }
+      else {
+         caripasien_change(event);
+      }
+   }
+	
+	function caripasien_change(event) {
+		var tipe_cari = $('#tipe_cari').val();
+      var field_cari = $(event.target);
+      
+      if (tipe_cari == 'reg_irj' || tipe_cari == 'ipd') {
+         if (field_cari.val().length >= 10) {
+            field_cari.val(field_cari.val().substr(0, 10));
+            cari_pasien();
+         }
+      }
+	}
+	
 	function generate_sep() {
 		var data = {
 			no_bpjs: $('#no_bpjs').text(),
@@ -83,7 +104,9 @@
 
 		var selected = $('#id_poli option:selected');
 		$('#nm_poli').val(selected.text());	
-		
+		$('#tombol_cari').click(cari_pasien);
+		$('#nomor_cari').on('keyup', caripasien_keyup);
+		$('#nomor_cari').on('change', caripasien_change);
 		constructTimepicker();
 	});
 </script>
