@@ -3,14 +3,14 @@
 #baris_tombol{
 	text-align: center;	
 }
-.form-control  {
+/*.form-control  {
 	font-size: 0.8em;
 	line-height: 0.8em;
 	height: 30px;
-}
-.form-group label {
+}*/
+/*.form-group label {
 	font-size: 0.9em;
-}
+}*/
 .input-group-btn button {
 	height: 30px;
 }

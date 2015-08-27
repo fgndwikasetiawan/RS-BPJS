@@ -191,7 +191,7 @@
           </form>
         </div>
         <!-- Tabel histori pasien -->
-        <div style=""><b>Histori Pasien</b></div>
+        <label>Histori Pasien</label>
         <hr>
         <ul class="nav nav-tabs">
            <li class="active"><a data-toggle="tab" href="#pendaftaran">Pendaftaran</a></li>
