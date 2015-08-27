@@ -1,5 +1,7 @@
 <script src="<?php echo assets_url();?>/js/timepicker.js"></script>
+<script src="<?php echo assets_url(); ?>/js/datetimepicker.js" type="text/javascript"></script>
 <script>
+	
 	function cari_pasien() {
 		var tipe = $('#tipe_cari').val();
 		var nomor = $('#nomor_cari').val();
@@ -65,6 +67,19 @@
 	}
 	
 	$(function() {
+
+
+		$('.datetimepicker').datetimepicker({
+			lang:'id',
+			timepicker:false,
+			format:'d/m/Y',
+			formatDate:'Y/m/d',
+			step:5,
+			value:'$currentTime',
+			mask:''
+		});
+
+
 		var a = $('#input_no_cm').length;
 		if (a == 0) {
 			$('#baris_tombol button').attr('disabled', true);
