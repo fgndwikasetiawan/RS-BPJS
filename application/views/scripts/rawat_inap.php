@@ -77,6 +77,15 @@
 		});
 	}
 	
+	function get_no_ipd() {
+		$.ajax({
+			url: '<?php echo base_url(); ?>ajax/new_no_ipd',
+			success: function(data) {
+				$('#no_ipd').val(data);
+			}  
+		})
+	}
+	
 	$(function() {
 	
 		$('.datetimepicker').datetimepicker({
@@ -95,20 +104,6 @@
 			$('#baris_tombol button').attr('disabled', true);
 		}
 
-		$('#tombol_simpan').click(function(e) {
-			e.preventDefault();
-			var form = $('#form');
-		form.removeAttr('target');
-			form.attr('action', '<?php echo base_url(); ?>rawat_jalan/submit');
-			form.submit();
-		});
-
-		$('#tombol_cetak_SEP').click(function(e) {
-			e.preventDefault();
-			var form = $('#form');
-			form.attr('action', '<?php echo base_url(); ?>rawat_jalan/cetak_sep');
-			form.submit();
-		});
 
 		$('#id_poli').on('change', function(){
 			var selected = $('#id_poli option:selected');
@@ -134,5 +129,6 @@
 		$('#nomor_cari').on('change', caripasien_change);
 		$('#ruang').on('change', update_bed);
 		$('#kelas').on('change', update_bed);
+		$('#tombol_ipd').click(get_no_ipd);
 	});
 </script>

@@ -92,26 +92,22 @@
 	}
 	
 	$(function() {
+		var selected = $('#id_poli option:selected');
+		$('#nm_poli').val(selected.text());
+		
 		var a = $('#input_no_cm').length;
 		if (a == 0) {
 			$('#baris_tombol button').attr('disabled', true);
 		}
-
-
+		
 		$('#id_poli').on('change', function(){
 			var selected = $('#id_poli option:selected');
 			$('#nm_poli').val(selected.text());
 		});
-		
 		$('#ppk_rujukan').on('change', function() {
 			get_data_ppk($('#ppk_rujukan').val());
-		});
-		
-		
-		var selected = $('#id_poli option:selected');
-		$('#nm_poli').val(selected.text());	
+		});	
 		$('#nomor_cari').focus();
-		
 		$('#tombol_noreg').click(get_new_noreg);
 		$('#tombol_sep').click(generate_sep);
 		$('#tombol_simpan').click(simpan);

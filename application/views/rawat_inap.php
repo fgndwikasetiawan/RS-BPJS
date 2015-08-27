@@ -98,7 +98,7 @@
                           <div class="input-group">
                              <input class="form-control" type="text" id="no_ipd" name="no_ipd" value="<?php if (isset($pasien->NO_IPD)) echo $pasien->NO_IPD; ?>" readonly>
                              <span class="input-group-btn">
-                                <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-success" id="tombol_ipd"><i class="fa fa-plus"></i></button>
                              </span>
                           </div>
                         </div>
@@ -118,7 +118,12 @@
                     <div class="form-group">      
                       <label class="control-label col-md-4">SMF</label>
                       <div class="col-md-8">
-                        <select class="form-control" id="id_smf" name="id_smf">                         
+                        <select class="form-control" id="id_smf" name="id_smf">
+                           <?php foreach($smf as $s) { ?>
+                              <option value="<?php echo $s->ID_SMF; ?>" <?php if (isset($pasien->ID_SMF) && $pasien->ID_SMF == $s->ID_SMF) echo "selected";?>>
+                                 <?php echo $s->NMSMF; ?>
+                              </option>
+                           <?php } ?>
                         </select>
                       </div>                                           
                     </div>                    
@@ -260,10 +265,10 @@
                       <label class="control-label col-md-3">No. Identitas</label>
                       <div class="col-md-4">
                         <select class="form-control" name="kartuidpjawab">
-                          <option vlaue="KTP">KTP</option>
-                          <option value="NIP">NIP</option>
-                          <option value="SIM">SIM</option>
-                          <option value="PASPOR">PASPOR</option>
+                          <option vlaue="KTP" <?php if (isset($pasien->KARTUIDPJAWAB) && $pasien->KARTUIDPJAWAB == 'KTP') echo "selected"; ?>>KTP</option>
+                          <option value="NIP" <?php if (isset($pasien->KARTUIDPJAWAB) && $pasien->KARTUIDPJAWAB == 'NIP') echo "selected"; ?>>NIP</option>
+                          <option value="SIM" <?php if (isset($pasien->KARTUIDPJAWAB) && $pasien->KARTUIDPJAWAB == 'SIM') echo "selected"; ?>>SIM</option>
+                          <option value="PASPOR" <?php if (isset($pasien->KARTUIDPJAWAB) && $pasien->KARTUIDPJAWAB == 'PASPOR') echo "selected"; ?>>PASPOR</option>
                         </select>
                       </div>
                       <div class="col-md-8 col-md-offset-3">

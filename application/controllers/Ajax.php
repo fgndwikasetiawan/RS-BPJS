@@ -109,8 +109,10 @@
          echo $noreg;
       }
       
-      public function new_no_regri() {
-         
+      public function new_no_ipd() {
+         $this->load->model('pasien_iri');
+         $noipd = $this->pasien_iri->get_new_noipd();
+         echo $noipd;
       }
 
       public function foo() {
