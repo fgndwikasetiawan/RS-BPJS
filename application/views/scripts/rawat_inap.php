@@ -75,7 +75,7 @@
 			format:'d/m/Y',
 			formatDate:'Y/m/d',
 			step:5,
-			value:'$currentTime',
+			//value:'',
 			mask:''
 		});
 
