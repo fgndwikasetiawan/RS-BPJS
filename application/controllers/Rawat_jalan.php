@@ -135,3 +135,4 @@ class Rawat_jalan extends CI_Controller {
 		redirect(base_url() . 'rawat_jalan/form/medrec/' . $no_cm);
 	}
 }
+?>

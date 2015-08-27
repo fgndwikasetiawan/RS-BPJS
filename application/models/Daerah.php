@@ -47,7 +47,5 @@
          $query = $this->db->get('DESAKELURAHAN');
          return $query->result();
       }
-
-
    }
  ?>

@@ -4,25 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Rawat_inap extends CI_Controller {
 
 	public function __construct() {
-<<<<<<< HEAD
 		parent::__construct();		
 		if (!$this->session->has_userdata('username')) {
 			redirect(base_url() . 'Auth');
 		}		
-=======
-		parent::__construct();
-		if (!$this->session->has_userdata('username')) {
-			redirect(base_url() . 'Auth');
-		}
->>>>>>> 9a0685e74fb2f4b687cfc4f2fc54bb7cd133fef0
 	}
 
 	public function index(){
 		load_main_template('Pendaftaran Rawat Inap', 'Pendaftaran Rawat Inap', 'rawat_inap', null, 3);
-<<<<<<< HEAD
 	}	
-=======
-	}
    
 	public function form($tipe = null, $nomor = null) {
 		if (($tipe != 'reg_irj' && $tipe != 'ipd') || (!$nomor || $nomor == '')) {
@@ -52,8 +42,7 @@ class Rawat_inap extends CI_Controller {
 				alert_fail('Pasien tidak ditemukan');
 				redirect(base_url() . 'rawat_inap/form');
 				return;
-			}
-			
+			}			
 			
 			$this->load->model('cara_bayar');
 			$this->load->model('cara_masuk');
@@ -76,5 +65,5 @@ class Rawat_inap extends CI_Controller {
 			
 		}
 	}
->>>>>>> 9a0685e74fb2f4b687cfc4f2fc54bb7cd133fef0
 }
+?>
