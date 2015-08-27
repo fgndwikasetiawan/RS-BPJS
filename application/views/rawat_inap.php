@@ -112,8 +112,7 @@
                     <div class="form-group">
                       <label class="control-label col-md-4">Tanggal Daftar <span id="usia">&nbsp;</span></label>
                         <div class="col-md-8">
-                          <input type="text" class="form-control datetimepicker" value="">
-                          <!-- <timepicker name="tgldaftarri" id="tgldaftarri" value="<?php if (isset($pasien->TGLDAFTARRI)) echo $pasien->TGLDAFTARRI; ?>"></timepicker>   -->                        
+                          <input type="text" class="form-control datetimepicker" value="<?php if (isset($pasien->TGL_DAFTAR)) echo $pasien->TGL_DAFTAR; ?>">                        
                         </div>                                             
                     </div>
                     <div class="form-group">      
@@ -305,8 +304,8 @@
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th>Ruang</th>
                 <th>Tanggal Masuk</th>
+                <th>Ruang</th>
                 <th>Kelas</th>
                 <th>Bed</th>
                 <th>Tanggal Keluar</th>
@@ -317,10 +316,10 @@
               <?php if (isset($ruang_iri)) { foreach($ruang_iri as $r) { ?>
                   <tr>
                      <td class="col-md-2">
-                        <?php echo $r->NMRUANG; ?>
+                        <?php echo $r->TGLMASUKRG; ?>
                      </td>
                      <td class="col-md-2">
-                        <?php echo $r->TGLMASUKRG; ?>
+                        <?php echo $r->NMRUANG; ?>
                      </td>
                      <td class="col-md-2">
                         <?php echo $r->KELAS; ?>
@@ -339,15 +338,14 @@
                <?php }} ?>
               <tr class="tr">
                 <td class="col-md-2">
+                  <input type="text" class="form-control datetimepicker" value="">
+                </td>
+                <td class="col-md-2">
                   <select class="form-control" id="ruang" name="id_ruang">
                     <?php if (isset($ruang_rawat)) { foreach($ruang_rawat as $r) { ?>
                       <option value="<?php echo $r->IDRG;?>"><?php echo $r->NMRUANG;?></option>
                     <?php }}?>                         
                   </select>
-                </td>
-                <td class="col-md-2">
-                  <input type="text" class="form-control datetimepicker" value="">
-                  <!-- <timepicker name="tgl_masuk"></timepicker> -->
                 </td>
                 <td class="col-md-2">
                   <select class="form-control" id="kelas" name="kelas">
@@ -358,9 +356,6 @@
                 </td>
                 <td class="col-md-2">
                   <select class="form-control" id="bed" name="bed">    
-                    <?php if (isset($bed)) { foreach($bed as $b) { ?>
-                      <option value="<?php echo $b->BED;?>"><?php echo $b->BED;?></option>
-                    <?php }}?>
                   </select>
                 </td>
                 <td class="col-md-2">
@@ -376,3 +371,8 @@
         <?php }} ?>
     </div>
 </div>
+
+
+<script>
+   var _beds=JSON.parse('<?php if (isset($bed)) echo json_encode($bed);?>');
+</script>

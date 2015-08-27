@@ -1,4 +1,3 @@
-<script src="<?php echo assets_url();?>/js/timepicker.js"></script>
 <script src="<?php echo assets_url(); ?>/js/datetimepicker.js" type="text/javascript"></script>
 <script>
 	
@@ -66,9 +65,20 @@
 		});
 	}
 	
+	function update_bed(event) {
+		var id_ruang = $('#ruang').val();
+		var kelas = $('#kelas').val();
+		var bed_select = $('#bed');
+		bed_select.empty();
+		_beds.forEach(function(bed) {
+			if (bed.IDRG == id_ruang && bed.KELAS == kelas) {
+				bed_select.append('<option>' + bed.BED + '</option>');
+			}
+		});
+	}
+	
 	$(function() {
-
-
+	
 		$('.datetimepicker').datetimepicker({
 			lang:'id',
 			timepicker:false,
@@ -116,12 +126,13 @@
 		})
 	   
 		$('#tombol_sep').click(generate_sep);
-
+		
 		var selected = $('#id_poli option:selected');
 		$('#nm_poli').val(selected.text());	
 		$('#tombol_cari').click(cari_pasien);
 		$('#nomor_cari').on('keyup', caripasien_keyup);
 		$('#nomor_cari').on('change', caripasien_change);
-		constructTimepicker();
+		$('#ruang').on('change', update_bed);
+		$('#kelas').on('change', update_bed);
 	});
 </script>
