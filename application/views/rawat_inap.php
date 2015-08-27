@@ -257,19 +257,13 @@
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3">No. Identitas</label>
-                      <div class="col-md-8">
-                        <div class="row">
-                          <div class="col-md-8">
-                            <select class="form-control" name="kartuidpjawab">
-                               <option></option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <input class="form-control" name="noidpjawab" id="noidpjawab" placeholder="No. ID" value="<?php if (isset($pasien->NOIDPJAWAB)) echo $pasien->NOIDPJAWAB; ?>">
-                          </div>
-                        </div>
+                      <div class="col-md-4">
+                        <select class="form-control" name="kartuidpjawab">
+                          <option></option>
+                        </select>
+                      </div>
+                      <div class="col-md-8 col-md-offset-3">
+                        <input class="form-control" name="noidpjawab" id="noidpjawab" placeholder="No. ID" value="<?php if (isset($pasien->NOIDPJAWAB)) echo $pasien->NOIDPJAWAB; ?>">
                       </div>
                     </div>                      
                     <div class="form-group">
