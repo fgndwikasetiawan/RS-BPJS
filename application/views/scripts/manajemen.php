@@ -1,6 +1,30 @@
 <script>
 	$(function(){
-		$('#tombol_simpan').click(function(e) {
+		var field_userbaru = $('#userbaru');
+		var field_passbaru = $('#passbaru');
+		var tombol_simpan = $('#tombol_simpan');
+		field_userbaru.val('');
+		field_passbaru.val('');
+		tombol_simpan.attr('disabled', true);
+		
+		field_userbaru.change(function(e) {
+			if (field_userbaru.val().length > 0 && field_passbaru.val().length > 0) {
+				tombol_simpan.removeAttr('disabled');
+			}
+			else {
+				tombol_simpan.attr('disabled', true);
+			}
+		});
+		field_passbaru.change(function(e) {
+			if (field_userbaru.val().length > 0 && field_passbaru.val().length > 0) {
+				tombol_simpan.removeAttr('disabled');
+			}
+			else {
+				tombol_simpan.attr('disabled', true);
+			}
+		});
+		
+		tombol_simpan.click(function(e) {
 			e.preventDefault();
 			var form = $('#form');
 			form.removeAttr('target');

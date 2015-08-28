@@ -14,7 +14,12 @@
 			$pass =  password_hash($data['PASSWORD_HASH'], PASSWORD_DEFAULT);
 			$this->db->set('PASSWORD_HASH', $pass);
 			$this->db->set('USERNAME', $data['USERNAME']);
-			$this->db->insert('PENGGUNA');
+			if ($this->db->insert('PENGGUNA')) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 
 		function hapus($userbaru){

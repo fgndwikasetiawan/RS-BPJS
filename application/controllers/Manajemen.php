@@ -17,8 +17,10 @@ class Manajemen extends CI_Controller {
 	}
 
 	public function submit(){
-		if ($this->input->post('userbaru') === null || $this->input->post('passbaru') === null){
-			alert_fail('Gagal menambahkan user');
+		if (!$this->input->post('userbaru') || !$this->input->post('passbaru')){
+			alert_fail('Gagal menambahkan user! Harap isi data dengan benar');
+			redirect(base_url() . 'manajemen/');
+			return;
 		}
 		$this->load->model('user');
 		$data = array(

@@ -29,7 +29,7 @@
 				</div>
 				<div class="panel-footer" id="form_footer">
 	                <div id="baris_tombol">
-	                  <button id="tombol_simpan" class="btn btn-primary btn-lg">Simpan</button>
+	                  <button id="tombol_simpan" class="btn btn-primary btn-lg" disabled>Simpan</button>
 	                </div>
             	</div>
 			</form>
