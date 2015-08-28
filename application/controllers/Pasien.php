@@ -52,7 +52,7 @@ class Pasien extends CI_Controller {
 			'WNEGARA' => 'kwn',
 			'UMUR' => 'usia_tahun',
 			'UBULAN' => 'usia_bulan',
-      		'UHARI' => 'usia_hari',
+   		'UHARI' => 'usia_hari',
 			'RT' => 'rt',
 			'RW' => 'rw',
 			'GOLDARAH' => 'gol_darah',

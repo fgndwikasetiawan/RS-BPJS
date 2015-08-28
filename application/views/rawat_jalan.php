@@ -7,7 +7,6 @@
                <div class="col-md-3">
                   <select id="tipe_cari" class="form-control">
                      <option value="medrec">No. CM</option>
-                     <option value="bpjs">No. BPJS</option>
                   </select>
                </div>
                <div class="col-md-4 col-lg-4">
@@ -191,6 +190,7 @@
             <div class="panel-footer" id="form_footer">
                 <div id="baris_tombol">
                   <button id="tombol_simpan" class="btn btn-primary btn-lg">Simpan</button>
+                  
                 </div>
             </div>
           </form>
@@ -231,7 +231,10 @@
                     <td><?php echo $h->CARA_KUNJ; ?></td>
                     <td><?php echo $h->CARA_BAYAR; ?></td>
                     <td><?php echo $h->KELAS_PASIEN; ?></td>
-                    <td><button type="button" class="btn btn-danger tombol-hapus" data-id="<?php echo $no_cm; ?>" data-noreg="<?php echo $h->NO_REGISTER; ?>">Hapus</button></td>
+                    <td>
+                       <button type="button" class="btn btn-primary tombol_cetak_sep" data-noreg="<?php echo $h->NO_REGISTER; ?>">Cetak SEP</button>
+                       <button type="button" class="btn btn-danger tombol_hapus" data-id="<?php echo $no_cm; ?>" data-noreg="<?php echo $h->NO_REGISTER; ?>">Hapus</button>
+                    </td>
                   </tr>
                   <?php
                     $i++;
@@ -265,7 +268,10 @@
                     <td><?php echo $h->NO_SJP_ASKES; ?></td>
                     <td><?php echo $h->NMPEMBAYAR; ?></td>
                     <td><?php echo $h->KETPEMBAYAR; ?></td>
-                    <td><button type="button" class="btn btn-danger tombol-hapus" data-id="<?php echo $no_cm; ?>" data-noreg="<?php echo $h->NO_REGISTER; ?>">Hapus</button></td>
+                    <td>
+                        <button type="button" class="btn btn-primary tombol_cetak_sep" data-noreg="<?php echo $h->NO_REGISTER; ?>">Cetak SEP</button>
+                       <button type="button" class="btn btn-danger tombol_hapus" data-id="<?php echo $no_cm; ?>" data-noreg="<?php echo $h->NO_REGISTER; ?>">Hapus</button>
+                    </td>
                   </tr>
                   <?php
                     $i++;
@@ -295,7 +301,10 @@
                     <td><?php echo $i; ?></td>
                     <td><?php echo $h->ANAMNESA; ?></td>
                     <td><?php echo $h->NM_DIAGNOSA; ?></td>
-                    <td><button type="button" class="btn btn-danger tombol-hapus" data-id="<?php echo $no_cm; ?>" data-noreg="<?php echo $h->NO_REGISTER; ?>">Hapus</button></td>
+                    <td>
+                       <button type="button" class="btn btn-primary tombol_cetak_sep" data-noreg="<?php echo $h->NO_REGISTER; ?>">Cetak SEP</button>
+                       <button type="button" class="btn btn-danger tombol_hapus" data-id="<?php echo $no_cm; ?>" data-noreg="<?php echo $h->NO_REGISTER; ?>">Hapus</button>
+                    </td>
                   </tr>
                   <?php
                     $i++;

@@ -6,7 +6,8 @@
       public function __construct() {
       	parent::__construct();
       	if (!$this->session->has_userdata('username')) {
-      		redirect(base_url() . 'Auth');
+      		set_status_header(401);
+            echo "Error 401: Unauthorized";
       	}
       }
 
@@ -109,8 +110,10 @@
          echo $noreg;
       }
       
-      public function new_no_regri() {
-         
+      public function new_no_ipd() {
+         $this->load->model('pasien_iri');
+         $noipd = $this->pasien_iri->get_new_noipd();
+         echo $noipd;
       }
 
       public function foo() {

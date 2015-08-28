@@ -5,10 +5,8 @@
 				<div class="row">
 					<div class="col-md-4 col-lg-3">
 						Menambahakan User Baru
-					</div>
-					
-				</div>
-				
+					</div>					
+				</div>				
 			</div>
 			<form class="form-horizontal" id="form" role="form" method="post">
 				<div class="panel-body bg-blue-gradient">
@@ -35,10 +33,8 @@
 	                </div>
             	</div>
 			</form>
-		</div>
-		
-	</div>
-	
+		</div>		
+	</div>	
 </div>
 <hr>
 <div class="table-responsive">

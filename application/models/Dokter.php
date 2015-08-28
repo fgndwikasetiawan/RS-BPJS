@@ -5,8 +5,7 @@
 		}
 		
 		public function get_dokter() {
-			$query = $this->db->get('DR_JAGA_IRD');
-			return $query->result();
+			return [];
 		}
 	}
 ?>

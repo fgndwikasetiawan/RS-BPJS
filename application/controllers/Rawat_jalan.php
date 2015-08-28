@@ -15,7 +15,7 @@ class Rawat_jalan extends CI_Controller {
 	}
 	
 	public function form($tipe = null, $nomor = null) {
-		if (($tipe != 'medrec' && $tipe != 'bpjs') || (!$nomor || $nomor == '')) {
+		if (($tipe != 'medrec') || (!$nomor || $nomor == '')) {
 			load_main_template('Pendaftaran Rawat Jalan', 'Pendaftaran Rawat Jalan', 'rawat_jalan', null, 2);	
 		}
 		else {
@@ -30,9 +30,7 @@ class Rawat_jalan extends CI_Controller {
 			if($tipe == 'medrec'){
 				$result = $this->pasien_irj->cari_by_medrec($nomor);
 			}
-			else if($tipe == 'bpjs'){
-				$result = $this->pasien_irj->cari_by_bpjs($nomor);
-			}
+			
 			if ($result == null) {
 				alert_fail('Pasien tidak ditemukan');
 				redirect(base_url() . 'rawat_jalan/form');
@@ -40,11 +38,21 @@ class Rawat_jalan extends CI_Controller {
 			
 			$data['no_cm'] = $result->NO_MEDREC;
 			$data['nama'] = $result->NAMA;
-			$data['usia'] = $result->UMUR;
 			$data['sex'] = $result->SEX;
 			$data['no_bpjs'] = $result->NO_ASURANSI;
-			$data['tgl_lahir'] = $result->TGL_LAHIR;
-	
+			$data['usia'] = $result->UMUR;
+			$tgl_lahir = $result->TGL_LAHIR;
+			$data['tgl_lahir'] = $tgl_lahir;
+			if ($tgl_lahir != '') {				
+				$tgl_lahir_exploded = explode('-', $tgl_lahir);
+				$usia = hitung_umur(intval($tgl_lahir_exploded[0]), intval($tgl_lahir_exploded[1]), intval($tgl_lahir_exploded[2]));
+				$data['usia'] = $usia['tahun'] . ' tahun ' . $usia['bulan'] . ' bulan ' . $usia['hari'] . ' hari';
+				//update usia pasien
+				$data_update = ['NO_MEDREC' => $result->NO_MEDREC, 'UMUR' => $usia['tahun'], 'UBULAN' => $usia['bulan'], 'UHARI' => $usia['hari']];
+				$this->pasien_irj->update($data_update);
+				//selesai update usia pasien
+			}
+			
 			$query = $this->r_jalan->get_historis($result->NO_MEDREC);
 			$data['historis'] = $query;
 	
@@ -65,8 +73,12 @@ class Rawat_jalan extends CI_Controller {
 	}
 	
 	public function submit() {
-		if ($this->input->post('no_cm') === null) {
-			redirect(base_url() . 'pendaftaran/form');
+		if (!$this->input->post('no_cm')) {
+			redirect(base_url() . 'rawat_jalan/form');
+		}
+		if (!$this->input->post('no_register')) {
+			alert_fail('Gagal menyimpan data: No. Register tidak boleh kosong');
+			redirect(base_url() . 'rawat_jalan/form/medrec/' . $this->input->post('no_cm'));
 		}
 		$this->load->model('r_jalan');
 		$data = array(
@@ -81,7 +93,10 @@ class Rawat_jalan extends CI_Controller {
 			'CARA_BAYAR' => 'cara_bayar',
 			'ID_POLI' => 'id_poli',
 			'ANAMNESA' => 'anamnesa',
-			'ID_DIAGNOSA' => 'id_diagnosa'
+			'ID_DIAGNOSA' => 'id_diagnosa',
+			'NAMA' => 'input_nama',
+			'CATATAN' => 'catatan',
+			'NO_SEP' => 'no_sep'
 			);
 
 		foreach ($data as $key => $value) {
@@ -96,31 +111,45 @@ class Rawat_jalan extends CI_Controller {
 		redirect(base_url().'rawat_jalan/form/medrec/' . $data['NO_MEDREC']);
 	}
 
-	public function cetak_sep() {
+	public function cetak_sep2($noreg_rj) {
 		require(getenv('DOCUMENT_ROOT') . '/assets/Surat.php');
 		$surat = new Surat();
+		$this->load->model('r_jalan');
+		$entri_rj = $this->r_jalan->get_entri($noreg_rj);
+		
+		if (!$entri_rj) {
+			return;
+		}
+		
+		$this->load->model('pasien_irj');
+		$pasien = $this->pasien_irj->cari_by_medrec($entri_rj->NO_MEDREC);
+		if (!$pasien) {
+			return;
+		} 
+		
 		$this->load->model('ppk');
-		$ppk = $this->ppk->get_data($this->input->post('ppk_rujukan'));
+		$ppk = $this->ppk->get_data($entri_rj->KD_PPK);
 		if ($ppk) {
 			$ppk = $ppk->NM_PPK;
 		}
 		else {
-			$ppk = $this->input->post('ppk_rujukan');
+			$ppk = $entri_rj->KD_PPK;
 		}
+		
 		$fields = array(
-				'No. SEP' => $this->input->post('no_sep'),
-				'Tgl. SEP' => date('d-m-Y'),
-				'No. Kartu' => $this->input->post('input_no_bpjs'),
-				'Peserta' => $this->input->post('ketpembayar'),
-				'Nama Peserta' => $this->input->post('input_nama'),
-				'Tgl. Lahir' => $this->input->post('input_tgl_lahir'),
-				'Jenis Kelamin' => $this->input->post('input_sex'),
+				'No. SEP' => $entri_rj->NO_SEP,
+				'Tgl. SEP' => date('d/m/Y'),
+				'No. Kartu' => $pasien->NO_ASURANSI,
+				'Peserta' => '',
+				'Nama Peserta' => $entri_rj->NAMA,
+				'Tgl. Lahir' => $pasien->TGL_LAHIR,
+				'Jenis Kelamin' => $pasien->SEX,
 				'Asal Faskes' => $ppk,
-				'Poli Tujuan' => $this->input->post('nm_poli'),
-				'Kelas Rawat' => $this->input->post('kelas_pasien'),
+				'Poli Tujuan' => $entri_rj->NM_POLI,
+				'Kelas Rawat' => $entri_rj->KELAS_PASIEN,
 				'Jenis Rawat' => 'Rawat Jalan',
-				'Diagnosa Awal' => $this->input->post('id_diagnosa'),
-				'Catatan' => $this->input->post('catatan')
+				'Diagnosa Awal' => $entri_rj->ID_DIAGNOSA,
+				'Catatan' => $entri_rj->CATATAN
 			); 
 		$surat->set_nilai($fields);
 		$surat->cetak();

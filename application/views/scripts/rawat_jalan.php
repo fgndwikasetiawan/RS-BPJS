@@ -31,7 +31,6 @@
 			no_bpjs: $('#no_bpjs').text(),
 			no_sjp: $('#no_sjp').val(),
 			ppk_rujukan: $('#ppk_rujukan').val(),
-			pelayanan: $('#pelayanan').val(),
 			catatan: $('#catatan').val(),
 			nm_diagnosa: $('#nm_diagnosa').val(),
 			nm_poli: $('#nm_poli').val(),
@@ -72,51 +71,49 @@
 		})
 	}
 	
+	function hapus(e) {
+		var tombol = $(e.target);
+		var r = confirm("Apakah anda yakin ingin menghapus entri dengan No. Register " + tombol.data('noreg') + "?");
+		if (r) window.location = '<?php echo base_url(); ?>rawat_jalan/hapus_entri/' + tombol.data('id') + '/' + tombol.data('noreg');
+	}
+	
+	function simpan(e) {
+		e.preventDefault();
+		var form = $('#form');
+		form.removeAttr('target');
+		form.attr('action', '<?php echo base_url(); ?>rawat_jalan/submit');
+		form.submit();
+	}
+	
+	function cetak_sep(e) {
+		var tombol = $(e.target);
+		window.open('<?php echo base_url(); ?>rawat_jalan/cetak_sep2/' + tombol.data('noreg'), '_blank');
+	}
+	
 	$(function() {
+		var selected = $('#id_poli option:selected');
+		$('#nm_poli').val(selected.text());
+		
 		var a = $('#input_no_cm').length;
 		if (a == 0) {
 			$('#baris_tombol button').attr('disabled', true);
 		}
-
-		$('#tombol_simpan').click(function(e) {
-			e.preventDefault();
-			var form = $('#form');
-			form.removeAttr('target');
-			form.attr('action', '<?php echo base_url(); ?>rawat_jalan/submit');
-			form.submit();
-		});
-
-		$('#tombol_cetak_SEP').click(function(e) {
-			e.preventDefault();
-			var form = $('#form');
-			form.attr('action', '<?php echo base_url(); ?>rawat_jalan/cetak_sep');
-			form.submit();
-		});
-
+		
 		$('#id_poli').on('change', function(){
 			var selected = $('#id_poli option:selected');
 			$('#nm_poli').val(selected.text());
 		});
-		
 		$('#ppk_rujukan').on('change', function() {
 			get_data_ppk($('#ppk_rujukan').val());
-		});
-		
-		$('.tombol-hapus').click(function(e) {
-			var tombol = $(e.target);
-			var r = confirm("Apakah anda yakin ingin menghapus entri dengan No. Register " + tombol.data('noreg') + "?");
-			if (r) window.location = '<?php echo base_url(); ?>rawat_jalan/hapus_entri/' + tombol.data('id') + '/' + tombol.data('noreg');
-		})
-	   
-		$('#tombol_sep').click(generate_sep);
-
-		var selected = $('#id_poli option:selected');
-		$('#nm_poli').val(selected.text());	
-		
+		});	
 		$('#nomor_cari').focus();
+		$('#tombol_noreg').click(get_new_noreg);
+		$('#tombol_sep').click(generate_sep);
+		$('#tombol_simpan').click(simpan);
+		$('.tombol_hapus').click(hapus);
+		$('.tombol_cetak_sep').click(cetak_sep);
 		$('#tombol_cari').click(cari_pasien);
 		$('#nomor_cari').on('keyup', caripasien_keyup);
 		$('#nomor_cari').on('change', caripasien_change);
-		$('#tombol_noreg').click(get_new_noreg);
 	});
 </script>

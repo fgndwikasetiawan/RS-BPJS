@@ -46,8 +46,10 @@
          $no_medrec = $data['NO_MEDREC'];
          $this->db->where('NO_MEDREC', $no_medrec);
          unset($data['NO_MEDREC']);
-         $this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
-         unset($data['TGL_LAHIR']);
+         if (isset($data['TGL_LAHIR'])) {
+            $this->db->set('TGL_LAHIR', $data['TGL_LAHIR'], false);
+            unset($data['TGL_LAHIR']);
+         }
          if (!$this->db->update('PASIEN_IRJ', $data)) {
             return false;
          };
