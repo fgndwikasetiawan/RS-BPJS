@@ -21,6 +21,11 @@
          'text' => 'Rawat Inap' 
       ),
       array(
+         'icon' => 'fa fa-user fa-fw',
+         'href' => base_url() . 'manajemen',
+         'text' => 'Manajemen' 
+      ),
+      array(
          'icon' => 'fa fa-sign-out fa-fw',
          'href' => base_url() . 'auth/logout',
          'text' => 'Keluar'
