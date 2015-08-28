@@ -81,7 +81,7 @@
 		$('#tombol_simpan').click(function(e) {
 			e.preventDefault();
 			var form = $('#form');
-		form.removeAttr('target');
+			form.removeAttr('target');
 			form.attr('action', '<?php echo base_url(); ?>rawat_jalan/submit');
 			form.submit();
 		});

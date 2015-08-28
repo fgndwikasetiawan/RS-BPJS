@@ -112,8 +112,8 @@
                     <div class="form-group">
                       <label class="control-label col-md-4">Tanggal Daftar <span id="usia">&nbsp;</span></label>
                         <div class="col-md-8">
-                          <input type="text" class="form-control datetimepicker" value="">
-                          <!-- <timepicker name="tgldaftarri" id="tgldaftarri" value="<?php if (isset($pasien->TGLDAFTARRI)) echo $pasien->TGLDAFTARRI; ?>"></timepicker>   -->                        
+                          <input type="text" class="form-control datetimepicker" value="" name="tgl_daftar">
+                          <!-- <timepicker name="tgldaftarri" id="tgldaftarri" value="<?php if (isset($pasien->TGLDAFTARRI)) echo $pasien->TGLDAFTARRI; ?>"></timepicker>                           -->
                         </div>                                             
                     </div>
                     <div class="form-group">      
@@ -346,7 +346,7 @@
                   </select>
                 </td>
                 <td class="col-md-2">
-                  <input type="text" class="form-control datetimepicker" value="">
+                  <input type="text" class="form-control datetimepicker" value="" name="tgl_masuk">
                   <!-- <timepicker name="tgl_masuk"></timepicker> -->
                 </td>
                 <td class="col-md-2">
@@ -364,7 +364,7 @@
                   </select>
                 </td>
                 <td class="col-md-2">
-                  <input type="text" class="form-control datetimepicker" value="">
+                  <input type="text" class="form-control datetimepicker" value="" name="tgl_keluar">
                 </td>
                 <td class="col-md-2">
                   <button type="button" class="btn btn-success">Tambah</button>

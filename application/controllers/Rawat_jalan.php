@@ -68,7 +68,7 @@ class Rawat_jalan extends CI_Controller {
 		if ($this->input->post('no_cm') === null) {
 			redirect(base_url() . 'pendaftaran/form');
 		}
-		$this->load->model('rawat_jalan');
+		$this->load->model('r_jalan');
 		$data = array(
 			'NO_REGISTER' => 'no_register',
 			'NO_MEDREC' => 'no_cm',

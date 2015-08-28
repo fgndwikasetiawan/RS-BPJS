@@ -72,10 +72,10 @@
 		$('.datetimepicker').datetimepicker({
 			lang:'id',
 			timepicker:false,
-			format:'d/m/Y',
-			formatDate:'Y/m/d',
+			format:'d-m-Y',
+			formatDate:'Y-m-d',
 			step:5,
-			value:'$currentTime',
+			//value:'$currentTime',
 			mask:''
 		});
 
