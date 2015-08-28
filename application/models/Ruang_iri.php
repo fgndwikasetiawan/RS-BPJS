@@ -22,6 +22,15 @@
 			}
 		}
 		
+		function hapus($ipd, $tgl, $idrg) {
+			$this->db->where('NO_IPD', $ipd);
+			$this->db->where('TGLMASUKRG', $tgl, false);
+			$this->db->where('IDRG', $idrg);
+			if ($this->db->delete('RUANG_IRI')) {
+				return true;
+			}
+			return false;
+		}
 		
 		function get_entri_by_ipd($ipd) {
 			$this->db->select('RUANG.NMRUANG,
@@ -33,6 +42,7 @@
 									);
 			$this->db->join('RUANG', 'RUANG_IRI.IDRG = RUANG.IDRG', 'left');
 			$this->db->where('RUANG_IRI.NO_IPD', $ipd);
+			$this->db->order_by('RUANG_IRI.TGLMASUKRG', 'ASC');
 			$query = $this->db->get('RUANG_IRI');
 			return $query->result();
 		}

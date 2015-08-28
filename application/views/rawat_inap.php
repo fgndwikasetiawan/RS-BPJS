@@ -376,7 +376,7 @@
                            <?php echo $r->TGLKELUARRG; ?>
                         </td>
                         <td class="col-md-2">
-                           <button type="button" class="btn btn-danger">Hapus</button>
+                           <button type="button" class="btn btn-danger tombol_hapus_riwayat" data-ipd="<?php echo $pasien->NO_IPD; ?>" data-tgl="<?php echo $r->TGLMASUKRG; ?>" data-idrg="<?php echo $r->IDRG; ?>">Hapus</button>
                         </td>
                      </tr>
                   <?php }} ?>

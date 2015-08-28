@@ -171,9 +171,17 @@ class Rawat_inap extends CI_Controller {
 		}
 	}
 	
-	public function hapus_entri_ruang($ipd, $tglmasuk, $idrg) {
+	public function hapus_riwayat_ruang($ipd, $tglmasuk, $idrg) {
 		$this->load->model('ruang_iri');
-		$this->ruang_iri->hapus($ipd, $tglmasuk, $idrg);
+		$tglmasuk = 'TO_DATE(\'' . $tglmasuk . '\', \'DD-MM-YYYY\')';
+		if ($this->ruang_iri->hapus($ipd, $tglmasuk, $idrg)) {
+			alert_success('Berhasil menghapus entri riwayat');
+			redirect(base_url() . 'rawat_inap/form/ipd/' . $ipd);
+		}
+		else {
+			alert_fail('Gagal menghapus entri riwayat');
+			redirect(base_url() . 'rawat_inap/form/ipd/' . $ipd);
+		}
 	} 
 	
 	public function cetak_sep($ipd) {
@@ -220,7 +228,6 @@ class Rawat_inap extends CI_Controller {
 			$ruang = $ruang->NMRUANG;
 		}
 		
-		
 		$fields = array(
 				'No. SEP' => $entri_ri->NO_SEP,
 				'Tgl. SEP' => date('d/m/Y'),
@@ -231,7 +238,7 @@ class Rawat_inap extends CI_Controller {
 				'Jenis Kelamin' => $pasien->SEX,
 				'Asal Faskes' => $ppk,
 				'Poli Tujuan' => $ruang,
-				'Kelas Rawat' => $entri_rj ? $entri_rj->KELAS_PASIEN : '',
+				'Kelas Rawat' => $entri_ri->KLSIRI,
 				'Jenis Rawat' => 'Rawat Inap',
 				'Diagnosa Awal' => $entri_rj ? $entri_rj->ID_DIAGNOSA : '',
 				'Catatan' => $entri_rj ? $entri_rj->CATATAN : ''

@@ -64,7 +64,8 @@
 									 PASIEN_IRI.KARTUIDPJAWAB,
 									 PASIEN_IRI.NOIDPJAWAB,
 									 PASIEN_IRI.HUBPJAWABRI,
-									 PASIEN_IRI.IDRG');
+									 PASIEN_IRI.IDRG,
+									 PASIEN_IRI.KLSIRI');
 			$this->db->where('PASIEN_IRI.NO_IPD', $ipd);
 			$query = $this->db->get();
 			$result = $query->row();

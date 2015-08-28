@@ -80,8 +80,16 @@
 		})
 	}
 	
-	function cetak_sep() {
-		window.open('<?php echo base_url(); ?>rawat_inap/cetak_sep/' + $('#no_ipd').val(), '_blank');
+	function hapus_riwayat(event) {
+		var tombol = $(event.currentTarget);
+		var ipd = tombol.data('ipd');
+		var tanggal = tombol.data('tgl');
+		tanggal = tanggal.replace(/\//g, '-');
+		var idrg = tombol.data('idrg');
+		var setujuHapus = confirm('Apakah anda yakin ingin menghapus riwayat pada tanggal ' + tanggal + '?');
+		if (setujuHapus) {
+			window.location = '<?php echo base_url(); ?>rawat_inap/hapus_riwayat_ruang/' + ipd + '/' + tanggal + '/' + idrg;
+		}
 	}
 	
 	$(function() {
@@ -100,6 +108,10 @@
 			$('#baris_tombol button').attr('disabled', true);
 		}
 		
+		if (($('#tombol_cetak_sep').length > 0) && ($('#no_sep').val() != '')) {
+			$('#tombol_cetak_sep').removeAttr('disabled');
+		}
+		
 		$('#tipe_cari').focus();
 		$('#tombol_cetak_sep').click(cetak_sep);	
 		$('#tombol_sep').click(generate_sep);
@@ -109,8 +121,7 @@
 		$('#ruang').on('change', update_bed);
 		$('#kelas').on('change', update_bed);
 		$('#tombol_ipd').click(get_no_ipd);
-		if (($('#tombol_cetak_sep').length > 0) && ($('#no_sep').val() != '')) {
-			$('#tombol_cetak_sep').removeAttr('disabled');
-		}
+		$('.tombol_hapus_riwayat').click(hapus_riwayat);
+		
 	});
 </script>
