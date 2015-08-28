@@ -24,6 +24,13 @@
             cari_pasien();
          }
       }
+      else if (tipe_cari == 'ktp') {
+         if (field_cari.val().length >= 16) {
+            field_cari.val(field_cari.val().substr(0, 16));
+            cari_pasien();
+         }
+      }
+       
 	}
 	
 	function generate_sep() {

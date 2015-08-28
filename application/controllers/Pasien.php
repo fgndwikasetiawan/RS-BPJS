@@ -52,7 +52,7 @@ class Pasien extends CI_Controller {
 			'WNEGARA' => 'kwn',
 			'UMUR' => 'usia_tahun',
 			'UBULAN' => 'usia_bulan',
-   		'UHARI' => 'usia_hari',
+   			'UHARI' => 'usia_hari',
 			'RT' => 'rt',
 			'RW' => 'rw',
 			'GOLDARAH' => 'gol_darah',
@@ -61,7 +61,7 @@ class Pasien extends CI_Controller {
 			'ID_DESA' => 'id_desa',
 			'ID_KECAMATAN' => 'id_kecamatan',
 			'NAMA_KEL' => 'nama_kel',
-			'TEMPAT_KARTU' => 'tempat_kartu'
+			'NO_KTP' => 'no_ktp'
 		);
 		//ambil nilai dari post
 		foreach ($data as $key => $value) {

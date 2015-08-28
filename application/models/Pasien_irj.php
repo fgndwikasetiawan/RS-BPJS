@@ -13,7 +13,7 @@
                            NAMA_KEL, AGAMA, ALAMAT, STATUS,
                            GOLDARAH, RT, RW, ID_DESA, ID_KECAMATAN, ID_DAERAH,
                            KECAMATAN, KELURAHAN, KOTAKAB, PENDIDIKAN, PEKERJAAN,
-                           NO_ASURANSI, SEX, WNEGARA, TEMPAT_KARTU, UMUR');
+                           NO_ASURANSI, SEX, WNEGARA, TEMPAT_KARTU, UMUR, NO_KTP');
          $query = $this->db->get('PASIEN_IRJ');
          return $query->row();
       }
@@ -28,6 +28,20 @@
                            GOLDARAH, RT, RW, ID_DESA, ID_KECAMATAN, ID_DAERAH,
                            KECAMATAN, KELURAHAN, KOTAKAB, PENDIDIKAN, PEKERJAAN,
                            NO_ASURANSI, SEX, WNEGARA, TEMPAT_KARTU, UMUR');
+         $query = $this->db->get('PASIEN_IRJ');
+         return $query->row();
+      }
+
+      /**
+      *   Mencari data pasien berdasarkan no_ktp.
+      */
+      public function cari_by_ktp($no_ktp) {
+         $this->db->where('NO_KTP', $no_ktp);
+         $this->db->select('NO_MEDREC, NAMA, TMPT_LAHIR, TO_CHAR(TGL_LAHIR, \'DD-MM-YYYY\') TGL_LAHIR,
+                           NAMA_KEL, AGAMA, ALAMAT, STATUS,
+                           GOLDARAH, RT, RW, ID_DESA, ID_KECAMATAN, ID_DAERAH,
+                           KECAMATAN, KELURAHAN, KOTAKAB, PENDIDIKAN, PEKERJAAN,
+                           NO_ASURANSI, SEX, WNEGARA, TEMPAT_KARTU, UMUR, NO_KTP');
          $query = $this->db->get('PASIEN_IRJ');
          return $query->row();
       }

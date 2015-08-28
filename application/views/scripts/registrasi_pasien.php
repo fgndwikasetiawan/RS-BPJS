@@ -40,12 +40,16 @@
       if (tipe == 'medrec') {
        url = '/ajax/data_pasien_by_medrec/' + nomor;
       }
+      else if (tipe == 'ktp') {
+       url = '/ajax/data_pasien_by_ktp/' + nomor;
+      }
       $('#icon_loading').show();
       $.ajax({
           url: url,
           statusCode: {
              200: function(data) {
                 data = JSON.parse(data);
+                console.log(data);
                 if (data == null) {
                    $('form')[0].reset();
                    $('#nama').val('TIDAK DITEMUKAN');
@@ -81,7 +85,7 @@
                    $('#id_kecamatan').val(data.ID_KECAMATAN);
                    $('#id_daerah').val(data.ID_DAERAH);
                    $('#kotakab').val(data.KOTAKAB);
-                   $('#tempat_kartu').val(data.TEMPAT_KARTU);
+                   $('#no_ktp').val(data.NO_KTP);
                    $('#no_bpjs').val(data.NO_ASURANSI);
                    $('#status').val(data.STATUS);
                 }
@@ -166,6 +170,12 @@
       if (tipe_cari == 'medrec') {
          if (field_cari.val().length >= 10) {
             field_cari.val(field_cari.val().substr(0, 10));
+            cari_pasien();
+         }
+      }
+      else if (tipe_cari == 'ktp') {
+        if (field_cari.val().length >= 16) {
+            field_cari.val(field_cari.val().substr(0, 16));
             cari_pasien();
          }
       }

@@ -7,11 +7,12 @@
                <div class="col-md-3">
                   <select id="tipe_cari" class="form-control">
                      <option value="medrec">No. CM</option>
+                     <option value="ktp">No. KTP</option>
                   </select>
                </div>
                <div class="col-md-4 col-lg-4">
                   <div class="input-group">
-                     <input class="form-control" id="nomor_cari" placeholder="No. CM / No. BPJS">
+                     <input class="form-control" id="nomor_cari" placeholder="No. CM / No. KTP">
                      <span class="input-group-btn">
                         <button class="btn btn-default" type="button" id="tombol_cari"><i class="fa fa-search fa-fw"></i></button>
                      </span>

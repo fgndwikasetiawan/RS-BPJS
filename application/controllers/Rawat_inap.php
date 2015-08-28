@@ -17,7 +17,7 @@ class Rawat_inap extends CI_Controller {
 	}	
    
 	public function form($tipe = null, $nomor = null) {
-		if (($tipe != 'reg_irj' && $tipe != 'ipd' && $tipe != 'medrec') || (!$nomor || $nomor == '')) {
+		if (($tipe != 'reg_irj' && $tipe != 'ipd' && $tipe != 'ktp' && $tipe != 'medrec') || (!$nomor || $nomor == '')) {
 			load_main_template('Pendaftaran Rawat Inap', 'Pendaftaran Rawat Inap', 'rawat_inap', null, 3);	
 		}
 		else {
@@ -25,6 +25,10 @@ class Rawat_inap extends CI_Controller {
 			if ($tipe == 'medrec') {
 				$this->load->model('pasien_irj');
 				$data_pasien = $this->pasien_irj->cari_by_medrec($nomor);
+			}
+			else if ($tipe == 'ktp') {
+				$this->load->model('pasien_irj');
+				$data_pasien = $this->pasien_irj->cari_by_ktp($nomor);
 			}
 			else if ($tipe == 'reg_irj') {
 				$this->load->model('r_jalan');

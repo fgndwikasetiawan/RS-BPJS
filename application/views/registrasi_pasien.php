@@ -7,11 +7,12 @@
                <div class="col-md-3">
                   <select id="tipe_cari" class="form-control">
                      <option value="medrec">No. CM</option>
+                     <option value="ktp">No. KTP</option>
                   </select>
                </div>
                <div class="col-md-4 col-lg-4">
                   <div class="input-group">
-                     <input class="form-control" id="nomor_cari" placeholder="No. CM / No. BPJS">
+                     <input class="form-control" id="nomor_cari" placeholder="No. CM / No. KTP">
                      <span class="input-group-btn">
                         <button class="btn btn-default" type="button" id="tombol_cari"><i class="fa fa-search fa-fw" style="height: 20px;"></i></button>
                      </span>
@@ -172,8 +173,8 @@
                   </div>
                   <div class="row">
                      <div class="col-lg-8 form-group">
-                        <label>Tempat Kartu</label>
-                        <input class="form-control" name="tempat_kartu" id="tempat_kartu">
+                        <label>No. KTP</label>
+                        <input class="form-control" name="no_ktp" id="no_ktp">
                      </div>
                   </div>
                   <div class="row">

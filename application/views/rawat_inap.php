@@ -7,13 +7,14 @@
                   <div class="col-md-3">
                      <select id="tipe_cari" class="form-control">
                         <option value="medrec">No. CM</option>
+                        <option value="ktp">No. KTP</option>
                         <option value="reg_irj">No. Reg. IRJ</option>
                         <option value="ipd">No. IPD</option>
                      </select>
                   </div>
                   <div class="col-md-4 col-lg-4">
                      <div class="input-group">
-                        <input class="form-control" id="nomor_cari" placeholder="No. CM / No. Reg. IRJ / No. IPD">
+                        <input class="form-control" id="nomor_cari" placeholder="No. CM / No. KTP / No. Reg. IRJ / No. IPD">
                         <span class="input-group-btn">
                            <button class="btn btn-default" type="button" id="tombol_cari"><i class="fa fa-search fa-fw"></i></button>
                         </span>
