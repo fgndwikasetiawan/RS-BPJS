@@ -53,19 +53,10 @@
 		})
 	}
 	
-	function get_data_ppk(no_ppk) {
-		$.ajax({
-			url: '<?php echo base_url(); ?>ajax/data_ppk/' + no_ppk,
-			success: function(res) {
-				var data_ppk = JSON.parse(res);
-				if (data_ppk) { 
-					$('#nama_ppk').text('PPK: ' + data_ppk.NM_PPK + ' (' + data_ppk.JNS_PPK + ')');
-				}
-				else {
-					$('#nama_ppk').text('PPK tidak ditemukan');
-				}
-			}
-		});
+	function cetak_sep(event) {
+		var tombol = $(event.currentTarget);
+		var ipd = tombol.data('ipd');
+		window.open('<?php echo base_url(); ?>rawat_inap/cetak_sep/' + ipd, '_blank');
 	}
 	
 	function update_bed(event) {

@@ -117,7 +117,8 @@ class Rawat_inap extends CI_Controller {
 			'KARTUIDPJAWAB' => 'kartuidpjawab',
 			'NOIDPJAWAB' => 'noidpjawab',
 			'HUBPJAWABRI' => 'hubpjawabri',
-			'IDRG' => 'idrg'
+			'IDRG' => 'idrg',
+			'KLSIRI' => 'kelas'
 		];
 		foreach($data as $key => $value) {
 			$data[$key] = $this->input->post($value);
@@ -131,7 +132,7 @@ class Rawat_inap extends CI_Controller {
 		if ($this->pasien_iri->insert_or_update($data)) {
 			//Berhasil menyimpan entri pasien_iri, sekarang simpan entri ruang_iri
 			if ($this->input->post('tglmasukrg')) {
-				$data = [
+				$data_ruang_iri = [
 					'NO_IPD' => 'no_ipd',
 					'IDRG' => 'idrg',
 					'KELAS' => 'kelas',
@@ -139,24 +140,24 @@ class Rawat_inap extends CI_Controller {
 					'NOMEDREC' => 'no_cm',
 					'ID_DOKTER' => 'id_dokter'
 				];
-				foreach($data as $key => $value) {
-					$data[$key] = $this->input->post($value);
+				foreach($data_ruang_iri as $key => $value) {
+					$data_ruang_iri[$key] = $this->input->post($value);
 				}
-				$data['TGLMASUKRG'] = "TO_DATE('" . $this->input->post('tglmasukrg') . "', 'DD/MM/YYYY')";
+				$data_ruang_iri['TGLMASUKRG'] = "TO_DATE('" . $this->input->post('tglmasukrg') . "', 'DD/MM/YYYY')";
 				if ($this->input->post('noregasal') != '') {
-					$data['STATMASUKRG'] = 'Pindahan';
+					$data_ruang_iri['STATMASUKRG'] = 'Pindahan';
 				}
 				else {
-					$data['STATMASUKRG'] = 'Asal';
+					$data_ruang_iri['STATMASUKRG'] = 'Asal';
 				}
 				$this->load->model('ruang_iri');
-				if ($this->ruang_iri->insert($data)) {
+				if ($this->ruang_iri->insert($data_ruang_iri)) {
 					alert_success('Berhasil menyimpan entri pasien rawat inap');
-					redirect(base_url() . 'rawat_inap/form/ipd/' . $data['NO_IPD']);	
+					redirect(base_url() . 'rawat_inap/form/ipd/' . $data_ruang_iri['NO_IPD']);	
 				}	
 				else {
 					alert_fail('Gagal menyimpan entri');
-					redirect(base_url() . 'rawat_inap/form/ipd/' . $data['NO_IPD']);
+					redirect(base_url() . 'rawat_inap/form/ipd/' . $data_ruang_iri['NO_IPD']);
 				}
 			}
 			else {
@@ -170,5 +171,73 @@ class Rawat_inap extends CI_Controller {
 		}
 	}
 	
+	public function hapus_entri_ruang($ipd, $tglmasuk, $idrg) {
+		$this->load->model('ruang_iri');
+		$this->ruang_iri->hapus($ipd, $tglmasuk, $idrg);
+	} 
+	
+	public function cetak_sep($ipd) {
+		require(getenv('DOCUMENT_ROOT') . '/assets/Surat.php');
+		$surat = new Surat();
+		$entri_rj = null;
+		$ppk = '';
+		
+		//load entri pasien_iri
+		$this->load->model('pasien_iri');
+		$entri_ri = $this->pasien_iri->get_pasien($ipd);
+		if (!$entri_ri) {
+			return;
+		}
+		
+		//load entri pasien (by medrec) untuk dapat no bpjs dan nama
+		$this->load->model('pasien_irj');
+		$pasien = $this->pasien_irj->cari_by_medrec($entri_ri->NO_CM);
+		if (!$pasien) {
+			return;
+		} 
+
+		//jika ada noregasal (dari rawat jalan) ambil entri rawat jalannya
+		if ($entri_ri->NOREGASAL) { 
+			$this->load->model('r_jalan');
+			$entri_rj = $this->r_jalan->get_entri($entri_ri->NOREGASAL);
+			//load juka ppk rujukan
+			if ($entri_rj) {
+				$this->load->model('ppk');
+				$ppk = $this->ppk->get_data($entri_rj->KD_PPK);
+				if ($ppk) {
+					$ppk = $ppk->NM_PPK;
+				}
+				else {
+					$ppk = '';
+				}
+			}
+		}
+		
+		//load entri ruang untuk ambil nama ruang
+		$this->load->model('ruang');
+		$ruang = $this->ruang->get_ruang_by_idrg($entri_ri->IDRG);
+		if ($ruang) {
+			$ruang = $ruang->NMRUANG;
+		}
+		
+		
+		$fields = array(
+				'No. SEP' => $entri_ri->NO_SEP,
+				'Tgl. SEP' => date('d/m/Y'),
+				'No. Kartu' => $pasien->NO_ASURANSI,
+				'Peserta' => '',
+				'Nama Peserta' => $pasien->NAMA,
+				'Tgl. Lahir' => $pasien->TGL_LAHIR,
+				'Jenis Kelamin' => $pasien->SEX,
+				'Asal Faskes' => $ppk,
+				'Poli Tujuan' => $ruang,
+				'Kelas Rawat' => $entri_rj ? $entri_rj->KELAS_PASIEN : '',
+				'Jenis Rawat' => 'Rawat Inap',
+				'Diagnosa Awal' => $entri_rj ? $entri_rj->ID_DIAGNOSA : '',
+				'Catatan' => $entri_rj ? $entri_rj->CATATAN : ''
+			); 
+		$surat->set_nilai($fields);
+		$surat->cetak();
+	}
 }
 ?>

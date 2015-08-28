@@ -20,8 +20,8 @@
 			else {
 				return false;
 			}
-
 		}
+		
 		
 		function get_entri_by_ipd($ipd) {
 			$this->db->select('RUANG.NMRUANG,

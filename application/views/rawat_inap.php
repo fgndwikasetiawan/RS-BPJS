@@ -86,9 +86,9 @@
                    <!-- Form -->
    
                    <div class="row">
-                     <div class="col-md-4">
+                     <div class="col-md-3">
                        <div class="form-group">
-                         <label class="control-label col-md-4">No. Register IRJ</label>
+                         <label class="control-label col-md-4">No. Reg. IRJ</label>
                          <div class="col-md-8">
                            <input class="form-control" name="noregasal" id="noregasal" value="<?php if (isset($pasien->NOREGASAL)) echo $pasien->NOREGASAL; ?>" readonly>
                          </div>
@@ -105,7 +105,7 @@
                            </div>
                        </div>                
                        <div class="form-group">
-                         <label class="control-label col-md-4">No. Register Ibu</label>
+                         <label class="control-label col-md-4">No. Reg. Ibu</label>
                            <div class="col-md-8">
                              <input class="form-control" name="noipdibu" id="noipdibu" value="<?php if (isset($pasien->NOIPDIBU)) echo $pasien->NOIPDIBU; ?>">
                            </div>
@@ -165,10 +165,48 @@
                            </select>
                          </div>                     
                        </div>
-                       
                      </div>
-   
-                     <div class="col-md-4">
+                     
+                     <div class="col-md-3">
+                       <label class="form-title">Data Ruang</label>
+                       <div class="form-group">
+                         <label class="control-label col-md-4">Tanggal Masuk</label>
+                         <div class="col-md-8">
+                           <input type="text" class="form-control datetimepicker" name="tglmasukrg" />
+                         </div>
+                       </div>
+                       <div class="form-group">
+                         <label class="control-label col-md-4">Ruang</label>
+                         <div class="col-md-8">
+                           <select class="form-control" id="ruang" name="idrg">
+                             <option value="">--</option>
+                             <?php if (isset($ruang_rawat)) { foreach($ruang_rawat as $r) { ?>
+                               <option value="<?php echo $r->IDRG;?>"><?php echo $r->NMRUANG;?></option>
+                             <?php }}?>                         
+                           </select>
+                         </div>
+                       </div>
+                       <div class="form-group">
+                         <label class="control-label col-md-4">Kelas</label>
+                         <div class="col-md-8">
+                           <select class="form-control" id="kelas" name="kelas">
+                             <option value="">--</option>
+                             <?php if (isset($kelas)) { foreach($kelas as $k) { ?>
+                               <option value="<?php echo $k->KELAS;?>"><?php echo $k->KELAS;?></option>
+                             <?php }}?>
+                           </select>
+                         </div>
+                       </div>
+                       <div class="form-group">
+                         <label class="control-label col-md-4">Bed</label>
+                         <div class="col-md-8">
+                           <select class="form-control" id="bed" name="bed">    
+                           </select>
+                         </div>
+                       </div>
+                     </div>
+      
+                     <div class="col-md-3">
                        <label class="form-title">Penjamin</label>
                        <div class="form-group">
                          <label class="control-label col-md-4">No.SJP / No. Surat</label>
@@ -192,17 +230,6 @@
                          <label class="control-label col-md-4">No. Peserta</label>
                          <div class="col-md-8">
                            <input class="form-control" name="nopembayarri" id="nopembayarri" value="<?php if (isset($pasien->NOPEMBAYARRI)) echo $pasien->NOPEMBAYARRI; ?>">
-                         </div>
-                       </div>
-                       <div class="form-group">
-                         <label class="control-label col-md-4">No. SEP</label>
-                         <div class="col-md-8">
-                           <div class="input-group">
-                             <input type="text" class="form-control" name="no_sep" id="no_sep" value="<?php if (isset($pasien->NO_SEP)) echo $pasien->NO_SEP; ?>" readonly>
-                               <span class="input-group-btn">
-                                 <button class="btn btn-success" style="font-size: 12px; line-height: 18px;" type="button" id="tombol_sep"><i class="fa fa-plus"></i></button>
-                               </span>
-                           </div>
                          </div>
                        </div>
                        <div class="form-group">
@@ -242,9 +269,20 @@
                            </div>
                          </div>  
                        </div>
+                       <div class="form-group">
+                         <label class="control-label col-md-4">No. SEP</label>
+                         <div class="col-md-8">
+                           <div class="input-group">
+                             <input type="text" class="form-control" name="no_sep" id="no_sep" value="<?php if (isset($pasien->NO_SEP)) echo $pasien->NO_SEP; ?>" readonly>
+                               <span class="input-group-btn">
+                                 <button class="btn btn-success" style="font-size: 12px; line-height: 18px;" type="button" id="tombol_sep"><i class="fa fa-plus"></i></button>
+                               </span>
+                           </div>
+                         </div>
+                       </div>
                      </div> 
    
-                     <div class="col-md-4">
+                     <div class="col-md-3">
                        <label class="form-title">Keluarga</label>
                        <div class="form-group">
                          <label class="control-label col-md-3">Nama</label>
@@ -289,58 +327,17 @@
                        </div>                     
                      </div>   
                    </div>  
-                 <hr>
-                 <label class="form-title">Data Ruang</label>
-                 <br>
-                 <div class="row">
-                    <div class="col-md-3">
-                       <div class="form-group">
-                          <label class="control-label col-md-4">Tanggal Masuk</label>
-                          <div class="col-md-8">
-                              <input type="text" class="form-control datetimepicker" name="tglmasukrg" />
-                          </div>
-                       </div>
-                    </div>
-                    <div class="col-md-3">
-                       <div class="form-group">
-                          <label class="control-label col-md-4">Ruang</label>
-                           <div class="col-md-8">
-                             <select class="form-control" id="ruang" name="idrg">
-                                <?php if (isset($ruang_rawat)) { foreach($ruang_rawat as $r) { ?>
-                                  <option value="<?php echo $r->IDRG;?>"><?php echo $r->NMRUANG;?></option>
-                                <?php }}?>                         
-                              </select>
-                           </div>
-                       </div>
-                    </div>
-                    <div class="col-md-3">
-                       <div class="form-group">
-                          <label class="control-label col-md-4">Kelas</label>
-                          <div class="col-md-8">
-                             <select class="form-control" id="kelas" name="kelas">
-                                <?php if (isset($kelas)) { foreach($kelas as $k) { ?>
-                                  <option value="<?php echo $k->KELAS;?>"><?php echo $k->KELAS;?></option>
-                                <?php }}?>
-                              </select>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                          <label class="control-label col-md-4">Bed</label>
-                          <div class="col-md-8">
-                             <select class="form-control" id="bed" name="bed">    
-                              </select>
-                          </div>
-                       </div>
-                    </div>
+                 
+                 
+                 
+                 
                  </div>                                   
                </div>
                <!-- Baris tombol -->
                <div class="panel-footer" id="form_footer">
                    <div id="baris_tombol">
                      <button type="submit" id="tombol_simpan" class="btn btn-primary btn-lg">Simpan</button>
-                     <?php if (isset($pasien->NO_IPD)) { ?><button type="button" id="tombol_cetak_sep" class="btn btn-primary btn-lg" disabled>Cetak SEP</button> <?php } ?>
+                     <?php if (isset($pasien->NO_IPD)) { ?><button type="button" id="tombol_cetak_sep" data-ipd="<?php echo $pasien->NO_IPD; ?>" class="btn btn-primary btn-lg" disabled>Cetak SEP</button> <?php } ?>
                    </div>
                </div>
              </form>
