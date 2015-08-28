@@ -14,9 +14,7 @@ Class Auth extends CI_Controller{
   }
 
   public function user_login_process(){
-    // $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
-    // $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
-
+     
     if ($this->form_validation->run()== FALSE){
       if (isset($this->session->userdata['logged_in'])){
         $this->load->view('admin_page');
@@ -29,7 +27,7 @@ Class Auth extends CI_Controller{
         $result = $this->authentication->login($data);
         if ($result == TRUE){
           $this->session->username = $data['username'];
-          redirect(base_url() . 'rawat_jalan');
+          redirect(base_url() . 'beranda');
         }
         else {
           $data = array(
