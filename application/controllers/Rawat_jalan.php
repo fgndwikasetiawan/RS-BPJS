@@ -15,7 +15,7 @@ class Rawat_jalan extends CI_Controller {
 	}
 	
 	public function form($tipe = null, $nomor = null) {
-		if (($tipe != 'medrec' && $tipe != 'bpjs') || (!$nomor || $nomor == '')) {
+		if (($tipe != 'medrec') || (!$nomor || $nomor == '')) {
 			load_main_template('Pendaftaran Rawat Jalan', 'Pendaftaran Rawat Jalan', 'rawat_jalan', null, 2);	
 		}
 		else {
@@ -30,9 +30,7 @@ class Rawat_jalan extends CI_Controller {
 			if($tipe == 'medrec'){
 				$result = $this->pasien_irj->cari_by_medrec($nomor);
 			}
-			else if($tipe == 'bpjs'){
-				$result = $this->pasien_irj->cari_by_bpjs($nomor);
-			}
+			
 			if ($result == null) {
 				alert_fail('Pasien tidak ditemukan');
 				redirect(base_url() . 'rawat_jalan/form');

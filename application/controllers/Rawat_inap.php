@@ -5,9 +5,11 @@ class Rawat_inap extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();		
+		/*
 		if (!$this->session->has_userdata('username')) {
 			redirect(base_url() . 'Auth');
-		}		
+		}
+		*/		
 	}
 
 	public function index(){
@@ -15,12 +17,16 @@ class Rawat_inap extends CI_Controller {
 	}	
    
 	public function form($tipe = null, $nomor = null) {
-		if (($tipe != 'reg_irj' && $tipe != 'ipd') || (!$nomor || $nomor == '')) {
+		if (($tipe != 'reg_irj' && $tipe != 'ipd' && $tipe != 'medrec') || (!$nomor || $nomor == '')) {
 			load_main_template('Pendaftaran Rawat Inap', 'Pendaftaran Rawat Inap', 'rawat_inap', null, 3);	
 		}
 		else {
 			$data_pasien = null;
-			if ($tipe == 'reg_irj') {
+			if ($tipe == 'medrec') {
+				$this->load->model('pasien_irj');
+				$data_pasien = $this->pasien_irj->cari_by_medrec($nomor);
+			}
+			else if ($tipe == 'reg_irj') {
 				$this->load->model('r_jalan');
 				$no_cm = $this->r_jalan->get_no_cm($nomor);
 				if ($no_cm) {
@@ -79,8 +85,90 @@ class Rawat_inap extends CI_Controller {
 			$data['pasien'] = $data_pasien;
 			
 			load_main_template('Pendaftaran Rawat Inap', 'Pendaftaran Rawat Inap', 'rawat_inap', $data, 3);
-			
 		}
 	}
+	
+	public function submit() {
+		if (!$this->input->post('no_ipd')) {
+			alert_fail('Gagal menyimpan entri: No. IPD tidak boleh kosong');
+			redirect(base_url() . 'rawat_inap/form/reg_irj/' . $this->input->post('noregasal'));
+		}
+		$this->load->model('pasien_iri');
+		$data = [
+			'NO_CM' => 'no_cm',
+			'NAMA' => 'nama',
+			'NOREGASAL' => 'noregasal',
+			'NO_IPD' => 'no_ipd',
+			'NOIPDIBU' => 'noipdibu',
+			'ID_SMF' => 'id_smf',
+			'CARABAYAR' => 'carabayar',
+			'CARAMASUK' => 'caramasuk',
+			'NOSJP' => 'nosjp',
+			'ID_KONTRAKTOR' => 'id_kontraktor',
+			'NOPEMBAYARRI' => 'nopembayarri',
+			'NO_SEP' => 'no_sep',
+			'NMPEMBAYARRI' => 'nmpembayarri',
+			'KETPEMBAYARRI' => 'ketpembayarri',
+			'GOLPEMBAYARRI' => 'golpembayarri',
+			'JATAHKLSIRI' => 'jatahklsiri',
+			'NMPJAWABRI' => 'nmpjawabri',
+			'ALAMATPJAWABRI' => 'alamatpjawabri',
+			'NOTLPPJAWAB' => 'notlppjawab',
+			'KARTUIDPJAWAB' => 'kartuidpjawab',
+			'NOIDPJAWAB' => 'noidpjawab',
+			'HUBPJAWABRI' => 'hubpjawabri',
+			'IDRG' => 'idrg'
+		];
+		foreach($data as $key => $value) {
+			$data[$key] = $this->input->post($value);
+		}
+		$data['TGLDAFTARRI'] = "TO_DATE('" . $this->input->post('tgldaftarri') . "', 'DD/MM/YYYY')";
+		$id_dokter = $this->input->post('id_dokter');
+		if ($id_dokter != 'null') {
+			$data['ID_DOKTER'] = $this->input->post('id_dokter');
+		}
+		
+		if ($this->pasien_iri->insert_or_update($data)) {
+			//Berhasil menyimpan entri pasien_iri, sekarang simpan entri ruang_iri
+			if ($this->input->post('tglmasukrg')) {
+				$data = [
+					'NO_IPD' => 'no_ipd',
+					'IDRG' => 'idrg',
+					'KELAS' => 'kelas',
+					'BED' => 'bed',
+					'NOMEDREC' => 'no_cm',
+					'ID_DOKTER' => 'id_dokter'
+				];
+				foreach($data as $key => $value) {
+					$data[$key] = $this->input->post($value);
+				}
+				$data['TGLMASUKRG'] = "TO_DATE('" . $this->input->post('tglmasukrg') . "', 'DD/MM/YYYY')";
+				if ($this->input->post('noregasal') != '') {
+					$data['STATMASUKRG'] = 'Pindahan';
+				}
+				else {
+					$data['STATMASUKRG'] = 'Asal';
+				}
+				$this->load->model('ruang_iri');
+				if ($this->ruang_iri->insert($data)) {
+					alert_success('Berhasil menyimpan entri pasien rawat inap');
+					redirect(base_url() . 'rawat_inap/form/ipd/' . $data['NO_IPD']);	
+				}	
+				else {
+					alert_fail('Gagal menyimpan entri');
+					redirect(base_url() . 'rawat_inap/form/ipd/' . $data['NO_IPD']);
+				}
+			}
+			else {
+				alert_success('Berhasil menyimpan entri pasien rawat inap');
+				redirect(base_url() . 'rawat_inap/form/ipd/' . $data['NO_IPD']);
+			}
+		}
+		else {
+			alert_fail('Gagal menyimpan entri');
+			redirect(base_url() . 'rawat_inap/form/reg_irj/' . $this->input->post('noregasal'));
+		}
+	}
+	
 }
 ?>

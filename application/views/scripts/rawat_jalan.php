@@ -31,7 +31,6 @@
 			no_bpjs: $('#no_bpjs').text(),
 			no_sjp: $('#no_sjp').val(),
 			ppk_rujukan: $('#ppk_rujukan').val(),
-			pelayanan: $('#pelayanan').val(),
 			catatan: $('#catatan').val(),
 			nm_diagnosa: $('#nm_diagnosa').val(),
 			nm_poli: $('#nm_poli').val(),

@@ -7,7 +7,6 @@
                <div class="col-md-3">
                   <select id="tipe_cari" class="form-control">
                      <option value="medrec">No. CM</option>
-                     <option value="bpjs">No. BPJS</option>
                   </select>
                </div>
                <div class="col-md-4 col-lg-4">

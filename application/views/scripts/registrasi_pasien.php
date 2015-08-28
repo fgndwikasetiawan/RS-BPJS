@@ -40,9 +40,6 @@
       if (tipe == 'medrec') {
        url = '/ajax/data_pasien_by_medrec/' + nomor;
       }
-      else {
-       url = '/ajax/data_pasien_by_bpjs/' + nomor
-      }
       $('#icon_loading').show();
       $.ajax({
           url: url,

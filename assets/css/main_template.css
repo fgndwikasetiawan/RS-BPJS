@@ -139,3 +139,20 @@ form .form-group {
         cursor: pointer;
     }
 }
+
+button.btn.btn-primary[disabled] {
+   background: #bbbbbb;
+   border-color: #bbbbbb;
+}
+button.btn.btn-success[disabled] {
+   background: #bbbbbb;
+   border-color: #bbbbbb;
+}
+button.btn.btn-warning[disabled] {
+   background: #bbbbbb;
+   border-color: #bbbbbb;
+}
+button.btn.btn-danger[disabled] {
+   background: #bbbbbb;
+   border-color: #bbbbbb;
+}

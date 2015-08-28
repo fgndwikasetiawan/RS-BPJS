@@ -6,7 +6,8 @@
       public function __construct() {
       	parent::__construct();
       	if (!$this->session->has_userdata('username')) {
-      		redirect(base_url() . 'Auth');
+      		set_status_header(401);
+            echo "Error 401: Unauthorized";
       	}
       }
 

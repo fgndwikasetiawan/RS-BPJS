@@ -36,6 +36,8 @@
 label.form-title {
 	display: block;
 	text-align: center;
+	font-size: 1.2em;
+	text-decoration: underline;
 }
 
 </style>
