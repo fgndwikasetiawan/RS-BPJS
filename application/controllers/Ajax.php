@@ -53,13 +53,13 @@
       public function buat_SEP() {
          $timezone = date_default_timezone_get();
          date_default_timezone_set('UTC');
-         $timestamp = strval(time()-strtotime('1970-01-01 00:00:00'));
+         $timestamp = strval(time()-strtotime('1970-01-01 00:00:00')); //cari timestamp
          $signature = hash_hmac('sha256', '27952' . '&' . $timestamp, 'rsm32h1', true);
          $encoded_signature = base64_encode($signature);
          $http_header = array(
                'Accept: application/json', 
                'Content-type: application/xml',
-               'X-cons-id: 27952',
+               'X-cons-id: 27952', //id rumah sakit
                'X-timestamp: ' . $timestamp,
                'X-signature: ' . $encoded_signature
          );
